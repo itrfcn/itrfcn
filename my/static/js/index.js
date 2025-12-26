@@ -287,7 +287,6 @@ $(window).on('load',function handlePreloader(){
             dataType: "json",
             crossDomain: true,
             success: function(res) {
-                console.log('天气API返回完整数据:', res);
                 if (res.code === 200) {
                     // 根据API返回的实际数据结构更新字段映射
                     const city = res.cityInfo?.city || '未知城市';
@@ -300,7 +299,6 @@ $(window).on('load',function handlePreloader(){
                     $('.temp').text('今天气温' + temp + '°C');
                     $('.desc').text('空气质量' + quality + '，' + ganmao);
                 } else {
-                    console.error('天气API返回错误:', res);
                     // 手动设置一些示例数据以便调试
                     $('.location').text('你好，来自北京市的朋友');
                     $('.temp').text('今天气温22°C');
@@ -308,7 +306,6 @@ $(window).on('load',function handlePreloader(){
                 }
             },
             error: function(err) {
-                console.error('获取天气失败:', err);
                 // 手动设置一些示例数据以便调试
                 $('.location').text('你好，来自北京市的朋友');
                 $('.temp').text('今天气温22°C');
