@@ -1,4 +1,4 @@
-var posts=["edgeone-adb468b0a8c0/","favicon-324dcbe00342/","pymusic-55808baffa35/","git-8a2ab4cae0a3/","linux-7ec40fedb040/","herf-e7f8ddf1cad4/","regex-85fc7a023f9c/","vercel-ec68f96264c1/","sqlserver-2e1afddb047d/","vs-739ea09d4020/"];function toRandomPost(){
+var posts=["edgeone-adb468b0a8c0/","git-8a2ab4cae0a3/","favicon-324dcbe00342/","herf-e7f8ddf1cad4/","pymusic-55808baffa35/","linux-7ec40fedb040/","regex-85fc7a023f9c/","sqlserver-2e1afddb047d/","vercel-ec68f96264c1/","vs-739ea09d4020/"];function toRandomPost(){
     pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);
   };var friend_link_list=[{"name":"音悦台","link":"https://music.686909.xyz/","avatar":"https://music.686909.xyz/favicon.ico","descr":"快速、简单且强大的音乐网站"},{"name":"冈易云音乐","link":"https://mk.686909.xyz/","avatar":"https://mk.686909.xyz/favicon.ico","descr":"免费音乐网站"},{"name":"RF极客日志","link":"https://itrf.cn/","avatar":"/images/avatar.jpg","descr":"分享技术与生活点滴","siteshot":"https://t.alcy.cc/moez","color":"vip","tag":"技术"}];
     var refreshNum = 1;
