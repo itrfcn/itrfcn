@@ -1,0 +1,874 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>学习NAT类型与实战各类型打洞可行性 | RF极客日志</title><meta name="keywords" content="学习笔记,NAT"><meta name="author" content="Lynx Frost"><meta name="copyright" content="Lynx Frost"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="学习NAT类型与实战各类型打洞可行性"><meta name="application-name" content="学习NAT类型与实战各类型打洞可行性"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="学习NAT类型与实战各类型打洞可行性"><meta property="og:url" content="https://blog.itrf.cn/nat-3e9c16b9b06f/index.html"><meta property="og:site_name" content="RF极客日志"><meta property="og:description" content="参考：https:&amp;#x2F;&amp;#x2F;tailscale.com&amp;#x2F;blog&amp;#x2F;how-nat-traversal-works 一、相关工具（含使用场景） 在线检测NAT类型：NAT Checker（核心功能：检测映射&amp;#x2F;过滤行为，精准判定NAT1-9类型，建议打洞前必测） 通用打洞工具：Tailscale（适配Easy"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://t.alcy.cc/moez?_r_=8f915fff-58a6-211f-76c2-0f42ca94a0a5"><meta property="article:author" content="Lynx Frost"><meta property="article:tag" content="编程技术，软件开发，人工智能，大数据，云计算，前端开发，后端开发，移动应用，算法设计，开源项目，个人博客，创意写作，生活随笔，读书笔记，旅行故事，摄影分享，美食体验，手工制作，灵感记录，生活感悟"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://t.alcy.cc/moez?_r_=8f915fff-58a6-211f-76c2-0f42ca94a0a5"><meta name="description" content="参考：https:&amp;#x2F;&amp;#x2F;tailscale.com&amp;#x2F;blog&amp;#x2F;how-nat-traversal-works 一、相关工具（含使用场景） 在线检测NAT类型：NAT Checker（核心功能：检测映射&amp;#x2F;过滤行为，精准判定NAT1-9类型，建议打洞前必测） 通用打洞工具：Tailscale（适配Easy"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="canonical" href="https://blog.itrf.cn/nat-3e9c16b9b06f/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@6.1.6/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;92f7e5d47192435eb3dd16ee2cd0b3af&quot;}"></script><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: undefined,
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机"]},
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Lynx Frost","link":"链接: ","source":"来源: RF极客日志","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.2.0/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.2.0/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true,
+  shortcutKey: {"enable":true,"delay":100,"shiftDelay":200},
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'RF极客日志',
+  title: '学习NAT类型与实战各类型打洞可行性',
+  postAI: '',
+  pageFillDescription: '一、相关工具（含使用场景）, 二、必备知识（打洞原理基础）, 2.1 NAT映射行为（决定公网端口是否固定）, 2.2 NAT过滤行为（决定外部流量能否放行）, 2.3 NAT类型对照表（含打洞难度标注）, 三、各NAT类型打洞可行性（详细拆解）, 3.1 NAT1（全锥型） ↔ NAT1（全锥型）, 核心原理, 实战步骤, 可行性结论, 问题排查, 3.2 NAT1（全锥型） ↔ NAT3（端口受限锥型）, 核心原理, 实战步骤, 可行性结论, 问题排查, 3.3 NAT3（端口受限锥型） ↔ NAT3（端口受限锥型）, 核心原理, 实战步骤, 可行性结论, 问题排查, 3.4 NAT1（全锥型） ↔ NAT4（地址相关映射+端点无关过滤）, 核心原理, 实战步骤, 可行性结论, 问题排查, 3.5 NAT3（端口受限锥型） ↔ NAT4（地址相关映射+端点无关过滤）, 核心原理, 实战步骤（分两种辅助方案）, 方案1：开启UPnP/NAT-PNP（推荐成功率高）, 方案2：使用Easytier（无UPnP时备选成功率低）, 可行性结论, 问题排查, 3.6 NAT4（地址相关映射） ↔ NAT4（地址相关映射）, 核心原理, 实战尝试（不推荐）, 可行性结论, 四、打洞可行性总结表（详细版）, 五、补充：IPv6替代方案（最优解）, 六、打洞核心规律与建议参考一相关工具含使用场景在线检测类型核心功能检测映射过滤行为精准判定类型建议打洞前必测通用打洞工具适配全场景需依赖操作简单适合新手复杂适配工具支持端口扫描预测可尝试组合适合进阶用户辅助排查工具抓包分析流量走向定位打洞失败原因如端口过滤映射端口变化二必备知识打洞原理基础路由器通过两张核心表实现管控这是打洞能否成功的关键映射表记录内部主机内网端口与公网公网端口的映射关系仅当内部主机向外发起请求时生成更新状态表记录内部主机的对外请求状态如请求目标端口连接状态仅当外部流量与状态表匹配时才允许穿透进入内网打洞的核心逻辑通过中转服务器交换双方公网映射信息再主动发起请求触发对方状态表更新让后续流量能被放行映射行为决定公网端口是否固定地址和端口相关映射特征仅当请求的目标目标端口与历史请求完全一致时才复用原公网映射端口只要有一项不同就生成新的公网端口如内网主机先访问中转服务器再访问主机会生成两个不同公网端口地址相关映射特征只要请求的目标与历史一致即使目标端口不同也复用原公网端口若目标不同则生成新端口如内网主机访问和共用一个公网端口访问和生成两个端口端点无关映射特征无论请求的目标目标端口如何变化始终复用同一个公网映射端口如内网主机访问均使用同一个公网端口过滤行为决定外部流量能否放行地址和端口相关过滤仅当外部响应的源源端口与内部主机之前的请求目标完全一致时才放行流量否则直接过滤地址相关过滤只要外部响应的源与内部请求的目标一致即使源端口不同也放行流量源不同则过滤端点无关过滤无论外部响应的源源端口是什么均直接放行最宽松的过滤规则类型对照表含打洞难度标注类型映射方式过滤方式对应类型分类打洞难度端点无关映射端点无关过滤全锥型极低端点无关映射地址相关过滤受限锥型低端点无关映射地址和端口相关过滤端口受限锥型中低地址相关映射端点无关过滤高地址相关映射地址相关过滤高地址相关映射地址和端口相关过滤极高地址和端口相关映射端点无关过滤高地址和端口相关映射地址相关过滤极高地址和端口相关映射地址和端口相关过滤对称型极高三各类型打洞可行性详细拆解前置操作双方均通过确认自身类型安装基础场景或复杂场景确保双方网络能访问中转服务器官方服务器全锥型全锥型核心原理双方均为端点无关映射公网端口固定端点无关过滤任意外部流量放行无需触发状态表更新交换公网信息后可直接通信实战步骤双方启动自动连接中转服务器完成身份认证中转服务器同步双方的公网和映射端口因端点无关映射此端口固定不变双方获取对方公网信息后直接向对方的公网映射端口发起连接由于双方过滤规则宽松流量直接放行打洞成功后续通信脱离中转服务器可行性结论稳定可行无特殊条件限制是打洞最理想的场景问题排查若失败优先排查防火墙是否拦截对应端口如默认使用端口需放行公网是否为运营商内网极少数情况可通过查询公网是否一致全锥型端口受限锥型核心原理公网端口固定过滤宽松公网端口固定但过滤严格仅放行之前请求过的端口的响应关键是让先向发起请求更新的状态表从而放行的后续请求实战步骤双方启动连接中转服务器同步对方公网端口记为关键操作让主机主动向的发起请求会自动触发此步骤无需手动操作的状态表更新记录请求目标此时允许的流量进入内网主机向的发起请求由于状态表已记录此请求被放行双方建立双向连接打洞成功可行性结论可行性以上核心依赖先发起请求的顺序等工具会自动协调此顺序无需手动干预问题排查若失败排查主机是否被路由器限制主动对外发起连接双方是否同时启动工具若先发起请求会被过滤可重启双方重试端口受限锥型端口受限锥型核心原理双方均为端口固定地址和端口相关过滤仅放行自身之前请求过的端口的流量需让双方在极短时间内同时向对方发起请求互相更新对方的状态表实现流量双向放行实战步骤双方启动连接中转服务器同步对方公网端口工具协调会通过中转服务器向双方发送同步发起请求的指令确保双方在秒内同时行动双方同时向对方公网地址发起请求双方状态表同时更新记录允许其流量进入记录允许其流量进入双方请求均被对方放行建立双向连接打洞成功可行性结论可行性以上核心依赖双方同时发起请求的时间同步若网络延迟过高如跨运营商跨地域同步难度增加成功率会略降问题排查若失败排查双方网络延迟是否过高可通过中转服务器判断延迟建议换同运营商网络工具是否未正常协调同步请求重启工具或切换网络重试全锥型地址相关映射端点无关过滤核心原理公网端口固定为映射端口随目标变化向中转服务器发起请求时生成映射端口当向发起请求时因目标变化会生成新的映射端口与不同打洞关键是让识别到的新端口重新发起请求实战步骤双方启动连接中转服务器同步的公网信息为与中转服务器通信的端口先向发起请求因仅对应中转服务器的状态此请求被的映射表匹配失败直接过滤中转服务器触发向的发起请求此时因目标变为生成新映射端口接收到的请求源地址自动更新的公网信息为向重新发起请求此时的状态表已记录请求目标且为当前映射端口请求被放行双方建立连接打洞成功可行性结论可行性左右需依赖工具支持动态端口识别与二次请求均支持若的映射端口变化频繁如部分运营商每秒刷新一次可能导致连接不稳定问题排查若失败排查工具是否支持动态端口更新老旧版本可能不支持需升级的映射端口刷新周期是否过短可通过抓包观察端口变化频率端口受限锥型地址相关映射端点无关过滤核心原理双方均有严格限制仅放行自身请求过的端口映射端口随目标变化常规情况下请求的中转端口会被过滤请求时因未记录其新端口也会被过滤需通过辅助方案突破限制实战步骤分两种辅助方案方案开启推荐成功率高登录所在的路由器管理后台找到或功能通常在高级设置端口映射中开启该功能双方启动工具会通过向路由器申请固定映射端口强制使用固定端口而非动态变化后续步骤与一致双方通过中转服务器同步固定端口同时发起请求互相更新状态表流量双向放行打洞成功方案使用无时备选成功率低双方启动工具自动检测到类型组合触发端口扫描预测模式主机向的连续发送条请求目标端口固定源端口动态生成形成多个映射端口主机同时向的依次发起扫描请求当扫描到正在向自己发起请求的端口如时双方状态表同时记录对方信息请求被放行建立连接可行性结论常规不可行开启后可行性用可行性依赖端口扫描命中率且易被运营商判定为网络攻击不推荐公网使用问题排查若方案失败排查路由器是否支持部分老旧路由器无此功能工具是否有权限调用需以管理员身份运行若方案失败排查网络是否限制高频端口扫描如企业内网可能拦截双方网络延迟是否过高延迟越高扫描命中率越低地址相关映射地址相关映射核心原理双方均为映射端口随目标动态变化且过滤规则严格打洞需满足双方同时扫描到对方当前的动态端口而每个动态端口的有效期通常仅几十秒命中率极低同时高频扫描易触发运营商的防护机制导致被临时封禁实战尝试不推荐双方启动开启深度端口扫描模式需手动设置扫描范围如双方同时向对方公网的全端口范围发起扫描请求试图匹配对方的动态映射端口若运气极佳双方扫描到对方当前的动态端口可建立连接否则扫描持续数分钟后失败可行性结论强烈不建议尝试可行性低于且存在被封禁的风险推荐替代方案让一方切换到网络如连接手机热点使用中转服务器转发流量默认支持中转稳定性高但延迟略高升级网络四打洞可行性总结表详细版通信组合打洞结果核心条件推荐工具风险注意事项稳定无需特殊条件交换公网信息即可低风险仅需放行工具端口可行先向发起请求自动协调顺序低风险跨地域延迟高时成功率略降可行双方同时发起请求时间同步自动同步中低风险延迟需重试可行工具支持动态端口识别与二次请求中风险端口刷新频繁可能导致连接不稳定常规不可行后可行扫描后可行开启推荐或工具端口扫描备选扫描高风险扫描模式易被判定为攻击可行性双方同时扫描到对方动态端口极难不推荐极高风险易导致被封禁五补充替代方案最优解若双方网络支持可通过检测优先放弃打洞直接使用通信核心优势为每个设备分配独立公网地址无需转换直接通过地址建立连接稳定性延迟低于打洞实战步骤双方开启设备功能电脑设置网络属性勾选路由器开启拨号获取前缀通过命令行获取自身地址使用支持的工具如直接输入对方地址建立连接无需中转和打洞注意事项部分运营商地址为动态分配重启路由器会变化可在路由器中设置地址绑定固定设备的后缀六打洞核心规律与建议之间打洞成功率高优先使用操作简单且稳定适合大多数个人家庭场景优先尝试开启其次使用避免手动操作减少风险之间放弃打洞选择中转服务器或既保证稳定性又避免被封禁实战优先级检测类型尝试打洞开启重试切换使用中转服务器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-01-02 15:13:39',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 8.1.1"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="/images/avatar.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">旗下站点</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://music.686909.xyz/" title="音悦台"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://music.686909.xyz/favicon.ico" alt="音悦台"/><span class="back-menu-item-text">音悦台</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://mk.686909.xyz/" title="冈易云音乐"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://mk.686909.xyz/favicon.ico" alt="冈易云音乐"/><span class="back-menu-item-text">冈易云音乐</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">个人项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/itrfcn/Pymusic" title="Pymusic"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/svg/github-mark.svg" alt="Pymusic"/><span class="back-menu-item-text">Pymusic</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/itrfcn/Clay" title="Clay"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/svg/github-mark.svg" alt="Clay"/><span class="back-menu-item-text">Clay</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">RF极客日志</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><!-- 插件挂载容器--><div id="tp-weather-widget"></div><!-- 心知天气核心脚本（Pug语法适配）--><script>(function(a,h,g,f,e,d,c,b){
+  b=function(){
+    d=h.createElement(g);
+    c=h.getElementsByTagName(g)[0];
+    d.src=e;
+    d.charset="utf-8";
+    d.async=1;
+    c.parentNode.insertBefore(d,c)
+  };
+  a["SeniverseWeatherWidgetObject"]=f;
+  a[f]||(a[f]=function(){(a[f].q=a[f].q||[]).push(arguments)});
+  a[f].l=+new Date();
+  if(a.attachEvent){
+    a.attachEvent("onload",b)
+  }else{
+    a.addEventListener("load",b,false)
+  }
+})(window,document,"script","SeniverseWeatherWidget","//cdn.sencdn.com/widget2/static/js/bundle.js?t="+parseInt((new Date().getTime() / 100000000).toString(),10));
+
+window.SeniverseWeatherWidget('show', {
+  flavor: "slim",
+  location: "WS10730EM8EV", // 青岛定位编码
+  geolocation: false,       // 强制显示青岛
+  language: "zh-Hans",
+  unit: "c",
+  theme: "auto",         
+  token: "205d75c0-884b-4795-9281-a24aad86d2c8",
+  hover: "disabled",
+  container: "tp-weather-widget"
+})</script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/equipment/"><i class="anzhiyufont anzhiyu-icon-dice-d20 faa-tada" style="font-size: 0.9em;"></i><span> 我的装备</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li><li><a class="site-page child faa-parent animated-hover" target="_blank" rel="noopener" href="https://www.itrf.cn/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 介绍页</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="/images/wx.jpg" target="_blank"><img class="post-qr-code-img" alt="微信" src="/images/wx.jpg"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/images/zfb.jpg" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="/images/zfb.jpg"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/EdgeOne/" style="font-size: 1.05rem;">EdgeOne<sup>2</sup></a><a href="/tags/Flask/" style="font-size: 1.05rem;">Flask<sup>1</sup></a><a href="/tags/Git/" style="font-size: 1.05rem;">Git<sup>1</sup></a><a href="/tags/Linux/" style="font-size: 1.05rem;">Linux<sup>1</sup></a><a href="/tags/NAT/" style="font-size: 1.05rem;">NAT<sup>1</sup></a><a href="/tags/Python/" style="font-size: 1.05rem;">Python<sup>1</sup></a><a href="/tags/SQL-Server/" style="font-size: 1.05rem;">SQL Server<sup>1</sup></a><a href="/tags/Vercel/" style="font-size: 1.05rem;">Vercel<sup>1</sup></a><a href="/tags/%E5%8E%9F%E5%88%9B%E9%A1%B9%E7%9B%AE/" style="font-size: 1.05rem;">原创项目<sup>1</sup></a><a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 1.05rem;">学习笔记<sup>5</sup></a><a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 1.05rem;">正则表达式<sup>1</sup></a><a href="/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/" style="font-size: 1.05rem;">零碎知识<sup>5</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/01/"><span class="card-archive-list-date">一月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/12/"><span class="card-archive-list-date">十二月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/11/"><span class="card-archive-list-date">十一月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">5</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/10/"><span class="card-archive-list-date">十月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/07/"><span class="card-archive-list-date">七月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div><div class="console-btn-item" id="consoleKeyboard" onclick="anzhiyu.keyboardToggle()" title="快捷键开关"><a class="keyboard-switch"><i class="anzhiyufont anzhiyu-icon-keyboard"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/" itemprop="url">学习心得</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>学习笔记</span></a><a class="article-meta__tags" href="/tags/NAT/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>NAT</span></a></span></div></div><h1 class="post-title" itemprop="name headline">学习NAT类型与实战各类型打洞可行性</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2026-01-02T07:03:23.000Z" title="发表于 2026-01-02 15:03:23">2026-01-02</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2026-01-02T07:13:39.778Z" title="更新于 2026-01-02 15:13:39">2026-01-02</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">3.9k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="学习NAT类型与实战各类型打洞可行性"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为China"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>China</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://t.alcy.cc/moez?_r_=8f915fff-58a6-211f-76c2-0f42ca94a0a5"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://blog.itrf.cn/nat-3e9c16b9b06f/"><header><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/" itemprop="url">学习心得</a><a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" tabindex="-1" itemprop="url">学习笔记</a><a href="/tags/NAT/" tabindex="-1" itemprop="url">NAT</a><h1 id="CrawlerTitle" itemprop="name headline">学习NAT类型与实战各类型打洞可行性</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Lynx Frost</span><time itemprop="dateCreated datePublished" datetime="2026-01-02T07:03:23.000Z" title="发表于 2026-01-02 15:03:23">2026-01-02</time><time itemprop="dateCreated datePublished" datetime="2026-01-02T07:13:39.778Z" title="更新于 2026-01-02 15:13:39">2026-01-02</time></header><p>参考：<a target="_blank" rel="noopener" href="https://tailscale.com/blog/how-nat-traversal-works">https://tailscale.com/blog/how-nat-traversal-works</a></p>
+<h2 id="一、相关工具（含使用场景）"><a href="#一、相关工具（含使用场景）" class="headerlink" title="一、相关工具（含使用场景）"></a>一、相关工具（含使用场景）</h2><ul>
+<li>在线检测NAT类型：<a target="_blank" rel="noopener" href="https://natchecker.com">NAT Checker</a>（核心功能：检测映射/过滤行为，精准判定NAT1-9类型，建议打洞前必测）</li>
+<li>通用打洞工具：<a target="_blank" rel="noopener" href="https://tailscale.com/">Tailscale</a>（适配EasyNAT全场景，HardNAT需依赖UPnP，操作简单，适合新手）</li>
+<li>复杂NAT适配工具：<a target="_blank" rel="noopener" href="https://easytier.cn/">Easytier</a>（支持端口扫描/预测，可尝试HardNAT组合，适合进阶用户）</li>
+<li>辅助排查工具：Wireshark（抓包分析流量走向，定位打洞失败原因，如端口过滤、映射端口变化）</li>
+</ul>
+<h2 id="二、必备知识（打洞原理基础）"><a href="#二、必备知识（打洞原理基础）" class="headerlink" title="二、必备知识（打洞原理基础）"></a>二、必备知识（打洞原理基础）</h2><p>路由器通过两张核心表实现NAT管控，这是打洞能否成功的关键：</p>
+<ol>
+<li><strong>NAT映射表</strong>：记录内部主机（内网IP:端口）与公网（公网IP:端口）的映射关系，仅当内部主机向外发起请求时生成/更新；</li>
+<li><strong>状态表</strong>：记录内部主机的对外请求状态（如请求目标IP:端口、连接状态），仅当外部流量与状态表匹配时，才允许穿透NAT进入内网。</li>
+</ol>
+<p>打洞的核心逻辑：通过中转服务器交换双方公网映射信息，再主动发起请求触发对方状态表更新，让后续流量能被放行。</p>
+<h3 id="2-1-NAT映射行为（决定公网端口是否固定）"><a href="#2-1-NAT映射行为（决定公网端口是否固定）" class="headerlink" title="2.1 NAT映射行为（决定公网端口是否固定）"></a>2.1 NAT映射行为（决定公网端口是否固定）</h3><ul>
+<li><strong>地址和端口相关映射</strong>（HardNAT特征）：仅当请求的「目标IP+目标端口」与历史请求完全一致时，才复用原公网映射端口；只要有一项不同，就生成新的公网端口（如内网主机先访问中转服务器A:8080，再访问主机B:80，会生成两个不同公网端口）。</li>
+<li><strong>地址相关映射</strong>（HardNAT特征）：只要请求的「目标IP」与历史一致，即使目标端口不同，也复用原公网端口；若目标IP不同，则生成新端口（如内网主机访问A:8080和A:80，共用一个公网端口；访问A:8080和B:80，生成两个端口）。</li>
+<li><strong>端点无关映射</strong>（EasyNAT特征）：无论请求的目标IP、目标端口如何变化，始终复用同一个公网映射端口（如内网主机访问A:8080、B:80、C:443，均使用同一个公网端口）。</li>
+</ul>
+<h3 id="2-2-NAT过滤行为（决定外部流量能否放行）"><a href="#2-2-NAT过滤行为（决定外部流量能否放行）" class="headerlink" title="2.2 NAT过滤行为（决定外部流量能否放行）"></a>2.2 NAT过滤行为（决定外部流量能否放行）</h3><ul>
+<li><strong>地址和端口相关过滤</strong>：仅当外部响应的「源IP+源端口」与内部主机之前的请求目标完全一致时，才放行流量；否则直接过滤。</li>
+<li><strong>地址相关过滤</strong>：只要外部响应的「源IP」与内部请求的目标IP一致，即使源端口不同，也放行流量；源IP不同则过滤。</li>
+<li><strong>端点无关过滤</strong>：无论外部响应的源IP、源端口是什么，均直接放行（最宽松的过滤规则）。</li>
+</ul>
+<h3 id="2-3-NAT类型对照表（含打洞难度标注）"><a href="#2-3-NAT类型对照表（含打洞难度标注）" class="headerlink" title="2.3 NAT类型对照表（含打洞难度标注）"></a>2.3 NAT类型对照表（含打洞难度标注）</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">NAT类型</th>
+<th style="text-align:left">RFC 5780映射方式</th>
+<th style="text-align:left">RFC 5780过滤方式</th>
+<th style="text-align:left">RFC 3489对应类型</th>
+<th style="text-align:left">分类</th>
+<th style="text-align:left">打洞难度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">NAT Type 1</td>
+<td style="text-align:left">端点无关映射</td>
+<td style="text-align:left">端点无关过滤</td>
+<td style="text-align:left">全锥型（Full Cone）</td>
+<td style="text-align:left">EasyNAT</td>
+<td style="text-align:left">⭐ 极低</td>
+</tr>
+<tr>
+<td style="text-align:left">NAT Type 2</td>
+<td style="text-align:left">端点无关映射</td>
+<td style="text-align:left">地址相关过滤</td>
+<td style="text-align:left">受限锥型（Restricted Cone）</td>
+<td style="text-align:left">EasyNAT</td>
+<td style="text-align:left">⭐ 低</td>
+</tr>
+<tr>
+<td style="text-align:left">NAT Type 3</td>
+<td style="text-align:left">端点无关映射</td>
+<td style="text-align:left">地址和端口相关过滤</td>
+<td style="text-align:left">端口受限锥型（Port Restricted Cone）</td>
+<td style="text-align:left">EasyNAT</td>
+<td style="text-align:left">⭐⭐ 中低</td>
+</tr>
+<tr>
+<td style="text-align:left">NAT Type 4</td>
+<td style="text-align:left">地址相关映射</td>
+<td style="text-align:left">端点无关过滤</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">HardNAT</td>
+<td style="text-align:left">⭐⭐⭐⭐ 高</td>
+</tr>
+<tr>
+<td style="text-align:left">NAT Type 5</td>
+<td style="text-align:left">地址相关映射</td>
+<td style="text-align:left">地址相关过滤</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">HardNAT</td>
+<td style="text-align:left">⭐⭐⭐⭐ 高</td>
+</tr>
+<tr>
+<td style="text-align:left">NAT Type 6</td>
+<td style="text-align:left">地址相关映射</td>
+<td style="text-align:left">地址和端口相关过滤</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">HardNAT</td>
+<td style="text-align:left">⭐⭐⭐⭐⭐ 极高</td>
+</tr>
+<tr>
+<td style="text-align:left">NAT Type 7</td>
+<td style="text-align:left">地址和端口相关映射</td>
+<td style="text-align:left">端点无关过滤</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">HardNAT</td>
+<td style="text-align:left">⭐⭐⭐⭐ 高</td>
+</tr>
+<tr>
+<td style="text-align:left">NAT Type 8</td>
+<td style="text-align:left">地址和端口相关映射</td>
+<td style="text-align:left">地址相关过滤</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">HardNAT</td>
+<td style="text-align:left">⭐⭐⭐⭐⭐ 极高</td>
+</tr>
+<tr>
+<td style="text-align:left">NAT Type 9</td>
+<td style="text-align:left">地址和端口相关映射</td>
+<td style="text-align:left">地址和端口相关过滤</td>
+<td style="text-align:left">对称型（Symmetric）</td>
+<td style="text-align:left">HardNAT</td>
+<td style="text-align:left">⭐⭐⭐⭐⭐ 极高</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="三、各NAT类型打洞可行性（详细拆解）"><a href="#三、各NAT类型打洞可行性（详细拆解）" class="headerlink" title="三、各NAT类型打洞可行性（详细拆解）"></a>三、各NAT类型打洞可行性（详细拆解）</h2><p>前置操作：双方均通过NAT Checker确认自身NAT类型，安装Tailscale（基础场景）或Easytier（复杂场景），确保双方网络能访问中转服务器（Tailscale/Easytier官方服务器）。</p>
+<h3 id="3-1-NAT1（全锥型）-↔-NAT1（全锥型）"><a href="#3-1-NAT1（全锥型）-↔-NAT1（全锥型）" class="headerlink" title="3.1 NAT1（全锥型） ↔ NAT1（全锥型）"></a>3.1 NAT1（全锥型） ↔ NAT1（全锥型）</h3><h4 id="核心原理"><a href="#核心原理" class="headerlink" title="核心原理"></a>核心原理</h4><p>双方均为端点无关映射（公网端口固定）+ 端点无关过滤（任意外部流量放行），无需触发状态表更新，交换公网信息后可直接通信。</p>
+<h4 id="实战步骤"><a href="#实战步骤" class="headerlink" title="实战步骤"></a>实战步骤</h4><ol>
+<li>双方启动Tailscale，自动连接中转服务器，完成身份认证；</li>
+<li>中转服务器同步双方的公网IP和映射端口（因端点无关映射，此端口固定不变）；</li>
+<li>双方获取对方公网信息后，直接向对方的「公网IP:映射端口」发起TCP/UDP连接；</li>
+<li>由于双方过滤规则宽松，流量直接放行，打洞成功，后续通信脱离中转服务器。</li>
+</ol>
+<h4 id="可行性结论"><a href="#可行性结论" class="headerlink" title="可行性结论"></a>可行性结论</h4><p>✅ 100%稳定可行，无特殊条件限制，是打洞最理想的场景。</p>
+<h4 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h4><p>若失败，优先排查：① 防火墙是否拦截对应端口（如Tailscale默认使用41641端口，需放行）；② 公网IP是否为运营商内网IP（极少数情况，可通过IP138查询公网IP是否一致）。</p>
+<h3 id="3-2-NAT1（全锥型）-↔-NAT3（端口受限锥型）"><a href="#3-2-NAT1（全锥型）-↔-NAT3（端口受限锥型）" class="headerlink" title="3.2 NAT1（全锥型） ↔ NAT3（端口受限锥型）"></a>3.2 NAT1（全锥型） ↔ NAT3（端口受限锥型）</h3><h4 id="核心原理-1"><a href="#核心原理-1" class="headerlink" title="核心原理"></a>核心原理</h4><p>NAT1公网端口固定+过滤宽松，NAT3公网端口固定但过滤严格（仅放行「之前请求过的IP+端口」的响应）。关键是让NAT3先向NAT1发起请求，更新NAT3的状态表，从而放行NAT1的后续请求。</p>
+<h4 id="实战步骤-1"><a href="#实战步骤-1" class="headerlink" title="实战步骤"></a>实战步骤</h4><ol>
+<li>双方启动Tailscale，连接中转服务器，同步对方公网IP:端口（记为NAT1：A:PortA；NAT3：B:PortB）；</li>
+<li>关键操作：让NAT3主机主动向NAT1的A:PortA发起请求（Tailscale会自动触发此步骤，无需手动操作）；</li>
+<li>NAT3的状态表更新：记录「请求目标A:PortA」，此时允许A:PortA的流量进入内网；</li>
+<li>NAT1主机向NAT3的B:PortB发起请求，由于NAT3状态表已记录A:PortA，此请求被放行；</li>
+<li>双方建立双向连接，打洞成功。</li>
+</ol>
+<h4 id="可行性结论-1"><a href="#可行性结论-1" class="headerlink" title="可行性结论"></a>可行性结论</h4><p>✅ 可行性95%以上，核心依赖「NAT3先发起请求」的顺序，Tailscale等工具会自动协调此顺序，无需手动干预。</p>
+<h4 id="问题排查-1"><a href="#问题排查-1" class="headerlink" title="问题排查"></a>问题排查</h4><p>若失败，排查：① NAT3主机是否被路由器限制“主动对外发起连接”；② 双方是否同时启动工具（若NAT1先发起请求，会被NAT3过滤，可重启双方Tailscale重试）。</p>
+<h3 id="3-3-NAT3（端口受限锥型）-↔-NAT3（端口受限锥型）"><a href="#3-3-NAT3（端口受限锥型）-↔-NAT3（端口受限锥型）" class="headerlink" title="3.3 NAT3（端口受限锥型） ↔ NAT3（端口受限锥型）"></a>3.3 NAT3（端口受限锥型） ↔ NAT3（端口受限锥型）</h3><h4 id="核心原理-2"><a href="#核心原理-2" class="headerlink" title="核心原理"></a>核心原理</h4><p>双方均为“端口固定+地址和端口相关过滤”，仅放行「自身之前请求过的IP:端口」的流量。需让双方在极短时间内同时向对方发起请求，互相更新对方的状态表，实现流量双向放行。</p>
+<h4 id="实战步骤-2"><a href="#实战步骤-2" class="headerlink" title="实战步骤"></a>实战步骤</h4><ol>
+<li>双方启动Tailscale，连接中转服务器，同步对方公网IP:端口（NAT3-1：C:PortC；NAT3-2：D:PortD）；</li>
+<li>工具协调：Tailscale会通过中转服务器向双方发送“同步发起请求”的指令，确保双方在1秒内同时行动；</li>
+<li>双方同时向对方公网地址发起请求：NAT3-1→D:PortD；NAT3-2→C:PortC；</li>
+<li>双方状态表同时更新：NAT3-1记录D:PortD，允许其流量进入；NAT3-2记录C:PortC，允许其流量进入；</li>
+<li>双方请求均被对方放行，建立双向连接，打洞成功。</li>
+</ol>
+<h4 id="可行性结论-2"><a href="#可行性结论-2" class="headerlink" title="可行性结论"></a>可行性结论</h4><p>✅ 可行性90%以上，核心依赖「双方同时发起请求」的时间同步。若网络延迟过高（如跨运营商、跨地域），同步难度增加，成功率会略降。</p>
+<h4 id="问题排查-2"><a href="#问题排查-2" class="headerlink" title="问题排查"></a>问题排查</h4><p>若失败，排查：① 双方网络延迟是否过高（可通过ping中转服务器判断，延迟&gt;200ms建议换同运营商网络）；② 工具是否未正常协调同步请求（重启工具或切换网络重试）。</p>
+<h3 id="3-4-NAT1（全锥型）-↔-NAT4（地址相关映射-端点无关过滤）"><a href="#3-4-NAT1（全锥型）-↔-NAT4（地址相关映射-端点无关过滤）" class="headerlink" title="3.4 NAT1（全锥型） ↔ NAT4（地址相关映射+端点无关过滤）"></a>3.4 NAT1（全锥型） ↔ NAT4（地址相关映射+端点无关过滤）</h3><h4 id="核心原理-3"><a href="#核心原理-3" class="headerlink" title="核心原理"></a>核心原理</h4><p>NAT1公网端口固定，NAT4为HardNAT（映射端口随目标IP变化）：NAT4向中转服务器发起请求时，生成映射端口Port4-1；当NAT4向NAT1发起请求时，因目标IP变化，会生成新的映射端口Port4-2（与Port4-1不同）。打洞关键是让NAT1识别到NAT4的新端口Port4-2，重新发起请求。</p>
+<h4 id="实战步骤-3"><a href="#实战步骤-3" class="headerlink" title="实战步骤"></a>实战步骤</h4><ol>
+<li>双方启动Tailscale，连接中转服务器，同步的NAT4公网信息为「E:Port4-1」（NAT4与中转服务器通信的端口）；</li>
+<li>NAT1先向E:Port4-1发起请求，因Port4-1仅对应“NAT4→中转服务器”的状态，此请求被NAT4的映射表匹配失败，直接过滤；</li>
+<li>中转服务器触发NAT4向NAT1的A:PortA发起请求，此时NAT4因目标IP变为A，生成新映射端口Port4-2；</li>
+<li>NAT1接收到NAT4的请求（源地址E:Port4-2），自动更新NAT4的公网信息为「E:Port4-2」；</li>
+<li>NAT1向E:Port4-2重新发起请求，此时NAT4的状态表已记录「请求目标A:PortA」，且Port4-2为当前映射端口，请求被放行；</li>
+<li>双方建立连接，打洞成功。</li>
+</ol>
+<h4 id="可行性结论-3"><a href="#可行性结论-3" class="headerlink" title="可行性结论"></a>可行性结论</h4><p>⚠️ 可行性70%左右，需依赖工具支持“动态端口识别与二次请求”（Tailscale、Easytier均支持）。若NAT4的映射端口变化频繁（如部分运营商每30秒刷新一次），可能导致连接不稳定。</p>
+<h4 id="问题排查-3"><a href="#问题排查-3" class="headerlink" title="问题排查"></a>问题排查</h4><p>若失败，排查：① 工具是否支持动态端口更新（老旧版本可能不支持，需升级）；② NAT4的映射端口刷新周期是否过短（可通过Wireshark抓包观察端口变化频率）。</p>
+<h3 id="3-5-NAT3（端口受限锥型）-↔-NAT4（地址相关映射-端点无关过滤）"><a href="#3-5-NAT3（端口受限锥型）-↔-NAT4（地址相关映射-端点无关过滤）" class="headerlink" title="3.5 NAT3（端口受限锥型） ↔ NAT4（地址相关映射+端点无关过滤）"></a>3.5 NAT3（端口受限锥型） ↔ NAT4（地址相关映射+端点无关过滤）</h3><h4 id="核心原理-4"><a href="#核心原理-4" class="headerlink" title="核心原理"></a>核心原理</h4><p>双方均有严格限制：NAT3仅放行「自身请求过的IP:端口」，NAT4映射端口随目标IP变化。常规情况下，NAT3请求NAT4的“中转端口”会被过滤，NAT4请求NAT3时，因NAT3未记录其新端口，也会被过滤。需通过辅助方案突破限制。</p>
+<h4 id="实战步骤（分两种辅助方案）"><a href="#实战步骤（分两种辅助方案）" class="headerlink" title="实战步骤（分两种辅助方案）"></a>实战步骤（分两种辅助方案）</h4><h5 id="方案1：开启UPnP-NAT-PNP（推荐，成功率高）"><a href="#方案1：开启UPnP-NAT-PNP（推荐，成功率高）" class="headerlink" title="方案1：开启UPnP/NAT-PNP（推荐，成功率高）"></a>方案1：开启UPnP/NAT-PNP（推荐，成功率高）</h5><ol>
+<li>登录NAT4所在的路由器管理后台，找到「UPnP」或「NAT-PNP」功能（通常在“高级设置-端口映射”中），开启该功能；</li>
+<li>双方启动Tailscale，工具会通过UPnP向路由器申请“固定映射端口”（强制NAT4使用固定端口，而非动态变化）；</li>
+<li>后续步骤与「NAT3↔NAT3」一致：双方通过中转服务器同步固定端口，同时发起请求，互相更新状态表；</li>
+<li>流量双向放行，打洞成功。</li>
+</ol>
+<h5 id="方案2：使用Easytier（无UPnP时备选，成功率低）"><a href="#方案2：使用Easytier（无UPnP时备选，成功率低）" class="headerlink" title="方案2：使用Easytier（无UPnP时备选，成功率低）"></a>方案2：使用Easytier（无UPnP时备选，成功率低）</h5><ol>
+<li>双方启动Easytier，工具自动检测到NAT类型组合，触发“端口扫描+预测”模式；</li>
+<li>NAT4主机向NAT3的C:PortC连续发送100-500条请求（目标端口固定，源端口动态生成，形成多个映射端口：Port4-3、Port4-4…）；</li>
+<li>NAT3主机同时向NAT4的E:Port4-3~Port4-500依次发起扫描请求；</li>
+<li>当NAT3扫描到NAT4正在向自己发起请求的端口（如Port4-10）时，双方状态表同时记录对方信息，请求被放行，建立连接。</li>
+</ol>
+<h4 id="可行性结论-4"><a href="#可行性结论-4" class="headerlink" title="可行性结论"></a>可行性结论</h4><p>❌ 常规不可行；✅ 开启UPnP后可行性85%；⚠️ 用Easytier可行性30%-50%（依赖端口扫描命中率，且易被运营商判定为网络攻击，不推荐公网使用）。</p>
+<h4 id="问题排查-4"><a href="#问题排查-4" class="headerlink" title="问题排查"></a>问题排查</h4><p>若UPnP方案失败，排查：① 路由器是否支持UPnP（部分老旧路由器无此功能）；② 工具是否有权限调用UPnP（需以管理员身份运行）；若Easytier方案失败，排查：① 网络是否限制高频端口扫描（如企业内网可能拦截）；② 双方网络延迟是否过高（延迟越高，扫描命中率越低）。</p>
+<h3 id="3-6-NAT4（地址相关映射）-↔-NAT4（地址相关映射）"><a href="#3-6-NAT4（地址相关映射）-↔-NAT4（地址相关映射）" class="headerlink" title="3.6 NAT4（地址相关映射） ↔ NAT4（地址相关映射）"></a>3.6 NAT4（地址相关映射） ↔ NAT4（地址相关映射）</h3><h4 id="核心原理-5"><a href="#核心原理-5" class="headerlink" title="核心原理"></a>核心原理</h4><p>双方均为HardNAT，映射端口随目标IP动态变化，且过滤规则严格。打洞需满足“双方同时扫描到对方当前的动态端口”，而每个动态端口的有效期通常仅几十秒，命中率极低；同时高频扫描易触发运营商的DDoS防护机制，导致IP被临时封禁。</p>
+<h4 id="实战尝试（不推荐）"><a href="#实战尝试（不推荐）" class="headerlink" title="实战尝试（不推荐）"></a>实战尝试（不推荐）</h4><ol>
+<li>双方启动Easytier，开启“深度端口扫描”模式（需手动设置扫描范围，如1000-65535）；</li>
+<li>双方同时向对方公网IP的全端口范围发起扫描请求，试图匹配对方的动态映射端口；</li>
+<li>若运气极佳，双方扫描到对方当前的动态端口，可建立连接；否则扫描持续数分钟后失败。</li>
+</ol>
+<h4 id="可行性结论-5"><a href="#可行性结论-5" class="headerlink" title="可行性结论"></a>可行性结论</h4><p>❌ 强烈不建议尝试，可行性低于10%，且存在IP被封禁的风险。推荐替代方案：① 让一方切换到EasyNAT网络（如连接手机热点）；② 使用中转服务器转发流量（Tailscale默认支持中转，稳定性高但延迟略高）；③ 升级IPv6网络。</p>
+<h2 id="四、打洞可行性总结表（详细版）"><a href="#四、打洞可行性总结表（详细版）" class="headerlink" title="四、打洞可行性总结表（详细版）"></a>四、打洞可行性总结表（详细版）</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">通信组合</th>
+<th style="text-align:left">打洞结果</th>
+<th style="text-align:left">核心条件</th>
+<th style="text-align:left">推荐工具</th>
+<th style="text-align:left">风险/注意事项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">NAT1↔NAT1</td>
+<td style="text-align:left">✅ 100%稳定</td>
+<td style="text-align:left">无需特殊条件，交换公网信息即可</td>
+<td style="text-align:left">Tailscale、Easytier</td>
+<td style="text-align:left">低风险，仅需放行工具端口</td>
+</tr>
+<tr>
+<td style="text-align:left">NAT1↔NAT3</td>
+<td style="text-align:left">✅ 95%可行</td>
+<td style="text-align:left">NAT3先向NAT1发起请求</td>
+<td style="text-align:left">Tailscale（自动协调顺序）</td>
+<td style="text-align:left">低风险，跨地域延迟高时成功率略降</td>
+</tr>
+<tr>
+<td style="text-align:left">NAT3↔NAT3</td>
+<td style="text-align:left">✅ 90%可行</td>
+<td style="text-align:left">双方同时发起请求，时间同步</td>
+<td style="text-align:left">Tailscale（自动同步）</td>
+<td style="text-align:left">中低风险，延迟&gt;200ms需重试</td>
+</tr>
+<tr>
+<td style="text-align:left">NAT1↔NAT4</td>
+<td style="text-align:left">⚠️ 70%可行</td>
+<td style="text-align:left">工具支持动态端口识别与二次请求</td>
+<td style="text-align:left">Tailscale、Easytier</td>
+<td style="text-align:left">中风险，NAT4端口刷新频繁可能导致连接不稳定</td>
+</tr>
+<tr>
+<td style="text-align:left">NAT3↔NAT4</td>
+<td style="text-align:left">❌ 常规不可行；✅ UPnP后85%可行；⚠️ 扫描后30%-50%可行</td>
+<td style="text-align:left">开启UPnP（推荐）或工具端口扫描（备选）</td>
+<td style="text-align:left">Tailscale（UPnP）、Easytier（扫描）</td>
+<td style="text-align:left">高风险，扫描模式易被判定为攻击</td>
+</tr>
+<tr>
+<td style="text-align:left">NAT4↔NAT4</td>
+<td style="text-align:left">❌ 可行性&lt;10%</td>
+<td style="text-align:left">双方同时扫描到对方动态端口（极难）</td>
+<td style="text-align:left">Easytier（不推荐）</td>
+<td style="text-align:left">极高风险，易导致IP被封禁</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="五、补充：IPv6替代方案（最优解）"><a href="#五、补充：IPv6替代方案（最优解）" class="headerlink" title="五、补充：IPv6替代方案（最优解）"></a>五、补充：IPv6替代方案（最优解）</h2><p>若双方网络支持IPv6（可通过<a target="_blank" rel="noopener" href="https://test-ipv6.com/">test-ipv6.com</a>检测），优先放弃NAT打洞，直接使用IPv6通信：</p>
+<ol>
+<li><strong>核心优势</strong>：IPv6为每个设备分配独立公网地址，无需NAT转换，直接通过IPv6地址建立连接，稳定性100%，延迟低于NAT打洞；</li>
+<li><strong>实战步骤</strong>：        <ol>
+<li>双方开启设备IPv6功能（电脑：设置-网络-属性，勾选IPv6；路由器：开启IPv6拨号，获取前缀）；</li>
+<li>通过命令行获取自身IPv6地址（Windows：ipconfig；Linux：ifconfig）；</li>
+<li>使用支持IPv6的工具（如Tailscale、SSH、FTP），直接输入对方IPv6地址建立连接，无需中转和打洞。</li>
+</ol>
+</li>
+<li><strong>注意事项</strong>：部分运营商IPv6地址为动态分配（重启路由器会变化），可在路由器中设置“IPv6地址绑定”，固定设备的IPv6后缀。</li>
+</ol>
+<h2 id="六、打洞核心规律与建议"><a href="#六、打洞核心规律与建议" class="headerlink" title="六、打洞核心规律与建议"></a>六、打洞核心规律与建议</h2><ol>
+<li><strong>EasyNAT之间（Type1-3）</strong>：打洞成功率高，优先使用Tailscale，操作简单且稳定，适合大多数个人/家庭场景；</li>
+<li><strong>EasyNAT↔HardNAT</strong>：优先尝试开启UPnP，其次使用Easytier，避免手动操作，减少风险；</li>
+<li><strong>HardNAT之间（Type4+）</strong>：放弃打洞，选择中转服务器或IPv6，既保证稳定性，又避免IP被封禁；</li>
+<li><strong>实战优先级</strong>：检测NAT类型 → 尝试EasyNAT打洞 → 开启UPnP重试 → 切换IPv6 → 使用中转服务器。</li>
+</ol>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/avatar.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/avatar.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">Lynx Frost</div><div class="post-copyright__author_desc">技术引领，智慧践行</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://blog.itrf.cn/nat-3e9c16b9b06f/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://blog.itrf.cn/nat-3e9c16b9b06f/')">学习NAT类型与实战各类型打洞可行性</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="/images/wx.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/wx.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/images/zfb.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/zfb.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://blog.itrf.cn/nat-3e9c16b9b06f/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.itrf.cn" target="_blank">RF极客日志</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>学习笔记<span class="tagsPageCount">5</span></a><a class="post-meta__box__tags" href="/tags/NAT/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>NAT<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://t.alcy.cc/moez?_r_=e2fa8438-e4cd-1b01-287d-308bf8a39567" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/vercel-ec68f96264c1/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://t.alcy.cc/moez?_r_=e2fa8438-e4cd-1b01-287d-308bf8a39567" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">EdgeOne加速Vercel配置及踩坑</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/git-8a2ab4cae0a3/" title="Git 推送失败问题解决指南"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://t.alcy.cc/moez?_r_=abb3b57f-ce1f-8548-2686-84562dc231ea" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2025-07-20</div><div class="title">Git 推送失败问题解决指南</div></div></a></div><div><a href="/linux-7ec40fedb040/" title="Linux 常用命令大全"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://t.alcy.cc/moez?_r_=12a1dad6-607e-1f21-fa56-0175585699fc" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2025-10-29</div><div class="title">Linux 常用命令大全</div></div></a></div><div><a href="/regex-85fc7a023f9c/" title="正则表达式学习笔记"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://t.alcy.cc/moez?_r_=4db3c0a8-ed7c-a5b5-a76b-08b7c4d60d25" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2025-07-20</div><div class="title">正则表达式学习笔记</div></div></a></div><div><a href="/sqlserver-2e1afddb047d/" title="SQL Server学习笔记"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://t.alcy.cc/moez?_r_=087f9c88-6e20-575b-6e8e-8d94407041f4" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2025-07-24</div><div class="title">SQL Server学习笔记</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)" style="display: none">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">编程技术</b>相关的问题和看法，还有<b style="color:#fff">热门网络资源</b>和<b style="color:#fff">学习心得分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">Lynx Frost</h1><div class="author-info__desc">技术引领，智慧践行</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/itrfcn" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/488325249" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>公告</span></div><div class="announcement_content">根据相关法律法规要求，本站将会对评论内容进行审核，审核通过后才会显示，如有疑问请联系站长。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7%EF%BC%88%E5%90%AB%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">一、相关工具（含使用场景）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86%EF%BC%88%E6%89%93%E6%B4%9E%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">二、必备知识（打洞原理基础）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-NAT%E6%98%A0%E5%B0%84%E8%A1%8C%E4%B8%BA%EF%BC%88%E5%86%B3%E5%AE%9A%E5%85%AC%E7%BD%91%E7%AB%AF%E5%8F%A3%E6%98%AF%E5%90%A6%E5%9B%BA%E5%AE%9A%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 NAT映射行为（决定公网端口是否固定）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-NAT%E8%BF%87%E6%BB%A4%E8%A1%8C%E4%B8%BA%EF%BC%88%E5%86%B3%E5%AE%9A%E5%A4%96%E9%83%A8%E6%B5%81%E9%87%8F%E8%83%BD%E5%90%A6%E6%94%BE%E8%A1%8C%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 NAT过滤行为（决定外部流量能否放行）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-NAT%E7%B1%BB%E5%9E%8B%E5%AF%B9%E7%85%A7%E8%A1%A8%EF%BC%88%E5%90%AB%E6%89%93%E6%B4%9E%E9%9A%BE%E5%BA%A6%E6%A0%87%E6%B3%A8%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 NAT类型对照表（含打洞难度标注）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%90%84NAT%E7%B1%BB%E5%9E%8B%E6%89%93%E6%B4%9E%E5%8F%AF%E8%A1%8C%E6%80%A7%EF%BC%88%E8%AF%A6%E7%BB%86%E6%8B%86%E8%A7%A3%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">三、各NAT类型打洞可行性（详细拆解）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-NAT1%EF%BC%88%E5%85%A8%E9%94%A5%E5%9E%8B%EF%BC%89-%E2%86%94-NAT1%EF%BC%88%E5%85%A8%E9%94%A5%E5%9E%8B%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 NAT1（全锥型） ↔ NAT1（全锥型）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="toc-number">3.1.1.</span> <span class="toc-text">核心原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.1.2.</span> <span class="toc-text">实战步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E8%A1%8C%E6%80%A7%E7%BB%93%E8%AE%BA"><span class="toc-number">3.1.3.</span> <span class="toc-text">可行性结论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5"><span class="toc-number">3.1.4.</span> <span class="toc-text">问题排查</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-NAT1%EF%BC%88%E5%85%A8%E9%94%A5%E5%9E%8B%EF%BC%89-%E2%86%94-NAT3%EF%BC%88%E7%AB%AF%E5%8F%A3%E5%8F%97%E9%99%90%E9%94%A5%E5%9E%8B%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 NAT1（全锥型） ↔ NAT3（端口受限锥型）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-1"><span class="toc-number">3.2.1.</span> <span class="toc-text">核心原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%AD%A5%E9%AA%A4-1"><span class="toc-number">3.2.2.</span> <span class="toc-text">实战步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E8%A1%8C%E6%80%A7%E7%BB%93%E8%AE%BA-1"><span class="toc-number">3.2.3.</span> <span class="toc-text">可行性结论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5-1"><span class="toc-number">3.2.4.</span> <span class="toc-text">问题排查</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-NAT3%EF%BC%88%E7%AB%AF%E5%8F%A3%E5%8F%97%E9%99%90%E9%94%A5%E5%9E%8B%EF%BC%89-%E2%86%94-NAT3%EF%BC%88%E7%AB%AF%E5%8F%A3%E5%8F%97%E9%99%90%E9%94%A5%E5%9E%8B%EF%BC%89"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 NAT3（端口受限锥型） ↔ NAT3（端口受限锥型）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-2"><span class="toc-number">3.3.1.</span> <span class="toc-text">核心原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%AD%A5%E9%AA%A4-2"><span class="toc-number">3.3.2.</span> <span class="toc-text">实战步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E8%A1%8C%E6%80%A7%E7%BB%93%E8%AE%BA-2"><span class="toc-number">3.3.3.</span> <span class="toc-text">可行性结论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5-2"><span class="toc-number">3.3.4.</span> <span class="toc-text">问题排查</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-NAT1%EF%BC%88%E5%85%A8%E9%94%A5%E5%9E%8B%EF%BC%89-%E2%86%94-NAT4%EF%BC%88%E5%9C%B0%E5%9D%80%E7%9B%B8%E5%85%B3%E6%98%A0%E5%B0%84-%E7%AB%AF%E7%82%B9%E6%97%A0%E5%85%B3%E8%BF%87%E6%BB%A4%EF%BC%89"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 NAT1（全锥型） ↔ NAT4（地址相关映射+端点无关过滤）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-3"><span class="toc-number">3.4.1.</span> <span class="toc-text">核心原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%AD%A5%E9%AA%A4-3"><span class="toc-number">3.4.2.</span> <span class="toc-text">实战步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E8%A1%8C%E6%80%A7%E7%BB%93%E8%AE%BA-3"><span class="toc-number">3.4.3.</span> <span class="toc-text">可行性结论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5-3"><span class="toc-number">3.4.4.</span> <span class="toc-text">问题排查</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-NAT3%EF%BC%88%E7%AB%AF%E5%8F%A3%E5%8F%97%E9%99%90%E9%94%A5%E5%9E%8B%EF%BC%89-%E2%86%94-NAT4%EF%BC%88%E5%9C%B0%E5%9D%80%E7%9B%B8%E5%85%B3%E6%98%A0%E5%B0%84-%E7%AB%AF%E7%82%B9%E6%97%A0%E5%85%B3%E8%BF%87%E6%BB%A4%EF%BC%89"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 NAT3（端口受限锥型） ↔ NAT4（地址相关映射+端点无关过滤）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-4"><span class="toc-number">3.5.1.</span> <span class="toc-text">核心原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%AD%A5%E9%AA%A4%EF%BC%88%E5%88%86%E4%B8%A4%E7%A7%8D%E8%BE%85%E5%8A%A9%E6%96%B9%E6%A1%88%EF%BC%89"><span class="toc-number">3.5.2.</span> <span class="toc-text">实战步骤（分两种辅助方案）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B9%E6%A1%881%EF%BC%9A%E5%BC%80%E5%90%AFUPnP-NAT-PNP%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%8C%E6%88%90%E5%8A%9F%E7%8E%87%E9%AB%98%EF%BC%89"><span class="toc-number">3.5.2.1.</span> <span class="toc-text">方案1：开启UPnP&#x2F;NAT-PNP（推荐，成功率高）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B9%E6%A1%882%EF%BC%9A%E4%BD%BF%E7%94%A8Easytier%EF%BC%88%E6%97%A0UPnP%E6%97%B6%E5%A4%87%E9%80%89%EF%BC%8C%E6%88%90%E5%8A%9F%E7%8E%87%E4%BD%8E%EF%BC%89"><span class="toc-number">3.5.2.2.</span> <span class="toc-text">方案2：使用Easytier（无UPnP时备选，成功率低）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E8%A1%8C%E6%80%A7%E7%BB%93%E8%AE%BA-4"><span class="toc-number">3.5.3.</span> <span class="toc-text">可行性结论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5-4"><span class="toc-number">3.5.4.</span> <span class="toc-text">问题排查</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-NAT4%EF%BC%88%E5%9C%B0%E5%9D%80%E7%9B%B8%E5%85%B3%E6%98%A0%E5%B0%84%EF%BC%89-%E2%86%94-NAT4%EF%BC%88%E5%9C%B0%E5%9D%80%E7%9B%B8%E5%85%B3%E6%98%A0%E5%B0%84%EF%BC%89"><span class="toc-number">3.6.</span> <span class="toc-text">3.6 NAT4（地址相关映射） ↔ NAT4（地址相关映射）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-5"><span class="toc-number">3.6.1.</span> <span class="toc-text">核心原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E5%B0%9D%E8%AF%95%EF%BC%88%E4%B8%8D%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">3.6.2.</span> <span class="toc-text">实战尝试（不推荐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E8%A1%8C%E6%80%A7%E7%BB%93%E8%AE%BA-5"><span class="toc-number">3.6.3.</span> <span class="toc-text">可行性结论</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%89%93%E6%B4%9E%E5%8F%AF%E8%A1%8C%E6%80%A7%E6%80%BB%E7%BB%93%E8%A1%A8%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">四、打洞可行性总结表（详细版）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%A1%A5%E5%85%85%EF%BC%9AIPv6%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88%EF%BC%88%E6%9C%80%E4%BC%98%E8%A7%A3%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">五、补充：IPv6替代方案（最优解）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%89%93%E6%B4%9E%E6%A0%B8%E5%BF%83%E8%A7%84%E5%BE%8B%E4%B8%8E%E5%BB%BA%E8%AE%AE"><span class="toc-number">6.</span> <span class="toc-text">六、打洞核心规律与建议</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/nat-3e9c16b9b06f/" title="学习NAT类型与实战各类型打洞可行性"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://t.alcy.cc/moez?_r_=8f915fff-58a6-211f-76c2-0f42ca94a0a5" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学习NAT类型与实战各类型打洞可行性"/></a><div class="content"><a class="title" href="/nat-3e9c16b9b06f/" title="学习NAT类型与实战各类型打洞可行性">学习NAT类型与实战各类型打洞可行性</a><time datetime="2026-01-02T07:03:23.000Z" title="发表于 2026-01-02 15:03:23">2026-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/vercel-ec68f96264c1/" title="EdgeOne加速Vercel配置及踩坑"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://t.alcy.cc/moez?_r_=e2fa8438-e4cd-1b01-287d-308bf8a39567" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="EdgeOne加速Vercel配置及踩坑"/></a><div class="content"><a class="title" href="/vercel-ec68f96264c1/" title="EdgeOne加速Vercel配置及踩坑">EdgeOne加速Vercel配置及踩坑</a><time datetime="2025-12-06T08:39:55.000Z" title="发表于 2025-12-06 16:39:55">2025-12-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/vs-739ea09d4020/" title="数据库分页 vs 程序分页：核心决策指南与实践方案"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://t.alcy.cc/ycy?_r_=4bb443c4-f74f-583f-8859-4b0d9a262496" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据库分页 vs 程序分页：核心决策指南与实践方案"/></a><div class="content"><a class="title" href="/vs-739ea09d4020/" title="数据库分页 vs 程序分页：核心决策指南与实践方案">数据库分页 vs 程序分页：核心决策指南与实践方案</a><time datetime="2025-11-29T05:00:00.000Z" title="发表于 2025-11-29 13:00:00">2025-11-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/favicon-324dcbe00342/" title="Flask项目无法获取favicon.ico原因以及解决方案"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://t.alcy.cc/moez?_r_=7aadfcba-aec4-de0b-603f-1e2618650afd" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Flask项目无法获取favicon.ico原因以及解决方案"/></a><div class="content"><a class="title" href="/favicon-324dcbe00342/" title="Flask项目无法获取favicon.ico原因以及解决方案">Flask项目无法获取favicon.ico原因以及解决方案</a><time datetime="2025-11-29T04:59:16.000Z" title="发表于 2025-11-29 12:59:16">2025-11-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/edgeone-adb468b0a8c0/" title="EdgeOne 获取用户真实 IP 完整解决方案（Nginx 适配版）"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://t.alcy.cc/moez?_r_=15c4e508-6ce1-2396-e9b4-dc28883f3a47" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="EdgeOne 获取用户真实 IP 完整解决方案（Nginx 适配版）"/></a><div class="content"><a class="title" href="/edgeone-adb468b0a8c0/" title="EdgeOne 获取用户真实 IP 完整解决方案（Nginx 适配版）">EdgeOne 获取用户真实 IP 完整解决方案（Nginx 适配版）</a><time datetime="2025-11-29T04:58:50.000Z" title="发表于 2025-11-29 12:58:50">2025-11-29</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="mailto:admin@itrf.cn" title="email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/avatar.jpg" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/itrfcn" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a></div><div id="workboard"><img class="workSituationImg boardsign" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/svg/上课摸鱼中.svg" alt="上课中，专心听讲，认真码字~" title="上课中，专心听讲，认真码字~"/><div id="runtimeTextTip"></div></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="RF极客日志" target="_blank" rel="noopener" href="https://www.itrf.cn/">RF极客日志</a><a class="footer-item" title="音悦台" target="_blank" rel="noopener" href="https://music.686909.xyz/">音悦台</a><a class="footer-item" title="冈易云音乐" target="_blank" rel="noopener" href="https://mk.686909.xyz/">冈易云音乐</a></div></div><div class="footer-group"><div class="footer-title">协议</div><div class="footer-links"><a class="footer-item" title="隐私协议" href="/privacy/">隐私协议</a><a class="footer-item" title="Cookies" href="/cookies/">Cookies</a><a class="footer-item" title="版权协议" href="/copyright/">版权协议</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v8.0.0" title="博客框架为Hexo_v8.0.0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v8.0.0"/></a><a class="github-badge" target="_blank" href="https://hexo.anheyu.com/" style="margin-inline:5px" data-title="本站使用AnZhiYu主题" title="本站使用AnZhiYu主题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.9/img/Theme-AnZhiYu-2E67D3.svg" alt="本站使用AnZhiYu主题"/></a><a class="github-badge" target="_blank" href="https://www.edgeone.ai/" style="margin-inline:5px" data-title="本站使用EdgeOne为静态资源提供CDN加速" title="本站使用EdgeOne为静态资源提供CDN加速"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/svg/CDNtencent.svg" alt="本站使用EdgeOne为静态资源提供CDN加速"/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title="本站项目由Github托管"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Source-Github.svg" alt="本站项目由Github托管"/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/Copyright-BY-NC-SA.svg" alt="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"/></a></p></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2023 - 2026 By <a class="footer-bar-link" href="/" title="Lynx Frost" target="_blank">Lynx Frost</a></div></div><div id="footer-type-tips"></div><div class="js-pjax"><script>function subtitleType () {
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      if (true) {
+        const from = '出自 ' + data.from
+        const sub = []
+        sub.unshift(data.hitokoto, from)
+        window.typed = new Typed('#footer-type-tips', {
+          strings: sub,
+          startDelay: 300,
+          typeSpeed: 150,
+          loop: true,
+          backSpeed: 50,
+        })
+      } else {
+        document.getElementById('footer-type-tips').innerHTML = data.hitokoto
+      }
+    })
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.cbd.int/typed.js@2.1.0/dist/typed.umd.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}
+</script></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" title="鲁ICP备2025144988号-1"><img class="footer-bar-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/icp.png" alt="鲁ICP备2025144988号-1"/>鲁ICP备2025144988号-1</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://beian.mps.gov.cn/#/query/webSearch?code=37078502371082" title="鲁公网安备37078502371082号"><img class="footer-bar-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/beian.png" alt="鲁公网安备37078502371082号"/>鲁公网安备37078502371082号</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">2</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">旗下站点</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://music.686909.xyz/" title="音悦台"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://music.686909.xyz/favicon.ico" alt="音悦台"/><span class="back-menu-item-text">音悦台</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://mk.686909.xyz/" title="冈易云音乐"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://mk.686909.xyz/favicon.ico" alt="冈易云音乐"/><span class="back-menu-item-text">冈易云音乐</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">个人项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/itrfcn/Pymusic" title="Pymusic"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/svg/github-mark.svg" alt="Pymusic"/><span class="back-menu-item-text">Pymusic</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/itrfcn/Clay" title="Clay"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/svg/github-mark.svg" alt="Clay"/><span class="back-menu-item-text">Clay</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/equipment/"><i class="anzhiyufont anzhiyu-icon-dice-d20 faa-tada" style="font-size: 0.9em;"></i><span> 我的装备</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li><li><a class="site-page child faa-parent animated-hover" target="_blank" rel="noopener" href="https://www.itrf.cn/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 介绍页</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/EdgeOne/" style="font-size: 0.88rem;">EdgeOne<sup>2</sup></a><a href="/tags/Flask/" style="font-size: 0.88rem;">Flask<sup>1</sup></a><a href="/tags/Git/" style="font-size: 0.88rem;">Git<sup>1</sup></a><a href="/tags/Linux/" style="font-size: 0.88rem;">Linux<sup>1</sup></a><a href="/tags/NAT/" style="font-size: 0.88rem;">NAT<sup>1</sup></a><a href="/tags/Python/" style="font-size: 0.88rem;">Python<sup>1</sup></a><a href="/tags/SQL-Server/" style="font-size: 0.88rem;">SQL Server<sup>1</sup></a><a href="/tags/Vercel/" style="font-size: 0.88rem;">Vercel<sup>1</sup></a><a href="/tags/%E5%8E%9F%E5%88%9B%E9%A1%B9%E7%9B%AE/" style="font-size: 0.88rem;">原创项目<sup>1</sup></a><a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 0.88rem;">学习笔记<sup>5</sup></a><a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 0.88rem;">正则表达式<sup>1</sup></a><a href="/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/" style="font-size: 0.88rem;">零碎知识<sup>5</sup></a></div></div><hr/></div></div><div id="keyboard-tips"><div class="keyboardTitle">博客快捷键</div><div class="keybordList"><div class="keybordItem"><div class="keyGroup"><div class="key">shift K</div></div><div class="keyContent"><div class="content">关闭快捷键功能</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift A</div></div><div class="keyContent"><div class="content">打开/关闭中控台</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift M</div></div><div class="keyContent"><div class="content">播放/暂停音乐</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift D</div></div><div class="keyContent"><div class="content">深色/浅色显示模式</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift S</div></div><div class="keyContent"><div class="content">站内搜索</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift R</div></div><div class="keyContent"><div class="content">随机访问</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift H</div></div><div class="keyContent"><div class="content">返回首页</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift F</div></div><div class="keyContent"><div class="content">友链鱼塘</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift L</div></div><div class="keyContent"><div class="content">友链页面</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift P</div></div><div class="keyContent"><div class="content">关于本站</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift I</div></div><div class="keyContent"><div class="content">原版/本站右键菜单</div></div></div></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="17514566321" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://music.163.com/#/playlist?id=17514566321&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@6.1.6/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.cbd.int/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2023 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎访问Lynx Frost 的博客!`,
+    `用力记住不幸，努力寻找确幸`,
+    `
+    
+    ▐▒▒░▄                                                                                        
+     ▒▒▒▒▒▒▒▒▄                                                                                   
+     ▐▒▒▒▒▒▒▒▒▒▒▒▄                                                                         ▄▄▒▒  
+      ▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▄                                                               ▄▄▒▒▒▒▒▒▒▒  
+      ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄                                                       ▄▒▒▒▒▒▒▒▒▒▒▒▒▒▌  
+       ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄                                               ▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒   
+        ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                        ▄░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░   
+         ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄                                ▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒    
+           ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▄▄▄▄░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒     
+            ▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀      
+              ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒        
+                ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒          
+                  ▀▒▒▒░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀            
+                     ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒▒▒▒▀               
+                   ▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░                  
+                   ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒                 
+                  ▒▒▒▒▒▒▒▒▒▒░▄▄▄  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▄▄▄  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒                
+                 ▒▒▒▒▒▒▒▒▒▒▒ ▀█▀   ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▐██▀   ▒▒▒▒▒▒▒▒▒▒▒▒▒▒░               
+                ▒▒▒▒▒▒▒▒▒▒▒▒       ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░       ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒               
+               ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▄   ▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄   ▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒              
+               ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀▀▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒              
+              ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▄  ▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒             
+              ▒▒░░░░░░░░▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░▒▒▒▒▒▒▒▒            
+             ▐▒░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░▐▒▒▒▒▒▒            
+             ▒▒░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀░░░░▄░░░▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░▐▒▒▒▒▒▒▒           
+             ▐▒▒░░░░░░░▄░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░▒▒▒▒▒▒▒▒           
+              ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒▒▒▒▒░▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░▒▒▒▒▒▒▒▒▒▒▒▒          
+              ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒▒▒▒░▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒          
+               ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄░▀▒▒▒▒▀░▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒         
+                ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒         
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2023 By RF极客日志 V1.7.0",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by RF极客日志 %c 你正在访问 Lynx Frost 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("04/01/2023 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "/images/svg/下课啦.svg";
+        img.title = "下课啦，放松放松，休息休息~";
+        img.alt = "下课啦，放松放松，休息休息~";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  let initFn = window.walineFn || null
+
+  const initWaline = (Fn) => {
+    const waline = Fn(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline.itrf.cn/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+      imageUploader: true,
+    }, null))
+
+    const destroyWaline = () => {
+      waline.destroy()
+    }
+
+    anzhiyu.addGlobalFn('pjax', destroyWaline, 'destroyWaline')
+  }
+
+  const loadWaline = async () => {
+    if (initFn) initWaline(initFn)
+    else {
+      await getCSS('https://cdn.cbd.int/@waline/client@3.8.0/dist/waline.css')
+      if (true) await getCSS('https://cdn.cbd.int/@waline/client@3.8.0/dist/waline-meta.css')
+      const { init } = await import('https://cdn.cbd.int/@waline/client@3.8.0/dist/waline.js')
+      initFn = init || Waline.init
+      initWaline(initFn)
+      window.walineFn = initFn
+    }
+  }
+
+  if ('Waline' === 'Waline' || !true) {
+    if (true) anzhiyu.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>window.addEventListener('load', () => {
+  const changeContent = content => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = async () => {
+    try {
+      const res = await fetch('https://waline.itrf.cn/api/comment?type=recent&count=6', { method: 'GET' })
+      const result = await res.json()
+      const walineArray = result.data.map(e => {
+        return {
+          'content': changeContent(e.comment),
+          'avatar': e.avatar,
+          'nick': e.nick,
+          'url': e.url + '#' + e.objectId,
+          'date': e.time || e.insertedAt
+        }
+      })
+      saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), 10/(60*24))
+      generateHtml(walineArray)
+    } catch (err) {
+      console.error(err)
+      const $dom = document.querySelector('#card-newest-comments .aside-list')
+      $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+    }
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('waline-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js"></script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://cdn.cbd.int/qrcodejs@1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-show-text" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/click-show-text.min.js" data-mobile="false" data-text="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
