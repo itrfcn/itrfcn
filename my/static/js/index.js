@@ -296,20 +296,9 @@ $(window).on('load',function handlePreloader(){
                     
                     // 更新天气信息
                     $('.location').text('你好，来自' + city + '的朋友');
-                    $('.temp').text('今天气温' + temp + '°C');
-                    $('.desc').text('空气质量' + quality + '，' + ganmao);
-                } else {
-                    // 手动设置一些示例数据以便调试
-                    $('.location').text('你好，来自北京市的朋友');
-                    $('.temp').text('今天气温22°C');
-                    $('.desc').text('空气质量良，空气较舒适');
-                }
-            },
-            error: function(err) {
-                // 手动设置一些示例数据以便调试
-                $('.location').text('你好，来自北京市的朋友');
-                $('.temp').text('今天气温22°C');
-                $('.desc').text('空气质量良，空气较舒适');
+                    $('.temp').text('今天气温' + temp + '°C'+ '，' +'空气质量' + quality );
+                    $('.desc').text(ganmao);
+                } 
             }
         });
     }
