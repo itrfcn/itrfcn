@@ -1,13 +1,10 @@
 <div align="center">
-  
 ![LynxFrost's GitHub stats](https://github-immortality.vercel.app/api?username=itrfcn)
-
 <!-- profile logo 个人资料徽标 -->
   <div>
     <a href="https://blog.itrf.cn/"><img src="https://img.shields.io/badge/Website-博客-8c36db" /></a>&emsp;
     <img src="https://komarev.com/ghpvc/?username=itrfcn&label=Views&color=orange&style=flat" alt="访问量统计" />&emsp;
   </div>
-
 <!-- Snake Code Contribution Map 贪吃蛇代码贡献图 -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/itrfcn/itrfcn/output/github-contribution-grid-snake-dark.svg">
