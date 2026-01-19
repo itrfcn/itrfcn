@@ -12,3 +12,6 @@
   <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/itrfcn/itrfcn/output/github-contribution-grid-snake.svg">
 </picture>
 
+📕 &nbsp;**Latest Blog Posts**
+<!-- BLOG-POST-LIST:START -->
+<!-- BLOG-POST-LIST:END -->
