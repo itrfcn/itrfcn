@@ -53,15 +53,15 @@
       </picture>
   </tr>
 </table>
-  <!-- 双列统计卡片 -->
-  <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-    <div style="flex: 1; min-width: 300px; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-      <img src="https://github-readme-stats.vercel.app/api?username=itrfcn&show_icons=true&theme=default&hide_border=true&count_private=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db" style="width: 100%; height: auto;">
-    </div>
-    <div style="flex: 1; min-width: 300px; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=itrfcn&layout=compact&theme=default&hide_border=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db" style="width: 100%; height: auto;">
-    </div>
+<!-- 双列统计卡片（强制左右显示） -->
+<div style="display: flex; gap: 20px; flex-wrap: nowrap; justify-content: center; width: 100%; overflow-x: auto; padding: 0 10px;">
+  <div style="flex: 0 0 calc(50% - 10px); min-width: 280px; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
+    <img src="https://github-readme-stats.vercel.app/api?username=itrfcn&show_icons=true&theme=default&hide_border=true&count_private=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db" style="width: 100%; height: auto;">
   </div>
+  <div style="flex: 0 0 calc(50% - 10px); min-width: 280px; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=itrfcn&layout=compact&theme=default&hide_border=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db" style="width: 100%; height: auto;">
+  </div>
+</div>
 
 <br>
 
