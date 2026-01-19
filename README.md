@@ -56,10 +56,6 @@
         <img src="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night&hide_border=true&bg_color=ffffff&color=8c36db" style="width: 100%; height: auto; display: block;">
       </td>
     </tr>
-    <!-- 分隔线：视觉过渡 -->
-    <tr>
-      <td colspan="2" style="padding: 0; border: none; height: 1px; background-color: #f0e6f5;"></td>
-    </tr>
     <!-- 第二行：双列统计卡片 -->
     <tr>
       <!-- 左侧：核心统计卡片 -->
