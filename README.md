@@ -18,7 +18,6 @@
 #  🙋 Hello
 
 <table>
-  
 <tr><td>
 
 ### 🤺 About Me
@@ -28,52 +27,12 @@
 <p>&emsp;&emsp;嗨，我是LynxFrost。热爱编程、读书、健身、旅行。</p>
 <p>&emsp;&emsp;我们正在让这个世界变得更加美好，通过代码的重复使用和延展构建完美体系。</p>
 <p>&emsp;&emsp;<strong>We're making the world a better place. Through constructing elegant hierarchies for maximum code reuse and extensibility.</strong></p>
-
   <!-- for beauty 留个空行好看点 -->
   <div>&nbsp;</div>
 
 
 </table>
 
-## 📊 GitHub 数据统计
-
-
-<div align=“center”>
-
-![LynxFrost 的 GitHub 统计数据]（https://github-immortality.vercel.app/api?username=itrfcn）
-<-- profile logo 个人资料徽标 -->
-<div>
-<a href=“https://blog.itrf.cn/”>https://img.shields.io/badge/Website-博客-8c36db“ /></a>
-<img src=“https://komarev.com/ghpvc/?username=itrfcn&label=Views&color=orange&style=flat” alt=“访问量统计” />
-</div>
-<-- Snake Code Contribution Map 贪吃蛇代码贡献图 -->
-<picture>
-<source media=“（prefers-color-scheme： dark）” srcset=“https://raw.githubusercontent.com/itrfcn/itrfcn/output/github-contribution-grid-snake-dark.svg”>
-<source media=“（prefers-color-scheme： light）” srcset=“https://raw.githubusercontent.com/itrfcn/itrfcn/output/github-contribution-grid-snake.svg”>
-<img alt=“GitHub 贡献网格蛇形动画” src=“https://raw.githubusercontent.com/itrfcn/itrfcn/output/github-contribution-grid-snake.svg”>
-</图片>
-
-</div>
-
-# 🙋 你好
-
-<table>
-
-<tr><td>
-
-### 🤺 关于我
-
-<img align=“right” width=“88” src=“https://avatars.githubusercontent.com/u/67210566?v=4” />
-
-<p> 嗨，我是 LynxFrost。热爱编程、读书、健身、旅行。</p>
-<p>  我们正在让这个世界变得更加美好，通过代码的重复使用和延展构建完美体系。</p>
-<p> <strong> 我们正在让世界变得更美好。通过构建优雅的层级结构，最大化代码的重用性和可扩展性。</strong></p>
-
-<-- for beauty 留个空行好看点 -->
-<div> </div>
-
-
-</table>
 
 ## 📊 GitHub 数据统计
 
