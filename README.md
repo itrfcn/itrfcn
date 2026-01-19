@@ -44,23 +44,25 @@
 
 ## 📊 GitHub 数据统计
 
-<!-- GitHub 活动统计图 -->
-<div style="width: 100%; margin: 0 auto 20px auto; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night&hide_border=true" style="width: 100%; height: auto; display: block;">
-</div>
-
-<!-- 表格布局：强制左右显示（兼容性100%） -->
-<table style="width: 100%; margin: 0 auto; border-collapse: separate; border-spacing: 20px 0;">
+<!-- 整体表格容器：包含活动图(跨两列)+双列卡片 -->
+<table style="width: 100%; max-width: 800px; margin: 0 auto; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
+  <!-- 第一行：GitHub 活动统计图（跨两列） -->
   <tr>
-    <!-- GitHub 统计卡片 -->
-    <td style="width: 50%; padding: 0; min-width: 280px;">
-      <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
+    <td colspan="2" style="width: 100%; padding: 0; border: none;">
+      <img src="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night&hide_border=true" style="width: 100%; height: auto; display: block;">
+    </td>
+  </tr>
+  <!-- 第二行：双列统计卡片（强制左右） -->
+  <tr>
+    <!-- 左侧：GitHub 核心统计卡片 -->
+    <td style="width: 50%; padding: 20px 10px 20px 20px; border: none; vertical-align: top;">
+      <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.06);">
         <img src="https://github-readme-stats.vercel.app/api?username=itrfcn&show_icons=true&theme=default&hide_border=true&count_private=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db" style="width: 100%; height: auto; display: block;">
       </div>
     </td>
-    <!-- GitHub 使用语言统计 -->
-    <td style="width: 50%; padding: 0; min-width: 280px;">
-      <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
+    <!-- 右侧：语言统计卡片 -->
+    <td style="width: 50%; padding: 20px 20px 20px 10px; border: none; vertical-align: top;">
+      <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.06);">
         <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=itrfcn&layout=compact&theme=default&hide_border=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db" style="width: 100%; height: auto; display: block;">
       </div>
     </td>
