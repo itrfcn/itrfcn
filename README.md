@@ -34,7 +34,7 @@
 </table>
 
 # 📊 GitHub 数据统计
-<-- GitHub 活动图 GitHub 活动图 -->
+<!-- GitHub 活动图 GitHub 活动图 -->
 <table>
 <tr>
 <td>
