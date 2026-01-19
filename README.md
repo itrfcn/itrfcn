@@ -33,8 +33,7 @@
 
 </table>
 
-
-## 📊 GitHub 数据统计
+# 📊 GitHub 数据统计
 <-- GitHub 活动图 GitHub 活动图 -->
 <table>
 <tr>
@@ -44,6 +43,7 @@
 <source media=“（prefers-color-scheme： light）” srcset=“https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=xcode” />
 <img src=“https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night” />
 </picture>
+</td>
 </tr>
 </table>
 
