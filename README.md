@@ -1,5 +1,4 @@
 <div align="center">
-
 ![LynxFrost's GitHub stats](https://github-immortality.vercel.app/api?username=itrfcn)
 <!-- profile logo 个人资料徽标 -->
   <div>
@@ -62,18 +61,45 @@
 <div style="width: 100%; max-width: 800px; margin: 20px auto 0 auto; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
   <img src="https://stats.justsong.cn/api/leetcode?username=quanpeng&cn=true&hide_border=true" style="width: 100%; height: auto; display: block;">
 </div>
-<br>
-
-![LynxFrost's GitHub stats](https://github-readme-stats.vercel.app/api?username=itrfcn)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=itrfcn)
-![](https://stats.justsong.cn/api/leetcode?username=quanpeng&cn=true)
 
 
-📕 &nbsp;**Latest Blog Posts**
-<!-- BLOG-POST-LIST:START -->
-- [学习NAT类型与实战各类型打洞可行性](https://blog.itrf.cn/nat-3e9c16b9b06f/)
-- [EdgeOne加速Vercel配置及踩坑](https://blog.itrf.cn/vercel-ec68f96264c1/)
-- [数据库分页 vs 程序分页：核心决策指南与实践方案](https://blog.itrf.cn/vs-739ea09d4020/)
-- [Flask项目无法获取favicon.ico原因以及解决方案](https://blog.itrf.cn/favicon-324dcbe00342/)
-- [EdgeOne 获取用户真实 IP 完整解决方案（Nginx 适配版）](https://blog.itrf.cn/edgeone-adb468b0a8c0/)
-<!-- BLOG-POST-LIST:END -->
+<div style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
+  <h2 style="font-size: 22px; color: #24292e; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px; margin-bottom: 20px;">
+    📕 Latest Blog Posts
+  </h2>
+  <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 12px;">
+    <!-- BLOG-POST-LIST:START -->
+    <li style="margin: 0;">
+      <a href="https://blog.itrf.cn/nat-3e9c16b9b06f/" style="display: block; padding: 14px 18px; border-radius: 8px; background-color: #f8f9fa; border-left: 4px solid #8c36db; color: #24292e; text-decoration: none; transition: all 0.2s ease;">
+        学习NAT类型与实战各类型打洞可行性
+      </a>
+    </li>
+    <li style="margin: 0;">
+      <a href="https://blog.itrf.cn/vercel-ec68f96264c1/" style="display: block; padding: 14px 18px; border-radius: 8px; background-color: #f8f9fa; border-left: 4px solid #8c36db; color: #24292e; text-decoration: none; transition: all 0.2s ease;">
+        EdgeOne加速Vercel配置及踩坑
+      </a>
+    </li>
+    <li style="margin: 0;">
+      <a href="https://blog.itrf.cn/vs-739ea09d4020/" style="display: block; padding: 14px 18px; border-radius: 8px; background-color: #f8f9fa; border-left: 4px solid #8c36db; color: #24292e; text-decoration: none; transition: all 0.2s ease;">
+        数据库分页 vs 程序分页：核心决策指南与实践方案
+      </a>
+    </li>
+    <li style="margin: 0;">
+      <a href="https://blog.itrf.cn/favicon-324dcbe00342/" style="display: block; padding: 14px 18px; border-radius: 8px; background-color: #f8f9fa; border-left: 4px solid #8c36db; color: #24292e; text-decoration: none; transition: all 0.2s ease;">
+        Flask项目无法获取favicon.ico原因以及解决方案
+      </a>
+    </li>
+    <li style="margin: 0;">
+      <a href="https://blog.itrf.cn/edgeone-adb468b0a8c0/" style="display: block; padding: 14px 18px; border-radius: 8px; background-color: #f8f9fa; border-left: 4px solid #8c36db; color: #24292e; text-decoration: none; transition: all 0.2s ease;">
+        EdgeOne 获取用户真实 IP 完整解决方案（Nginx 适配版）
+      </a>
+    </li>
+    <!-- BLOG-POST-LIST:END -->
+  </ul>
+  <style>
+    a:hover {
+      background-color: #f0f0f5 !important;
+      transform: translateX(2px) !important;
+    }
+  </style>
+</div>
