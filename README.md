@@ -36,7 +36,7 @@
 # 📊 GitHub 数据统计
 
 <!-- GitHub Activity Graph GitHub 活动图 -->
-<table>
+<table style="width: 100%; max-width: 800px; margin: 0 auto; border-collapse: separate; border-spacing: 20px 0;">
   <tr>
     <td>
       <picture>
@@ -51,15 +51,6 @@
 
 <!-- 表格布局：强制左右显示（兼容性100%） -->
 <table style="width: 100%; max-width: 800px; margin: 0 auto; border-collapse: separate; border-spacing: 20px 0;">
-    <tr>
-    <td>
-      <picture>
-        <source media="(prefers-color-scheme: dark)"  srcset="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night" />
-        <source media="(prefers-color-scheme: light)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=xcode" />
-        <img src="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night" />
-      </picture>
-    </td>
-  </tr>
   <tr>
     <!-- 左侧卡片 -->
     <td style="width: 50%; padding: 0; min-width: 280px;">
