@@ -27,8 +27,6 @@
 <p>&emsp;&emsp;嗨，我是LynxFrost。热爱编程、读书、健身、旅行。</p>
 <p>&emsp;&emsp;我们正在让这个世界变得更加美好，通过代码的重复使用和延展构建完美体系。</p>
 <p>&emsp;&emsp;<strong>We're making the world a better place. Through constructing elegant hierarchies for maximum code reuse and extensibility.</strong></p>
-  <!-- for beauty 留个空行好看点 -->
-  <div>&nbsp;</div>
 
 ### 📕 &nbsp;**Latest Blog Posts**
 <!-- BLOG-POST-LIST:START -->
@@ -38,6 +36,10 @@
 - [Flask项目无法获取favicon.ico原因以及解决方案](https://blog.itrf.cn/favicon-324dcbe00342/)
 - [EdgeOne 获取用户真实 IP 完整解决方案（Nginx 适配版）](https://blog.itrf.cn/edgeone-adb468b0a8c0/)
 <!-- BLOG-POST-LIST:END -->
+
+  <!-- for beauty 留个空行好看点 -->
+  <div>&nbsp;</div>
+  
 </table>
 
 ## 📊 GitHub 数据统计
