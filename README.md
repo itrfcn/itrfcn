@@ -93,6 +93,17 @@
     </tr>
   </table>
 
+  <!-- 悬浮动效：GitHub 兼容 -->
+  <style scoped>
+    a:hover {
+      background-color: #f0f0f5 !important;
+    }
+    a:hover span {
+      transform: translateX(3px) !important;
+    }
+  </style>
+</div>
+
 ## 📊 GitHub 数据统计
 
 <!-- 外层容器：增加呼吸感间距 -->
