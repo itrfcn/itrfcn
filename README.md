@@ -25,6 +25,9 @@
 <img align="right" width="88" src="https://avatars.githubusercontent.com/u/67210566?v=4" style="border-radius: 50%; border: 2px solid #8c36db;" />
 
 <p>&emsp;&emsp;嗨，我是LynxFrost。热爱编程、读书、健身、旅行。</p>
+<p>&emsp;&emsp;嗨，我是LynxFrost。热爱编程、读书、健身、旅行。</p>
+<p>&emsp;&emsp;嗨，我是LynxFrost。热爱编程、读书、健身、旅行。</p>
+<p>&emsp;&emsp;嗨，我是LynxFrost。热爱编程、读书、健身、旅行。</p>
 <p>&emsp;&emsp;我们正在让这个世界变得更加美好，通过代码的重复使用和延展构建完美体系。</p>
 <p>&emsp;&emsp;<strong>We're making the world a better place. Through constructing elegant hierarchies for maximum code reuse and extensibility.</strong></p>
 
