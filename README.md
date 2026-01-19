@@ -67,8 +67,4 @@
   </tr>
 </table>
 
-<!-- 力扣统计 -->
-<div style="width: 100%; max-width: 800px; margin: 20px auto 0 auto; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-  <img src="https://stats.justsong.cn/api/leetcode?username=quanpeng&cn=true&hide_border=true" style="width: 100%; height: auto; display: block;">
-</div>
 
