@@ -1,8 +1,8 @@
 <div align="center">
-<!-- profile logo 个人资料徽标 -->
-  <div>
-     
+<!-- 修仙系列统计卡片 -->
+  
 ![LynxFrost's GitHub stats](https://github-immortality.vercel.app/api?username=itrfcn)
+  <div>
     <a href="https://blog.itrf.cn/" target="_blank"><img src="https://img.shields.io/badge/Website-博客-8c36db" /></a>&emsp;
     <img src="https://komarev.com/ghpvc/?username=itrfcn&label=Views&color=orange&style=flat" alt="访问量统计" />&emsp;
   </div>
