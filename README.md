@@ -33,21 +33,12 @@
 
 </table>
 
-# 📊 GitHub 数据统计
+## 📊 GitHub 数据统计
 
-<!-- GitHub Activity Graph GitHub 活动图 -->
-<table style="width: 100%; max-width: 800px; margin: 0 auto; border-collapse: separate; border-spacing: 20px 0;">
-  <tr>
-    <td>
-      <picture>
-        <source media="(prefers-color-scheme: dark)"  srcset="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night" />
-        <source media="(prefers-color-scheme: light)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=xcode" />
-        <img src="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night" />
-      </picture>
-    </td>
-  </tr>
-
-</table>
+<!-- 活动图 -->
+<div style="width: 100%; max-width: 800px; margin: 0 auto 20px auto; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night&hide_border=true" style="width: 100%; height: auto; display: block;">
+</div>
 
 <!-- 表格布局：强制左右显示（兼容性100%） -->
 <table style="width: 100%; max-width: 800px; margin: 0 auto; border-collapse: separate; border-spacing: 20px 0;">
@@ -71,7 +62,6 @@
 <div style="width: 100%; max-width: 800px; margin: 20px auto 0 auto; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
   <img src="https://stats.justsong.cn/api/leetcode?username=quanpeng&cn=true&hide_border=true" style="width: 100%; height: auto; display: block;">
 </div>
-
 <br>
 
 ![LynxFrost's GitHub stats](https://github-readme-stats.vercel.app/api?username=itrfcn)
