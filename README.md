@@ -63,3 +63,46 @@
   <img src="https://stats.justsong.cn/api/leetcode?username=quanpeng&cn=true&hide_border=true" style="width: 100%; height: auto; display: block;">
 </div>
 
+<div style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
+  <h2 style="font-size: 22px; color: #24292e; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px; margin-bottom: 20px;">
+    📕 Latest Blog Posts
+  </h2>
+  <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 12px;">
+    <!-- BLOG-POST-LIST:START -->
+    <li style="margin: 0;">
+      <a href="https://blog.itrf.cn/nat-3e9c16b9b06f/" style="display: block; padding: 14px 18px; border-radius: 8px; background-color: #f8f9fa; border-left: 4px solid #8c36db; color: #24292e; text-decoration: none;">
+        <span style="display: inline-block; transition: all 0.2s ease;">学习NAT类型与实战各类型打洞可行性</span>
+      </a>
+    </li>
+    <li style="margin: 0;">
+      <a href="https://blog.itrf.cn/vercel-ec68f96264c1/" style="display: block; padding: 14px 18px; border-radius: 8px; background-color: #f8f9fa; border-left: 4px solid #8c36db; color: #24292e; text-decoration: none;">
+        <span style="display: inline-block; transition: all 0.2s ease;">EdgeOne加速Vercel配置及踩坑</span>
+      </a>
+    </li>
+    <li style="margin: 0;">
+      <a href="https://blog.itrf.cn/vs-739ea09d4020/" style="display: block; padding: 14px 18px; border-radius: 8px; background-color: #f8f9fa; border-left: 4px solid #8c36db; color: #24292e; text-decoration: none;">
+        <span style="display: inline-block; transition: all 0.2s ease;">数据库分页 vs 程序分页：核心决策指南与实践方案</span>
+      </a>
+    </li>
+    <li style="margin: 0;">
+      <a href="https://blog.itrf.cn/favicon-324dcbe00342/" style="display: block; padding: 14px 18px; border-radius: 8px; background-color: #f8f9fa; border-left: 4px solid #8c36db; color: #24292e; text-decoration: none;">
+        <span style="display: inline-block; transition: all 0.2s ease;">Flask项目无法获取favicon.ico原因以及解决方案</span>
+      </a>
+    </li>
+    <li style="margin: 0;">
+      <a href="https://blog.itrf.cn/edgeone-adb468b0a8c0/" style="display: block; padding: 14px 18px; border-radius: 8px; background-color: #f8f9fa; border-left: 4px solid #8c36db; color: #24292e; text-decoration: none;">
+        <span style="display: inline-block; transition: all 0.2s ease;">EdgeOne 获取用户真实 IP 完整解决方案（Nginx 适配版）</span>
+      </a>
+    </li>
+    <!-- BLOG-POST-LIST:END -->
+  </ul>
+  <!-- GitHub 兼容的 hover 效果（通过内联样式 + 伪类） -->
+  <style scoped>
+    a:hover {
+      background-color: #f0f0f5 !important;
+    }
+    a:hover span {
+      transform: translateX(2px) !important;
+    }
+  </style>
+</div>
