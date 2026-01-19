@@ -44,29 +44,48 @@
 
 ## 📊 GitHub 数据统计
 
-<!-- 整体表格容器：包含活动图(跨两列)+双列卡片 -->
-<table style="width: 100%; max-width: 800px; margin: 0 auto; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-  <!-- 第一行：GitHub 活动统计图（跨两列） -->
-  <tr>
-    <td colspan="2" style="width: 100%; padding: 0; border: none;">
-      <img src="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night&hide_border=true" style="width: 100%; height: auto; display: block;">
-    </td>
-  </tr>
-  <!-- 第二行：双列统计卡片（强制左右） -->
-  <tr>
-    <!-- 左侧：GitHub 核心统计卡片 -->
-    <td style="width: 50%; padding: 20px 10px 20px 20px; border: none; vertical-align: top;">
-      <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.06);">
-        <img src="https://github-readme-stats.vercel.app/api?username=itrfcn&show_icons=true&theme=default&hide_border=true&count_private=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db" style="width: 100%; height: auto; display: block;">
-      </div>
-    </td>
-    <!-- 右侧：语言统计卡片 -->
-    <td style="width: 50%; padding: 20px 20px 20px 10px; border: none; vertical-align: top;">
-      <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.06);">
-        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=itrfcn&layout=compact&theme=default&hide_border=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db" style="width: 100%; height: auto; display: block;">
-      </div>
-    </td>
-  </tr>
-</table>
-
-
+<!-- 外层容器：增加呼吸感间距 -->
+<div style="margin: 40px auto; max-width: 800px;">
+  <!-- 整体表格容器：渐变背景+精致阴影 -->
+  <table style="width: 100%; margin: 0 auto; border-collapse: separate; border-spacing: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(140, 54, 219, 0.08); background: linear-gradient(180deg, #ffffff 0%, #fefcff 100%);">
+    <!-- 第一行：活动图（跨两列+标题栏） -->
+    <tr>
+      <td colspan="2" style="width: 100%; padding: 0; border: none;">
+        <!-- 活动图标题栏 -->
+        <div style="padding: 16px 20px; background-color: #8c36db; color: white; font-size: 15px; font-weight: 500;">
+          📈 GitHub 活动趋势
+        </div>
+        <!-- 活动图主体 -->
+        <img src="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night&hide_border=true&bg_color=ffffff&color=8c36db" style="width: 100%; height: auto; display: block;">
+      </td>
+    </tr>
+    <!-- 分隔线：视觉过渡 -->
+    <tr>
+      <td colspan="2" style="padding: 0; border: none; height: 1px; background-color: #f0e6f5;"></td>
+    </tr>
+    <!-- 第二行：双列统计卡片 -->
+    <tr>
+      <!-- 左侧：核心统计卡片 -->
+      <td style="width: 50%; padding: 20px 10px 20px 20px; border: none; vertical-align: top;">
+        <!-- 卡片标题 -->
+        <div style="margin-bottom: 10px; padding: 6px 12px; background-color: #f8f0ff; color: #8c36db; font-size: 14px; font-weight: 500; border-radius: 6px; display: inline-block;">
+          📋 核心数据
+        </div>
+        <!-- 卡片主体 -->
+        <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(140, 54, 219, 0.06); transition: all 0.3s ease;">
+          <img src="https://github-readme-stats.vercel.app/api?username=itrfcn&show_icons=true&theme=default&hide_border=true&count_private=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db&title_color=8c36db" style="width: 100%; height: auto; display: block;">
+        </div>
+      </td>
+      <!-- 右侧：语言统计卡片 -->
+      <td style="width: 50%; padding: 20px 20px 20px 10px; border: none; vertical-align: top;">
+        <!-- 卡片标题 -->
+        <div style="margin-bottom: 10px; padding: 6px 12px; background-color: #f8f0ff; color: #8c36db; font-size: 14px; font-weight: 500; border-radius: 6px; display: inline-block;">
+          🔧 常用语言
+        </div>
+        <!-- 卡片主体 -->
+        <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(140, 54, 219, 0.06); transition: all 0.3s ease;">
+          <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=itrfcn&layout=compact&theme=default&hide_border=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db&title_color=8c36db" style="width: 100%; height: auto; display: block;">
+        </div>
+      </td>
+    </tr>
+  </table>
