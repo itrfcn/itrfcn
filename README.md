@@ -1,12 +1,6 @@
 <div align="center">
-
-  <!-- knock code pictures 敲代码的图片 -->
-  
+<!-- 修仙统计图 -->
   ![LynxFrost's GitHub stats](https://github-immortality.vercel.app/api?username=itrfcn)
-
-  <!-- for beauty 留个空行好看点 -->
-  <div>&nbsp;</div>
-
 
 <!-- profile logo 个人资料徽标 -->
   <div>
@@ -73,7 +67,6 @@
 
 ![LynxFrost's GitHub stats](https://github-readme-stats.vercel.app/api?username=itrfcn)
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=itrfcn)
-![LynxFrost's GitHub stats](https://github-immortality.vercel.app/api?username=itrfcn)
 ![](https://stats.justsong.cn/api/leetcode?username=quanpeng&cn=true)
 
 
