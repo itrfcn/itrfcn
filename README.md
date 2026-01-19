@@ -23,6 +23,7 @@
     <h3 style="font-size: 20px; color: #24292e; margin: 0 0 15px 0;">🤺 About Me</h3>
     
     <!-- 头像+简介 -->
+    
     <div style="display: flex; align-items: flex-start; gap: 15px; flex-wrap: wrap;">
       <img src="https://avatars.githubusercontent.com/u/67210566?v=4" width="90" style="border-radius: 50%; border: 2px solid #8c36db;">
       
@@ -35,6 +36,7 @@
   </div>
 
   <!-- Latest Blog Posts 模块 -->
+  
   <div style="padding: 20px; border-radius: 12px; background: #fefcff; border: 1px solid #f0e6f5;">
     <h3 style="font-size: 20px; color: #24292e; margin: 0 0 15px 0;">📕 Latest Blog Posts</h3>
     
