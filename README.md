@@ -38,30 +38,30 @@
 ## 📊 GitHub 数据统计
 
 
-<!-- GitHub 数据统计 -->
-
-<!-- 活动图（保留美化） -->
+<!-- 活动图 -->
 <div style="width: 100%; max-width: 800px; margin: 0 auto 20px auto; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-  <picture>
-    <source media="(prefers-color-scheme: dark)"  srcset="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night&hide_border=true">
-    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=xcode&hide_border=true">
-    <img src="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night&hide_border=true" style="width: 100%; height: auto; display: block;">
-  </picture>
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night&hide_border=true" style="width: 100%; height: auto; display: block;">
 </div>
 
-<!-- 双列统计卡片（强制左右显示，独立容器避免冲突） -->
-<div style="width: 100%; max-width: 800px; margin: 0 auto; display: flex; gap: 20px; flex-wrap: nowrap; justify-content: center; overflow-x: auto; padding: 0 10px;">
-  <!-- 左侧统计卡片 -->
-  <div style="flex: 0 0 calc(50% - 10px); min-width: 280px; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-    <img src="https://github-readme-stats.vercel.app/api?username=itrfcn&show_icons=true&theme=default&hide_border=true&count_private=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db" style="width: 100%; height: auto; display: block;">
-  </div>
-  <!-- 右侧语言卡片 -->
-  <div style="flex: 0 0 calc(50% - 10px); min-width: 280px; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=itrfcn&layout=compact&theme=default&hide_border=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db" style="width: 100%; height: auto; display: block;">
-  </div>
-</div>
+<!-- 表格布局：强制左右显示（兼容性100%） -->
+<table style="width: 100%; max-width: 800px; margin: 0 auto; border-collapse: separate; border-spacing: 20px 0;">
+  <tr>
+    <!-- 左侧卡片 -->
+    <td style="width: 50%; padding: 0; min-width: 280px;">
+      <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
+        <img src="https://github-readme-stats.vercel.app/api?username=itrfcn&show_icons=true&theme=default&hide_border=true&count_private=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db" style="width: 100%; height: auto; display: block;">
+      </div>
+    </td>
+    <!-- 右侧卡片 -->
+    <td style="width: 50%; padding: 0; min-width: 280px;">
+      <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=itrfcn&layout=compact&theme=default&hide_border=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db" style="width: 100%; height: auto; display: block;">
+      </div>
+    </td>
+  </tr>
+</table>
 
-<!-- 力扣统计（保留） -->
+<!-- 力扣统计 -->
 <div style="width: 100%; max-width: 800px; margin: 20px auto 0 auto; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
   <img src="https://stats.justsong.cn/api/leetcode?username=quanpeng&cn=true&hide_border=true" style="width: 100%; height: auto; display: block;">
 </div>
