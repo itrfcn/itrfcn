@@ -1,6 +1,7 @@
 <div align="center">
-<!-- 修仙统计图 -->
-  ![LynxFrost's GitHub stats](https://github-immortality.vercel.app/api?username=itrfcn)
+  
+![LynxFrost's GitHub stats](https://github-immortality.vercel.app/api?username=itrfcn)
+
 <!-- profile logo 个人资料徽标 -->
   <div>
     <a href="https://blog.itrf.cn/"><img src="https://img.shields.io/badge/Website-博客-8c36db" /></a>&emsp;
