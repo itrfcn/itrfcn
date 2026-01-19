@@ -45,7 +45,7 @@
 ## 📊 GitHub 数据统计
 
 <!-- GitHub 活动统计图 -->
-<div style="width: 100%; max-width: 800px; margin: 0 auto 20px auto; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
+<div style="width: 100%; margin: 0 auto 20px auto; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night&hide_border=true" style="width: 100%; height: auto; display: block;">
 </div>
 
