@@ -50,7 +50,7 @@
 </div>
 
 <!-- 表格布局：强制左右显示（兼容性100%） -->
-<table style="width: 100%; max-width: 800px; margin: 0 auto; border-collapse: separate; border-spacing: 20px 0;">
+<table style="width: 100%; margin: 0 auto; border-collapse: separate; border-spacing: 20px 0;">
   <tr>
     <!-- GitHub 统计卡片 -->
     <td style="width: 50%; padding: 0; min-width: 280px;">
