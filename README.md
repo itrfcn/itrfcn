@@ -17,7 +17,7 @@
 
 #  🙋 Hello
 
-<table>
+<table style="width: 100%; margin: 0 auto; border-collapse: separate; border-spacing: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(140, 54, 219, 0.08); background: linear-gradient(180deg, #ffffff 0%, #fefcff 100%);">
 <tr><td>
 
 ### 🤺 About Me
