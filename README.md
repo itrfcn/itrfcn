@@ -24,8 +24,7 @@
 
 <img align="right" width="88" src="https://avatars.githubusercontent.com/u/67210566?v=4" style="border-radius: 50%; border: 2px solid #8c36db;" />
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=000000&repeat=false&width=600&lines=%E5%97%A8%EF%BC%8C%E6%88%91%E5%8F%ABLynxFrost%E3%80%82%E7%83%AD%E7%88%B1%E7%BC%96%E7%A8%8B%E3%80%81%E8%AF%BB%E4%B9%A6%E3%80%81%E5%81%A5%E8%BA%AB%E3%80%81%E6%97%85%E8%A1%8C%E3%80%82" alt="Typing SVG" />
-<p>&emsp;&emsp;嗨，我是LynxFrost。热爱编程、读书、健身、旅行。</p>
+<a href="img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=000000&center=true&vCenter=true&multiline=true&repeat=false&width=600&lines=%E4%BD%A0%E5%A5%BD%E9%99%8C%E7%94%9F%E4%BA%BA%EF%BC%8C%E6%88%91%E5%8F%ABLynxFrost%E3%80%82%E7%83%AD%E7%88%B1%E7%BC%96%E7%A8%8B%E3%80%81%E8%AF%BB%E4%B9%A6%E3%80%81%E5%81%A5%E8%BA%AB%E3%80%81%E6%97%85%E8%A1%8C%E3%80%82" alt="Typing SVG" /></a>
 <p>&emsp;&emsp;嗨，我是LynxFrost。热爱编程、读书、健身、旅行。</p>
 <p>&emsp;&emsp;我们正在让这个世界变得更加美好，通过代码的重复使用和延展构建完美体系。</p>
 <p>&emsp;&emsp;<strong>We're making the world a better place. Through constructing elegant hierarchies for maximum code reuse and extensibility.</strong></p>
