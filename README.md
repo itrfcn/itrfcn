@@ -45,7 +45,9 @@
         <source media="(prefers-color-scheme: light)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=xcode" />
         <img src="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night" />
       </picture>
+      </td>
   </tr>
+
 </table>
 
 <!-- 表格布局：强制左右显示（兼容性100%） -->
