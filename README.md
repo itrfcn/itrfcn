@@ -6,4 +6,9 @@
 ![LynxFrost's GitHub stats](https://github-immortality.vercel.app/api?username=itrfcn)
 ![](https://stats.justsong.cn/api/leetcode?username=quanpeng&cn=true)
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/itrfcn/itrfcn/output/github-contribution-grid-snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/itrfcn/itrfcn/output/github-contribution-grid-snake.svg">
+  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/itrfcn/itrfcn/output/github-contribution-grid-snake.svg">
+</picture>
 
