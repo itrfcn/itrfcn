@@ -29,6 +29,15 @@
 <p>&emsp;&emsp;<strong>We're making the world a better place. Through constructing elegant hierarchies for maximum code reuse and extensibility.</strong></p>
   <!-- for beauty 留个空行好看点 -->
   <div>&nbsp;</div>
+
+  📕 &nbsp;**Latest Blog Posts**
+<!-- BLOG-POST-LIST:START -->
+- [学习NAT类型与实战各类型打洞可行性](https://blog.itrf.cn/nat-3e9c16b9b06f/)
+- [EdgeOne加速Vercel配置及踩坑](https://blog.itrf.cn/vercel-ec68f96264c1/)
+- [数据库分页 vs 程序分页：核心决策指南与实践方案](https://blog.itrf.cn/vs-739ea09d4020/)
+- [Flask项目无法获取favicon.ico原因以及解决方案](https://blog.itrf.cn/favicon-324dcbe00342/)
+- [EdgeOne 获取用户真实 IP 完整解决方案（Nginx 适配版）](https://blog.itrf.cn/edgeone-adb468b0a8c0/)
+<!-- BLOG-POST-LIST:END -->
 </table>
 
 📕 &nbsp;**Latest Blog Posts**
