@@ -34,17 +34,18 @@
 </table>
 
 # 📊 GitHub 数据统计
-<!-- GitHub 活动图 GitHub 活动图 -->
+
+
+<!-- GitHub Activity Graph GitHub 活动图 -->
 <table>
-<tr>
-<td>
-<picture>
-<source 媒体=“（prefers-color-scheme： dark）” srcset=“https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night” />
-<source media=“（prefers-color-scheme： light）” srcset=“https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=xcode” />
-<img src=“https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night” />
-</picture>
-</td>
-</tr>
+  <tr>
+    <td>
+      <picture>
+        <source media="(prefers-color-scheme: dark)"  srcset="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night" />
+        <source media="(prefers-color-scheme: light)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=xcode" />
+        <img src="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night" />
+      </picture>
+  </tr>
 </table>
 
 <!-- 表格布局：强制左右显示（兼容性100%） -->
