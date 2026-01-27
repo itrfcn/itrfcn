@@ -9,13 +9,43 @@
     <atom:link href="https://blog.itrf.cn/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>专注于编程技术与软件开发的博客，涵盖人工智能、大数据、前端与后端开发等前沿领域。分享实用教程、开源项目和行业动态，助力开发者成长。探索生活点滴，分享创意灵感。这里有旅行故事、读书笔记、摄影心得和美食体验，带你发现生活中的美好与惊喜。</description>
-    <pubDate>Fri, 02 Jan 2026 07:13:39 GMT</pubDate>
+    <pubDate>Tue, 27 Jan 2026 09:42:06 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
+      <title>阿里云大模型工程师ACA认证学习笔记</title>
+      <link>https://blog.itrf.cn/posts/5f08/</link>
+      <guid>https://blog.itrf.cn/posts/5f08/</guid>
+      <pubDate>Tue, 27 Jan 2026 09:14:17 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h1 id=&quot;阿里云大模型工程师ACA认证学习笔记&quot;&gt;&lt;a href=&quot;#阿里云大模型工程师ACA认证学习笔记&quot; class=&quot;headerlink&quot; title=&quot;阿里云大模型工程师ACA认证学习笔记&quot;&gt;&lt;/a&gt;阿里云大模型工程师ACA认证学习笔记&lt;/h1&gt;&lt;h2 id=&quot;背</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="阿里云大模型工程师ACA认证学习笔记"><a href="#阿里云大模型工程师ACA认证学习笔记" class="headerlink" title="阿里云大模型工程师ACA认证学习笔记"></a>阿里云大模型工程师ACA认证学习笔记</h1><h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><p>从2022年底ChatGPT的一鸣惊人，再到持续进行的”百模大战”，”大模型”已经逐渐成为了技术和公众领域的热点。</p><p>大模型是人工智能领域的一个重要里程碑，它推动了人工智能技术的发展，并为人类的未来带来新的可能性。有人曾经类比，大模型的发明相当于人类文明的哪个节点？一个浪漫的答案可能是：人类学会使用火的时刻。</p><h2 id="人工智能"><a href="#人工智能" class="headerlink" title="人工智能"></a>人工智能</h2><p>定义：人工智能（AI）是一门使机器模拟人类<strong>智能过程</strong>的学科，其中具体包括学习、推理、自我修正、感知和处理语言等功能。人工智能涉及计算机科学、数据分析、统计学、机器工程、语言学、神经科学、哲学和心理学等多个学科的领域，旨在研究、设计、构建具备智能、学习、推理和行动能力的计算机和机器。</p><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul><li><p>机器学习(ML)：研究计算机如何在没有明确编程的情况下，通过对数据的分析、学习，自动改进其行为或做出预测的学科。旨在使计算机系统具备从经验中学习的能力，以适应新情况、结局问题或完成特定任务。</p><p>根据工作模式分类：</p><ul><li>监督学习：学习为人提供的数据，对具备某种特征的数据进行人为标记。</li><li>无监督学习：根据数据特征进行相似归类。</li><li>强化学习：奖励机制，猜对了奖励，猜错了不给奖励。</li></ul></li><li><p>深度学习(DL)：是机器学习的一个分支，主要使用<strong>神经网络模型</strong>对数据进行学习和表示。深度学习算法试图模拟人类大脑的工作方式，通过对大量数据的学习，自动提取出数据的高层次特征和模式，从而实现图像识别、语音识别、自然语言处理等任务。</p><p>神经网络的分类：</p><ul><li>卷积神经网络 CNNs</li><li>循环神经网络 RNNs</li><li>Transformer网络</li></ul></li><li><p>生成式人工智能(GenerativeAI)：深度学习中快速增长的子集，使用大模型提供支持，在大量原始、未标记的数据基础上对深度学习模型进行预训练，使得机器能够“理解”语言甚至图像，并能够根据需要自动生成内容。</p></li></ul><h2 id="大模型"><a href="#大模型" class="headerlink" title="大模型"></a>大模型</h2><p>提出：2021年，斯坦福大学的研究员团队发表了一篇论文，提出了<a href="https://arxiv.org/abs/2108.07258">Foundational Models</a>（基础模型，即大模型）的概念。</p><p>定义：它是一类具有大量参数（通常在十亿以上），能在极为广泛的数据上进行训练，并适用于多种任务和应用的预训练深度学习模型。</p><h3 id="大模型的训练的三个阶段"><a href="#大模型的训练的三个阶段" class="headerlink" title="大模型的训练的三个阶段"></a>大模型的训练的三个阶段</h3><ul><li><p>预训练(Pre-training)：在这个阶段大模型会从海量的互联网文本中学习，掌握语言的统计规律、事实性知识以及上下文关联能力。但它本质上只是学会了“预测下一个词”或“补全句子”，并没有真正理解人类提问的意图。它虽然“知道很多”，却还不懂得“如何回应人的请求”。因此，我们需要通过监督微调（SFT）来教会它遵循指令。</p></li><li><p>监督微调(SFT)：在这个阶段大模型会学习大量由人类精心构造的“指令-回答”样本，涵盖日常对话、逻辑推理、专业问答等多种场景。通过这些示范，模型学会将用户的输入理解为明确的指令，并给出有针对性的回应。经过SFT，模型已经具备了基本的指令遵循能力和任务完成能力。但它仍可能输出不恰当的内容——比如包含偏见、虚假信息、不安全言论等，因为它只学会了“怎么答”，还没学会“什么该答、什么不该答”。</p></li><li><p>对齐偏好(Preference Alignment)：在这个阶段大模型会针对同一个问题生成多个不同的回答，由人类评估者根据有用性、安全性、礼貌性、事实准确性等标准进行比较和选择。模型通过学习这些“人类更喜欢哪个回答”的信号，逐渐调整自己的输出方式，使得回答不仅正确，而且更符合人类的价值观和交流习惯。  </p><p>实现对齐的方式：</p><ul><li>基于人类反馈的强化学习（RLHF，Reinforcement Learning from Human Feedback），先用人类标注的数据训练一个“评分老师”（奖励模型），再让这个“老师”指导大模型改进回答。</li><li>DPO（Direct Preference Optimization），跳过训练“老师”的中间步骤，直接根据人类偏好数据优化模型本身。这个方法简化了训练流程，效果也很好</li></ul></li></ul><h3 id="大模型的特点"><a href="#大模型的特点" class="headerlink" title="大模型的特点"></a>大模型的特点</h3><ul><li>规模和参数量大</li><li>适应性和灵活性强</li><li>广泛数据集的预训练</li><li>计算资源需求大</li></ul><h3 id="大模型分类"><a href="#大模型分类" class="headerlink" title="大模型分类"></a>大模型分类</h3><ul><li><p>大语言模型(LLM)：这类大模型专注于自然语言处理（NLP），旨在处理语言、文章、对话等自然语言文本。它们通常基于深度学习架构（如Transformer模型），经过大规模文本数据集训练而成，能够捕捉语言的复杂性，包括语法、语义、语境以及蕴含的文化和社会知识。语言大模型典型应用包括文本生成、问答系统、文本分类、机器翻译、对话系统等。</p></li><li><p>多模态模型：多模态大模型能够同时处理和理解来自不同感知通道（如文本、图像、音频、视频等）的数据，并在这些模态之间建立关联和交互。它们能够整合不同类型的输入信息，进行跨模态推理、生成和理解任务。多模态大模型的应用涵盖视觉问答、图像描述生成、跨模态检索、多媒体内容理解等领域。</p><p>模态组合：</p><ul><li>视觉+文本：包括VQA视觉问答，图像字幕，图文检索、文生图等应用。</li><li>音频+文本：包括语音生成、语音摘要、语音识别等应用。</li><li>音频+视觉：包括音生图、演讲人脸生成等应用。</li></ul></li></ul><h3 id="大模型工作原理"><a href="#大模型工作原理" class="headerlink" title="大模型工作原理"></a>大模型工作原理</h3><p>用户在可以使用自然语言与大模型交流，用户的文本就是“提示词”。提示词越清晰，模型的回答就越符合预期。</p><p>大模型处理提示词的工作流程可以分为两部分，第一部分是分词化与词表映射，第二部分为生成文本。</p><h4 id="分词化"><a href="#分词化" class="headerlink" title="分词化"></a>分词化</h4><p>分词化（Tokenization）是自然语言处理（NLP）中的重要概念，它是将段落和句子分割成更小的分词（token）的过程。</p><p>分词化的粒度分类：</p><ul><li>词粒度（Word-Level Tokenization）分词化，适用于大多数西方语言，如英语。</li><li>字符粒度（Character-Level）分词化，是中文最直接的分词方法，以单个汉字为单位进行分词化。</li><li>子词粒度（Subword-Level）分词化，它将单词分解成更小的单位，比如词根、词缀等。这种方法对于处理新词（比如专有名词、网络用语等）特别有效，因为即使是新词，它的组成部分（子词）很可能已经存在于词表中了。</li></ul><h4 id="词表映射"><a href="#词表映射" class="headerlink" title="词表映射"></a>词表映射</h4><p>分出的词就是token，每一个token都会通过预先设置好的词表，映射为一个 token id，这是token 的“身份证”，一句话最终会被表示为一个元素为token id的列表，供计算机进行下一步处理。</p><h4 id="生成文本"><a href="#生成文本" class="headerlink" title="生成文本"></a>生成文本</h4><p>大语言模型的工作概括来说是根据给定的文本预测下一个token。对我们来说，看似像在对大模型提问，但实际上是给了大模型一串提示文本，让它可以对后续的文本进行推理。</p><p>大模型的推理过程不是一步到位的，当大模型进行推理时，它会基于现有的token，根据概率最大原则预测出下一个最有可能的token，然后将该预测的token加入到输入序列中，并将更新后的输入序列继续输入大模型预测下一个token，这个过程叫做<strong>自回归</strong>。直到输出特殊token（如<EOS>，end of sentence，专门用来控制推理何时结束）或输出长度达到阈值。</p><h3 id="大模型的经典应用场景"><a href="#大模型的经典应用场景" class="headerlink" title="大模型的经典应用场景"></a>大模型的经典应用场景</h3><ul><li>文本生成</li><li>文本编辑</li><li>推理分析</li><li>总结概要</li></ul><h2 id="提示词"><a href="#提示词" class="headerlink" title="提示词"></a>提示词</h2><p><strong>提示词（Prompt）是用户发送给大语言模型的问题、指令或请求，</strong>来明确地告诉模型用户想要解决的问题或完成的任务，是大语言模型理解用户需求并据此生成相关、准确回答或内容的基础。对于大语言模型来说，提示词就是用户输入给大语言模型的文本信息。</p><p>提示词Prompt—-&gt;大语言模型LLM—-&gt;返回结果Completion</p><h3 id="提示词工程"><a href="#提示词工程" class="headerlink" title="提示词工程"></a>提示词工程</h3><p><strong>提示词工程（Prompt Engineering）</strong>就是研究如何构建和调整提示词，从而让大语言模型实现各种符合用户预期的任务的过程。</p><p>提示词工程包括以下关键步骤：</p><ol><li>理解任务需求</li><li>构建有效提示词</li><li>评估提示词效果</li><li>持续迭代改进</li></ol><h3 id="提示词技巧"><a href="#提示词技巧" class="headerlink" title="提示词技巧"></a>提示词技巧</h3><h4 id="直接提问"><a href="#直接提问" class="headerlink" title="直接提问"></a>直接提问</h4><p>直接提问，也称为<strong>零样本提示（Zero-Shot Prompting），</strong>即不给大语言模型提供案例，完全依靠 LLM 理解和处理能力完成任务。适用于<strong>目标明确、问题简单、答案确定且唯一</strong>等场景。</p><p>直接提问时，可遵循以下原则：</p><ul><li><strong>简洁</strong>：尽量用最简短的方式表达问题。过于冗长的问题可能包含多余的信息，导致模型理解错误或答非所问。</li><li><strong>具体</strong>：避免抽象的问题，确保问题是具体的，不含糊。</li><li><strong>详细上下文</strong>：如果问题涉及特定上下文或背景信息，要提供足够的详情以帮助模型理解，即使是直接提问也不例外。</li><li><strong>避免歧义</strong>：如果一个词或短语可能有多重含义，要么明确其含义，要么重新表述以消除歧义。</li><li><strong>逻辑清晰</strong>：问题应逻辑连贯，避免出现逻辑上的混淆或矛盾，这样才能促使模型提供有意义的回答。</li></ul><h4 id="增加示例"><a href="#增加示例" class="headerlink" title="增加示例"></a>增加示例</h4><p>在提示词中提供少量（通常几个或几十个）示例，也称为<strong>少样本提示（Few-Shot Prompting）</strong>，以帮助模型更好地理解任务要求和期望输出。比如：</p><ul><li>让 LLM 跟随我们所要求的规范、格式、概念、文法、语气进行输出。</li><li>提供进一步推理的参考，比如让大模型学会数学运算或按照示例方式进行逻辑推理。</li></ul><p>增加示例时可参考以下技巧：</p><ul><li><strong>精选代表性样本</strong>：选择具有代表性的示例，覆盖任务的各种情况，同时避免使用可能引起模型混淆的极端或边缘案例，确保模型能从有限的数据中学习到任务的核心特征。</li><li><strong>保证示例的多样性</strong>：尽可能覆盖任务的各种角度和情境，确保模型能从有限的数据中学习到任务的核心特征。</li><li><strong>使用相似的格式和结构</strong>：在所有示例中使用相似的提示格式和结构，使模型能够清晰识别输入与输出的关系。</li><li><strong>让大语言模型生成示例</strong>：实践时，我们还可以先让 LLM 按照提示生成一些示例，再进行筛选或人工调整，以提高示例质量和针对性。</li></ul><h4 id="分配角色"><a href="#分配角色" class="headerlink" title="分配角色"></a>分配角色</h4><p>赋予模型一个具体的角色或身份，来引导模型在特定角色视角下生成回答。</p><p>分配角色适用以下场景：</p><ul><li>需要专业知识或特定视角的问题解答。例如，模拟老师、医生、律师等回答相关领域的问题。</li><li>模拟特定人物或角色的语言风格。例如，模仿某个著名人物（如历史人物或文学角色）语言风格的文本时。</li><li>进行角色扮演游戏或创作。在创意写作或角色扮演游戏中扮演指定的角色，与使用者进行互动。</li><li>在特定行业内进行决策模拟。例如，模拟一个管理咨询师来分析商业案例或提供商业建议。</li></ul><p>分配角色引导模型生成符合特定情境和对话逻辑的内容，可遵循以下技巧：</p><ul><li><strong>明确角色身份与特性</strong><ul><li>确定角色的基本属性，如年龄、性别、职业、性格、技能、价值观等。</li><li>赋予角色相关领域的专业知识或特殊背景，如专家、学者、历史人物、虚构角色等。</li></ul></li><li><strong>设定角色目标与动机</strong><ul><li>为角色设定对话的目标，如寻求信息、说服他人、解决问题、分享观点等。</li><li>揭示角色的内在动机，如个人利益、道德信念、情感需求等，有助于塑造角色的真实性和深度。</li></ul></li><li><strong>设定角色语言风格</strong>：<ul><li>根据角色性格、教育水平、文化背景等设定其语言习惯、用词选择、句式结构、口头禅等。</li><li>规定角色在对话中的情绪状态，如冷静理智、激动愤怒、悲伤失落、幽默风趣等，影响其表达方式。</li></ul></li><li><strong>设定角色规则约束</strong>：规定角色在对话中的行为约束，如不得人身攻击、保持礼貌尊重、遵守讨论主题等。</li><li><strong>动态调整角色设定</strong>：<ul><li>随着对话深入，适时调整角色设定以适应新的情境和话题，如角色态度转变、关系演变、目标更新等。</li><li>向模型反馈角色表现，如偏离设定、缺乏个性、对话僵化等，及时修正角色设定并引导模型调整。</li></ul></li></ul><h4 id="限定输出风格-格式"><a href="#限定输出风格-格式" class="headerlink" title="限定输出风格/格式"></a>限定输出风格/格式</h4><p>为了更好的限定“<strong>风格</strong>”，准确引导模型写出符合需求的内容，下面我们介绍一些推荐的技巧：</p><ol><li><strong>明确指出所需的内容类型</strong>，如“论文/散文/诗歌/新闻报道/剧本/日记”等。</li><li><strong>用形容词限定风格</strong>，如“严谨客观”、“感性抒情”、“幽默诙谐”、“庄重典雅”等。</li><li><strong>列举风格（代表人物/作品）示例</strong>，如“仿照鲁迅先生的笔触描述社会现象”或“以J.K.罗琳的叙述风格撰写一段奇幻冒险故事”。</li><li><strong>设定语境与情感色彩</strong>：为模型设定故事背景、情感基调或角色视角，影响其语言表达和修辞选择，从而形成特定风格。如“以一名二战老兵的视角，深情回忆战场经历”。</li><li><strong>规定语言与句式特点</strong>：要求使用特定词汇、短语、成语、俚语、古语等，或强调长句、短句、排比、反问、比喻等修辞手法的运用，以契合特定风格。</li></ol><p>还可以进一步对<strong>内容的输出格式</strong>进行限定：</p><ol><li><strong>明确输出长度</strong>：如“撰写一篇关于全球气候变化的新闻报道，标题需简洁明快，概括主题，不超过300字”。</li><li><strong>段落结构</strong>：规定正文的段落数量、每段的大致内容与逻辑关系，如“文章分为引言、主体（分三点论述）和结论三部分”。</li><li><strong>列表与编号</strong>：要求使用项目符号、数字编号等形式列出要点或步骤，如“通过数字编号列出五种有效的时间管理方法，并简要解释”。</li><li><strong>引用与注释</strong>：指示何时使用引号、脚注、尾注、参考文献等格式引用他人观点或资料，如“在论述中适当引用至少两篇相关学术论文，并按照APA格式添加引用和参考文献”。</li><li><strong>格式标记</strong>：如对齐方式（左对齐、居中、右对齐）、字体样式（加粗、斜体、下划线）、缩进、行距、页眉页脚等进行详细说明，甚至可以要求大模型按照JSON格式输出。</li><li><strong>特殊要求</strong>：针对特定场景，如邮件、信函、通知、海报、简历等，规定相应的格式标准，如“按照商务电子邮件的标准格式撰写邀请函，包括收件人、抄送人、主题、问候语、正文、结束语、签名档等部分”。</li></ol><h4 id="拆解复杂任务"><a href="#拆解复杂任务" class="headerlink" title="拆解复杂任务"></a>拆解复杂任务</h4><p>把一个复杂的任务，拆解成多个稍微简单的任务，让大语言模型<strong>分步</strong>来思考问题，称为<strong>思维链（Chain-of-Thought Prompting, CoT）</strong>提示，这种方式可让大语言模型像人类一样逐步解释或进行推理，从而极大地提升 LLM 的能力。</p><p>思维链分类：</p><ul><li><p>零样本思维链（Zero-shot CoT）：没有给 LLM 提供问题解析示例。</p></li><li><p>少样本思维链（Few-shot Cot）：给 LLM 提供问题解析示例。</p><p><strong>有时 LLM 通过</strong>零样本思维链可能会得到错误的答案，可以通过增加示例的方式，即少样本思维链，帮助 LLM 理解相关任务并正确执行。</p></li></ul><h3 id="提示词框架"><a href="#提示词框架" class="headerlink" title="提示词框架"></a>提示词框架</h3><p>提示词可以包含的要素：</p><ul><li><p><strong>指令 Instruction</strong>：需要模型去做什么，如回答某个问题、撰写某种类型的文章或按照特定格式进行总结。指令应该简洁、明确，确保 LLM 能够理解任务的目标和要求。</p></li><li><p><strong>背景信息 Context</strong>：背景信息可以包括任务的背景、目的相关的各类信息，还可以为 LLM 设置角色背景、观点立场等信息，LLM 将在此背景下进行回应或生成文本。</p></li><li><p><strong>参考样本 Examples</strong>：与解决用户问题相关的示例，比如通过少样本提示的方式帮助 LLM 更好理解如何处理指令。</p></li><li><p><strong>输入数据 Input Data</strong>：用户输入指令和要求，比如用什么语气，生成多少字的内容。</p></li><li><p><strong>输出指示 Output Indicator</strong>：指定输出的类型或格式，我们可以给出限定关键词、限制条件或要求的输出格式/方式（如表格），也可以避免无关或不期望的信息出现。</p></li></ul><p>结合上述要素，我们可以根据任务的复杂度来设计提示词，具体有以下几种情况：</p><ol><li><strong>纯指令型</strong>：最直接的互动方式，仅通过简明指令向模型提出需求，适合于寻求快速、基本答案的场景。</li><li><strong>背景</strong>+<strong>指令</strong>：在指令基础上融入背景信息，为模型创造一个理解和响应任务的框架，尤其适用于需要考虑特定情境或角色定位的任务。</li><li><strong>指令</strong>/<strong>背景</strong>+<strong>输出指示</strong>：在基础指令或背景信息之上，加入输出指示，精确指导模型如何组织和呈现答案，以满足特定的格式或风格要求。</li><li><strong>综合型提示</strong>：结合指令、背景信息、输入数据与输出指示，形成一个全方位的引导体系。这种复合型提示尤为强大，能够在复杂任务中提高模型输出的针对性与质量，尤其是在模型需要从示例中学习并模仿特定风格或结构时。</li></ol><p>常见提示词框架及场景</p><div class="table-container"><table><thead><tr><th><strong>框架</strong></th><th><strong>具体应用领域（举例子）</strong></th><th><strong>内容含义</strong></th></tr></thead><tbody><tr><td><strong>CRISPE</strong></td><td>项目管理、团队协作、客户服务</td><td>能力 (Capabilities)角色 (Roles)洞察 (Insights)陈述 (Statement)个性 (Personality)实验 (Experiment)</td></tr><tr><td><strong>ROSES</strong></td><td>软件开发、产品设计、市场营销策略规划</td><td>角色 (Role)目标 (Objective)场景 (Setting)预期解决方案 (Expected Solution)步骤 (Steps)</td></tr><tr><td><strong>TRACE</strong></td><td>市场研究、业务分析、教学设计</td><td>任务 (Task)请求 (Request)操作 (Action)上下文 (Context)示例 (Examples)</td></tr></tbody></table></div><h2 id="推理模型"><a href="#推理模型" class="headerlink" title="推理模型"></a>推理模型</h2><p>推理模型通常指专门优化用于逻辑推理、问题解决、多步推断等任务的模型，它们通常在数学解题、代码生成、逻辑分析等方面有更好的表现。与通用模型相比，推理模型拥有更强的逻辑能力，因为它经过了大量的专项训练，能够更好地理解复杂的问题，并且在解答时更有条理。但并不是说就一定比通用模型更好，两种模型都有各自的应用场景，下表从一些典型维度对这两类模型进行了对比：</p><div class="table-container"><table><thead><tr><th><strong>维度</strong></th><th><strong>推理模型</strong></th><th><strong>通用模型</strong></th></tr></thead><tbody><tr><td>设计目标</td><td>专注于<strong>逻辑推理</strong>、<strong>多步问题求解</strong>、<strong>数学计算</strong>等需要深度分析的任务</td><td>面向<strong>通用对话、知识问答、文本生成</strong>等广泛场景</td></tr><tr><td>训练数据侧重</td><td>大量<strong>数学题解</strong>、<strong>代码逻辑</strong>、<strong>科学推理</strong>数据集增强推理能力</td><td>覆盖<strong>百科、文学、对话</strong>等多领域海量数据</td></tr><tr><td>典型输出特征</td><td>输出包含<strong>完整推导</strong>步骤，注重逻辑链条的完整性</td><td>输出<strong>简洁直接</strong>，侧重结果的自然语言表达</td></tr><tr><td>响应速度</td><td>复杂推理任务<strong>响应较慢</strong>（需多步计算）</td><td>常规任务<strong>响应更快</strong>（单步生成为主）</td></tr></tbody></table></div><p>推理模型还是通用模型？如何选择？以下是一些推荐：</p><ul><li><strong>明确的通用任务</strong>：对于明确定义的问题，<strong>通用模型</strong>一般能够很好地处理。</li><li><strong>复杂任务</strong>：对于非常复杂的任务，且需要给出相对<strong>更精确和可靠</strong>的答案，推荐使用<strong>推理模型</strong>。这些任务可能有：<ul><li>模糊的任务：任务相关信息很少，你无法提供模型相对明确的指引。</li><li>大海捞针：传递大量非结构化数据，提取最相关的信息或寻找关联/差别。</li><li>调试和改进代码：需要审查并进一步调试、改进大量代码。</li></ul></li><li><strong>速度和成本</strong>：一般来说推理模型的推理时间较长，如果你对于时间和成本敏感，且任务复杂度不高，<strong>通用模型</strong>可能是更好的选择。</li></ul><p>当然你还可以在你的应用中结合使用两种模型：使用推理模型完成Agent的规划和决策，使用通用模型完成任务执行。</p><p>推理模型在面对相对模糊的任务也能给出详尽且格式良好的响应。因此，使用一些提示词技巧（如指示模型“逐步思考”）可能反而限制了模型的推理。下面列举了一些适用于推理模型的提示技巧：</p><ul><li><strong>直接提问</strong>：保持提示<strong>简洁、清晰</strong>，且明确任务限制。</li><li><strong>避免思维链提示</strong>：你无需提示推理模型“逐步思考”或“解释你的推理”，它们本身会进行深入的思考。</li><li><strong>根据模型响应调整提示词</strong>：直接提问推理模型通常能够产生良好的响应，但如果你有更复杂精细的要求，可以在提示词中明确，比如有<strong>明确的输入信息和输出要求</strong>时，你可以通过<strong>增加示例</strong>明确这些信息，还可以通过<strong>分隔符</strong>帮助推理模型区分不同的信息模块。这个过程可以是重复多次的，不断尝试调整提示，让模型不断推理迭代，直到符合你的要求。</li></ul><h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>定义：大模型插件是一种软件组件，它们设计用于增强和扩展基础大模型的功能。如网络搜索、视觉生成、语音合成等。</p><p>典型的插件包括：</p><ul><li>基础工具，如计算器、时钟、天气信息、股票行情</li><li>可以让用户获得实时性消息的插件，比如体育赛事报道、实时、热点新闻</li><li>可以为模型拓展更多能力的插件，比如图片生成、语音合成、代码解释器</li></ul><h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>首先接收输入，判断是否需要使用工具及选择合适的工具，然后使用工具并获得返回结果进行后续推理生成。</p><p>用户提问-&gt; 程序根据用户问题调用大模型-&gt;大模型判断是否需要调用工具-&gt;大模型输出工具名称解析工具入参-&gt;程序根据工具名称、入参调用工具-&gt;工具输出运行结果-&gt;程序根据工具结果、用户提问重新调用大模型-&gt;大模型给出回复-&gt;程序展示结果给用户</p><h2 id="RAG"><a href="#RAG" class="headerlink" title="RAG"></a>RAG</h2><p>RAG（Retrieval-Augmented Generation，检索增强生成） 是一种结合了信息检索技术与语言生成模型的人工智能技术。该技术通过从外部知识库中检索相关信息，并将其作为提示（Prompt）输入给大型语言模型（LLMs），以增强模型处理知识密集型任务的能力，如问答、文本摘要、内容生成等。</p><ul><li>内置知识库</li><li>用户定制知识库</li></ul><h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p><strong>检索增强生成</strong>包括三个步骤，建立<strong>索引</strong>、<strong>检索</strong>、<strong>生成</strong>。</p><p><strong>建立索引：</strong>首先要清洗和提取原始数据，将 PDF、Docx等不同格式的文件解析为<strong>纯文本</strong>数据；然后将文本数据分割成更小的片段（chunk）；最后将这些片段经过嵌入模型转换成向量数据（此过程叫做embedding），并将原始语料块和嵌入向量以键值对形式存储到向量数据库中，以便进行后续快速且频繁的搜索。这就是建立索引的过程。</p><p><strong>检索生成</strong>：系统会获取到用户输入，随后计算出用户的问题与向量数据库中的文档块之间的相似度，选择相似度最高的K个文档块（K值可以自己设置）作为回答当前问题的知识。知识与问题会合并到提示词模板中提交给大模型，大模型给出回复。这就是检索生成的过程。</p><blockquote><p>提示词模板类似于：请阅读：{知识文档块}，请问：{用户的问题}</p></blockquote><h3 id="RAG-存在的问题"><a href="#RAG-存在的问题" class="headerlink" title="RAG 存在的问题"></a>RAG 存在的问题</h3><ul><li>问题比较抽象或者概念比较模糊，导致大模型没有准确理解使用者的问题。</li><li>知识库没有检索到问题的答案</li><li>缺少对答案做兜底验证的机制</li></ul><h3 id="RAG评测标准"><a href="#RAG评测标准" class="headerlink" title="RAG评测标准"></a>RAG评测标准</h3><ul><li>考察<strong>检索</strong>模块的准确性，如准确率、召回率、F1值等等；</li><li>考察<strong>生成</strong>模块生成答案的价值，如相关性、真实性等等。</li></ul><p>参考<a href="https://docs.ragas.io/en/stable/concepts/metrics/index.html#"><strong>Ragas</strong></a>提及的评测矩阵指南，可以建立一些自己的评测指标。</p><h3 id="改造方案"><a href="#改造方案" class="headerlink" title="改造方案"></a>改造方案</h3><h4 id="提升索引准确度"><a href="#提升索引准确度" class="headerlink" title="提升索引准确度"></a>提升索引准确度</h4><ul><li><p>优化文本解析过程，正确的从文档中提取有效语料。</p></li><li><p>优化chunk切分模式</p><ul><li>利用领域专有知识进行精准切分</li><li>基于固定大小切分</li><li>上下文感知，切分时考虑前后文关系避免信息断裂</li></ul></li></ul><ul><li><p>句子滑动窗口检索，通过设置window_size（窗口大小）来调整提取句子的数量，当用户的问题匹配到一个chunk语料块时，通过窗函数提取目标语料块的上下文，而不仅仅是语料块本身，这样来获得更完整的语料上下文信息，提升RAG生成质量。</p></li><li><p>自动合并检索，将文档分块，建成一棵语料块的树，比如1024切分、512切分、128切分，并构造出一棵文档结构树。当应用作搜索时，如果同一个父节点的多个叶子节点被选中，则返回整个父节点对应的语料块。</p></li><li><p>选择更适合业务的Embedding模型</p><p>把chunk语料块由原来的文本内容转换为机器可以用于比对计算的一组数字，即变为Embedding向量。</p></li><li><p>选择更合适业务的ReRank模型，好的ReRank模型会让更贴近用户问题的chunks的排名更靠前。</p></li><li><p>Raptor用聚类为文档块建立索引，这就像通过文档的内容为文档自动建立目录的过程。</p></li></ul><h4 id="让问题更好理解"><a href="#让问题更好理解" class="headerlink" title="让问题更好理解"></a>让问题更好理解</h4><ul><li><p>Enrich完善用户问题</p><ul><li><p>多轮对话补全需求</p></li><li><p>大模型转述用户问题</p></li><li><p>让用户补全信息</p></li></ul></li></ul><ul><li><p>Multi-Query 多路召回，先一次性改写出多种用户问题，让大模型根据用户提出的问题，从多种不同角度去生成有一定提问角度或提问内容上存在差异的问题。让这些存在差异的问题作为大模型对用户真实需求的猜测，然后再把每个问题分别生成答案，并总结出最终答案。</p><p>提示词模板</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">You are an AI language model assistant. Your task is to generate five </span><br><span class="line">different versions of the given user question to retrieve relevant documents from a vector database. By generating multiple perspectives on the user question, your goal is to help the user overcome some of the limitations of the distance-based similarity search. </span><br><span class="line">Provide these alternative questions separated by newlines. Original question: &#123;question&#125;</span><br></pre></td></tr></table></figure></li><li><p>RAG-Fusion过滤融合，在经过多路召回获取了各种语料块之后，并不是将所有检索到的语料块都交给大模型，而是先进行一轮筛选，给检索到的语料块进行去重操作，然后按照与原问题的相关性进行排序，再将语料块打包喂给大模型来生成答案。</p></li><li><p>Step Back 问题摘要，让大模型先对问题进行一轮抽象，从大体上去把握用户的问题，获得一层高级思考下的语料块。</p></li><li><p>Decomposition问题分解，用户的问题拆成一个一个小问题来理解，或者可以说是RAG中的CoT。</p><p>提示词</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">You are a helpful assistant that generates multiple sub-questions related to an input question. \n</span><br><span class="line">The goal is to break down the input into a set of sub-problems / sub-questions that can be answers in isolation. \n</span><br><span class="line">Generate multiple search queries related to: &#123;question&#125; \n</span><br><span class="line">Output (3 queries):</span><br></pre></td></tr></table></figure><ul><li>串行执行</li><li>并行执行</li></ul></li><li><p>HyDE假设答案，让大模型先来根据用户的问题生成一段假设答案，然后用这段假设的答案作为新的问题去文档库里匹配新的文档块，再进行总结，生成最终答案。</p><p>用户提问-&gt;生成答案-&gt;信息抽离-&gt;生成答案</p></li></ul><h4 id="改造信息抽取途径"><a href="#改造信息抽取途径" class="headerlink" title="改造信息抽取途径"></a>改造信息抽取途径</h4><p>   <strong>Corrective Retrieval Augmented Generation (CRAG)</strong>是一种改善提取信息质量的策略：如果通过知识库检索得到的信息与用户问题相关性太低，我们就主动搜索互联网，将网络搜索到的信息与知识库搜索到的信息合并，再让大模型进行整理给出最终答案。</p><p>   两种实现方式</p><ul><li><strong>向量相似度</strong>，我们用检索信息得到的向量相似度分来判断。判断每个语料块与用户问题的相似度评分，是否高过某个阈值，如果搜索到的语料块与用户问题的相似度都比较低，就代表知识库中的信息与用户问题不太相关；</li></ul><ul><li><strong>直接问大模型</strong>，我们可以先将知识库检索到的信息交给大模型，让大模型自主判断，这些资料是否能回答用户的问题。</li></ul><h4 id="回答前反复思考"><a href="#回答前反复思考" class="headerlink" title="回答前反复思考"></a>回答前反复思考</h4><p>Self-RAG，也称为self-reflection，是一种通过在应用中设计<strong>反馈路径</strong>实现<strong>自我反思</strong>的策略。<br>   基于这个思想，我们可以让应用问自己三个问题：</p><ul><li><p><strong>相关性</strong>：我获取的这些材料和问题相关吗？ 在生成答案前判断，不相关就改写问题。</p></li><li><p><strong>无幻觉</strong>：我的答案是不是按照材料写的来讲，还是我自己编造的？在生成答案后判断，出现幻觉就重新生成答案。</p></li><li><p><strong>已解答</strong>：我的答案是不是解答了问题？在输出答案前判断，没有解答问题就改写问题。</p></li></ul><h4 id="从多个数据源中获取资料"><a href="#从多个数据源中获取资料" class="headerlink" title="从多个数据源中获取资料"></a>从多个数据源中获取资料</h4><ul><li>从数据库中获取统计指标，大模型可以将用户问题转化为SQL语句去数据库中检索相关信息，这个能力就是NL2SQL（Natural Language to SQL）。</li><li>从知识图谱中获取数据，Neo4j是一款图数据库引擎，可以为我们提供知识图谱构建和计算服务。在知识图谱上，我们调用各种图分析算法，如标签传播、关键节点发现等等，可以快速检索多度关联关系，挖掘隐藏关系。</li></ul><h2 id="微调"><a href="#微调" class="headerlink" title="微调"></a>微调</h2><p>核心思想：在预训练的基础上，使用特定领域的数据对模型进行进一步的训练，从而让模型更擅长处理你想要解决的问题，也就是说，<strong>让大模型更懂你</strong>。</p><h3 id="微调的特点"><a href="#微调的特点" class="headerlink" title="微调的特点"></a>微调的特点</h3><ol><li>数据规模小</li><li>训练时间短</li></ol><h3 id="微调可以实现"><a href="#微调可以实现" class="headerlink" title="微调可以实现"></a>微调可以实现</h3><ul><li>风格化，角色扮演</li><li>格式化，系统对接</li></ul><h3 id="微调的作用"><a href="#微调的作用" class="headerlink" title="微调的作用"></a>微调的作用</h3><p>提高效率降低成本</p><h3 id="微调的关键"><a href="#微调的关键" class="headerlink" title="微调的关键"></a>微调的关键</h3><ul><li>需要特定领域的高质量数据</li><li>需要配置合适的参数才能达到想要的微调效果</li></ul><h3 id="微调的使用场景"><a href="#微调的使用场景" class="headerlink" title="微调的使用场景"></a>微调的使用场景</h3><p>如果你的部署环境里无法提供知识检索服务，或者你单纯希望大模型记住这些重要的信息。你可以考虑使用微调，为大模型注入专有领域的知识库，确保大模型的回答会更准确、更高效。</p><h3 id="业务决策"><a href="#业务决策" class="headerlink" title="业务决策"></a>业务决策</h3><ul><li><p>业务需求匹配度</p><p>首先明确业务的具体需求，明确要通过大模型微调解决的具体业务问题和应用场景。可以先问自己以下问题：</p><ul><li>你的任务是否需要复杂的语言理解或生成能力？例如，复杂的自然语言生成、意图识别等任务可能受益于大模型微调。</li><li>你的任务是否需要高度特定于某个领域或任务的语言能力？例如，法律文书分析、医学文本理解等领域任务。</li><li>当前的模型是否已能满足大部分需求？如果能满足，则可能不需要微调。</li><li>是否有具体的业务指标来衡量微调前后效果对比？比如微调后的大模型推送给客户的信息更加准确，从而降低投诉率。</li></ul></li><li><p>数据可用性与质量</p><p>微调需要足够的高质量领域特定数据。需要评估当前业务系统中是否能够提取出足够的标注数据用于训练，以及数据的质量、代表性是否满足要求。</p></li><li><p>合规与隐私</p><p>业务工作者需要确保使用的数据符合法律法规要求，处理个人数据时遵循隐私保护原则，尤其是GDPR等国际和地区隐私法规。此外，还要关注模型偏见、过拟合、泛化能力不足等潜在风险，以及这些风险对业务可能造成的影响。</p></li><li><p>资源和技术可行性</p><p>微调过程需要计算资源和时间成本，包括GPU资源、存储空间以及可能的专家人力成本。需要评估项目预算和资源是否允许进行有效微调。</p><p>团队是否具备微调大模型所需的技术能力和经验，或者是否有合适的合作伙伴提供技术支持。</p></li></ul><h3 id="微调流程"><a href="#微调流程" class="headerlink" title="微调流程"></a>微调流程</h3><ol><li>准备数据<ul><li>数据收集：收集用于微调模型的数据，例如之前的交互记录、常见问题及回答等。</li><li>数据清洗：清洗这些数据，去除敏感信息，保证数据的质量。</li></ul></li><li>模型选择<ul><li>选择适合的预训练大模型。准备一个或多个有使用权限的通用大模型。</li></ul></li><li>模型微调<ul><li>使用你收集的数据来微调所选模型。</li><li>标注数据：如果需要，对数据进行标注以支持监督学习。</li><li>微调模型：运行微调程序，调整模型的参数使其更适应你的业务数据。</li></ul></li><li>模型评估<ul><li>你可以在准备训练集的同时，准备一份与训练集格式一致的评测集，该评测集用来评测微调后模型的效果。如果评测集数据条目较少，你可以直接去观察微调后模型的输出，并与评测集的<strong>output</strong>进行比较。</li></ul></li><li>模型集成<ul><li>编写代码将模型调用集成到现有的业务流程中去。</li><li>设定合理的调用逻辑和流程，如何处理模型的输出，如何处理API调用错误等。</li><li>确保API调用遵守数据保护法规。</li><li>实施适当的身份验证和授权控制。</li></ul></li><li>测试与优化<ul><li>在开发和测试环境中测试API调用和模型集成。</li><li>根据测试结果优化模型性能。</li></ul></li><li>模型部署<ul><li>在生产环境中部署微调后的模型。</li></ul></li><li>监控与维护<ul><li>监控模型的性能和API的健康状况。</li><li>定期重新评估和优化模型以适应新数据和业务变化。</li></ul></li><li>持续迭代<ul><li>根据用户反馈和业务需求的变化，继续改进模型和API。</li></ul></li></ol><p>在进行这一切工作时，保持良好的文档习惯也至关重要，这样团队成员可以轻松跟踪项目的进展，新加入的成员也能够快速上手。此外，确保所有与微调和部署模型相关的关键决策都得到适当记录和备份。</p><h3 id="微调的方式"><a href="#微调的方式" class="headerlink" title="微调的方式"></a>微调的方式</h3><p>大模型由多个子模块组成</p><p><strong>全参微调（Full Fine Tuning）</strong>是在预训练模型的基础上进行<strong>全量参数</strong>微调的模型优化方法，只要有参数，就会被调整。该方法避免消耗重新开始训练模型所有参数所需的大量计算资源，又能避免部分参数未被微调导致模型性能下降。但是，大模型训练成本高昂，需要庞大的计算资源和大量的数据，即使是全参数微调，往往也需要较高的训练成本。</p><p><strong>高效微调 PEFT</strong>（Parameter-Efficient Fine-Tuning）旨在降低微调参数的数量和计算复杂度的同时提高预训练模型在新任务上的性能，缓解微调大型预训练模型的训练成本，只需要调整某几层网络的参数即可。当前比较主流的 PEFT 方法包括 Adapter Tuning、Prompt Tuning、LoRA 等等。</p><ul><li>LoRA 的全称是 “Low-Rank Adaptation”（低秩适应）。它不对原模型做微调，而是在原始模型旁边增加一个旁路，通过学习小参数的低秩矩阵来近似模型权重矩阵的参数更新，训练时只优化低秩矩阵参数，通过降维度再升维度的操作来大量压缩需要训练的参数。</li><li>Adapter Tuning，该方法会在原有的模型架构上，在某些位置之间插入Adapter层，微调训练时只训练这些Adapter层，而原先的参数不会参与训练。该方法可以在只额外增加3.6%参数的情况下达到与全参数微调相似的效果。</li><li>Prefix Tuning，该方法不改变原有模型的结构，而是给文本数据的token之前构造一段固定长度任务相关的虚拟token作为前缀Prefix。训练的时候只更新这个虚拟token部分的参数，而其他部分参数固定。这些前缀向量可以视为对模型进行引导的“指令”，帮助模型理解即将处理的任务。由于只需学习远少于模型全部参数数量的前缀向量，这种方法极大地减少了内存占用和计算成本。</li><li>Prompt Tuning，一种轻量高效的微调方法，其原理与Prefix Tuning类似，但仅在输入层加入可训练的prompt tokens向量（而非像Prefix Tuning那样作用于每层Transformer）来引导模型输出。这些提示词向量并不一定放在问题的前边，也可以针对不同的任务设计不同的提示词向量。微调训练只对这些前缀提示词向量进行更新，从而<strong>不修改大模型本身的参数</strong>，大幅减少训练参数。</li></ul><h3 id="RAG-v-s-微调"><a href="#RAG-v-s-微调" class="headerlink" title="RAG v.s. 微调"></a>RAG v.s. 微调</h3><div class="table-container"><table><thead><tr><th><strong>对比项</strong></th><th><strong>RAG</strong></th><th><strong>微调</strong></th></tr></thead><tbody><tr><td>应用场景</td><td>解决垂直领域知识问答的“幻觉”问题</td><td>解决风格化生成和垂域系统指令生成问题</td></tr><tr><td>技术能力要求</td><td>需要了解如何使用向量数据库</td><td>需要有较强的数据预处理能力需要熟悉微调的参数体系和调整策略</td></tr><tr><td>成本比较</td><td>部署和运维线上推理服务与向量数据库</td><td>微调训练成本，部署运维成本，需要专业技术人员操作</td></tr><tr><td>数据集准备</td><td>准备一份知识库文档即可</td><td>需要在知识库文档里提取高质量问答对</td></tr><tr><td>最终输入大模型的token个数</td><td>需要将知识与问题拼接起来，输入大模型的tokens个数较多</td><td>只需输入问题即可，输入大模型的tokens个数很少</td></tr><tr><td>推理速度</td><td>经过检索、生成两个步骤，且向大模型输入较多token，推理速度相对较慢</td><td>直接推理，速度较快</td></tr><tr><td>知识更新的及时性</td><td>可以做到准实时，只需要及时地更新知识库中的文档</td><td>比RAG慢，微调训练需要花费较多时间</td></tr></tbody></table></div><h2 id="Agent"><a href="#Agent" class="headerlink" title="Agent"></a>Agent</h2><p>定义：从软件工程的角度来看，大模型Agent是指基于大语言模型的，能使用工具与外部世界进行交互的计算机程序。</p><h3 id="Agent的工作流程"><a href="#Agent的工作流程" class="headerlink" title="Agent的工作流程"></a>Agent的工作流程</h3><ol><li>感知</li><li>思考</li><li>行动</li></ol><h3 id="Agent的能力"><a href="#Agent的能力" class="headerlink" title="Agent的能力"></a>Agent的能力</h3><ul><li><p>记忆能力</p><ul><li>短期记忆，对应着用户与大模型Agent之间的历史对话、提示词、搜索工具反馈的语料块等等，但这些信息仅与当前用户与大模型的对话内容有关。一旦用户关闭应用或离开聊天环境，这类信息就消失了。</li><li>长期记忆，对应着系统持久化的信息，如业务历史记录、知识库等，通常存储在外部向量数据库和文档库中，Agent会利用长期记忆来回答用户私有知识或专业领域相关的问题。</li></ul></li><li><p>规划能力</p><ul><li><p>任务分解</p><ul><li>思维链</li><li>思维树</li><li>思维图</li></ul></li><li><p>推理与反思，让大模型先审视自己的结果，然后再输出结果。</p><ul><li><p>ReAct，现原理是把思考、推理、观察整合到提示词模版中，让大模型在具体工作中既可以基于环境反馈选择使用何种工具来完成工作，又可以基于环境反馈推理是否可以给出任务的答案。</p><p>大模型在ReAct提示词的引导下完成推理、行动、再推理、再行动，直至生成最终答案。</p><ul><li>当大模型接收到用户请求的时候，大模型先判断能不能解答用户的问题。</li><li>当大模型不能解答用户的问题时，大模型会根据可用工具列表的介绍，选择一个合适的工具。</li><li>大模型根据工具的使用说明生成调用指令，并在指令中插入需要的参数。</li><li>Agent主体程序会根据大模型生成的指令来调用对应的工具服务</li><li>Agent主体程序等待工具执行完成并收集执行结果。</li><li>带着用户问题和执行结果，大模型会再次考虑是否已经解决了问题。如果没有解决，就继续选择一个工具来执行。如果解决了，大模型会生成最终答案，并结束任务。</li></ul><p>提示词模板</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">input_variables=[&#x27;agent_scratchpad&#x27;, &#x27;input&#x27;, &#x27;tool_names&#x27;, &#x27;tools&#x27;] </span><br><span class="line">template=&#x27;Answer the following questions as best you can. You have access to the following tools:</span><br><span class="line"></span><br><span class="line">&#123;tools&#125;</span><br><span class="line"></span><br><span class="line">Use the following format:</span><br><span class="line"></span><br><span class="line">Question: the input question you must answer</span><br><span class="line">Thought: you should always think about what to do</span><br><span class="line">Action: the action to take, should be one of [&#123;tool_names&#125;]</span><br><span class="line">Action Input: the input to the action</span><br><span class="line">Observation: the result of the action</span><br><span class="line">... (this Thought/Action/Action Input/Observation can repeat N times)</span><br><span class="line">Thought: I now know the final answer</span><br><span class="line">Final Answer: the final answer to the original input question</span><br><span class="line"></span><br><span class="line">Begin!</span><br><span class="line"></span><br><span class="line">Question: &#123;input&#125;</span><br><span class="line">Thought:&#123;agent_scratchpad&#125;&#x27;</span><br></pre></td></tr></table></figure></li></ul></li></ul></li></ul><h3 id="Agent与大模型的区别"><a href="#Agent与大模型的区别" class="headerlink" title="Agent与大模型的区别"></a>Agent与大模型的区别</h3><ol><li>它不局限于输出回答，还能通过插件（工具）<strong>与外部世界交互</strong>，论上只要是计算机程序能做的事情，它都能做到。</li><li>它不再是被动式地接受多轮提问，而是能<strong>自主地推理</strong>（拆解任务、选择最优路径）、<strong>主动纠错、自主完成任务</strong>。你可以让它每完成一个或多个步骤就给你同步进展，和你确认下一步的动作，也可以授权它自主地完成所有步骤。</li><li>它不仅可以完成简单的事情，还能<strong>完成复杂的任务</strong>。</li><li>它可以自我迭代，<strong>吸取历史经验</strong>，不断成长，因为它不仅能记住这次会话里你对它的指导，还能记住以前的会话里你给它提过的要求。</li><li>它不仅能完成通用的任务，还能<strong>完成特定领域的任务</strong>，因为它可以接入特定领域的外部知识库和工具。</li></ol><h3 id="Multi-Agent"><a href="#Multi-Agent" class="headerlink" title="Multi-Agent"></a>Multi-Agent</h3><p>通过给每个Agent制定明确且专业的角色名称和职责描述，不仅可以提升它们的专业性，还能帮助它们更好地理解和配合各自的工作。</p><p>Agent之间可以互相指派任务，也可以是一个主Agent带着一系列从Agent协同工作。</p><h2 id="多模态大模型"><a href="#多模态大模型" class="headerlink" title="多模态大模型"></a>多模态大模型</h2><p>每一种信息的来源或者形式，都可以称为一种模态（Modality）。</p><p>在大模型领域，模态指的是数据或信息的类型或表达形式，文本、图像、视频、音频等都是不同的模态。多模态，顾名思义，就是指结合两种及以上的模态，进行更综合的数据处理和分析。</p><h3 id="混合专家模型（MoE）"><a href="#混合专家模型（MoE）" class="headerlink" title="混合专家模型（MoE）"></a>混合专家模型（MoE）</h3><p><strong>混合专家模型的核心思想就是</strong>术有专攻，类似“专家会诊”，由多个不同领域的模型（即“专家”）组合成一个模型，分别去解决不同领域的问题。</p><ul><li>Experts（专家网络）：每个专家网络是用来处理某一特定类型问题或数据子集的独立模型，一般都在他们各自的专长上受过训练，推理时只有部分专家网络参与计算。</li><li>GateNet（门控网络）：类似于“交通指挥官”，负责评估输入数据，并决定由哪些专家参与处理当前的问题，尽可能地利用每个专家的专业知识来提供最准确的预测或决策输出。</li></ul><p>局限性：</p><ul><li><strong>计算资源需求高</strong>：MoE模型中的每个专家都是一个独立的模型，当专家数量增加时，模型的总参数量也相应增加，导致部署模型可能需要更多的GPU显存资源。</li><li><strong>过拟合风险</strong>：由于参数量大和复杂性，可能比简单模型更容易过拟合训练数据，特别是当数据量不足时。</li></ul><h3 id="大小模型云端协同"><a href="#大小模型云端协同" class="headerlink" title="大小模型云端协同"></a>大小模型云端协同</h3><p><strong>将大模型部署在云端，向边、端的小模型输出模型能力，小模型负责实时数据处理和初步推理，并向大模型反馈算法与执行成效，</strong>这样既能在云端充分发挥大模型的推理训练能力，又能调动边、端的小模型的敏捷性，可实现合理分配计算资源、提高响应速度。</p><h3 id="Agent与多模态"><a href="#Agent与多模态" class="headerlink" title="Agent与多模态"></a>Agent与多模态</h3><ul><li><strong>Agent</strong>概念通常指的是可以通过组件或工具与外界环境进行交互的大模型应用。它能够扩展模型的功能，比如增加特定领域的知识、优化交互流程或实现定制化逻辑，使模型更加灵活高效地应用于实际场景。</li><li><strong>多模态</strong>指的是模型能够处理和整合多种类型的数据，如文本、图像、声音等。在大模型领域，多模态技术的融合旨在让模型具备跨媒体理解和生成能力，这对于提升模型在复杂应用场景中的表现至关重要，如图文并茂的问答系统、视频内容分析等。</li></ul>]]></content:encoded>
+      
+      
+      <category domain="https://blog.itrf.cn/categories/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/">学习心得</category>
+      
+      
+      <category domain="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</category>
+      
+      <category domain="https://blog.itrf.cn/tags/ACA%E8%AE%A4%E8%AF%81/">ACA认证</category>
+      
+      <category domain="https://blog.itrf.cn/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">大模型</category>
+      
+      
+      <comments>https://blog.itrf.cn/posts/5f08/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
       <title>学习NAT类型与实战各类型打洞可行性</title>
-      <link>https://blog.itrf.cn/nat-3e9c16b9b06f/</link>
-      <guid>https://blog.itrf.cn/nat-3e9c16b9b06f/</guid>
+      <link>https://blog.itrf.cn/posts/f77d/</link>
+      <guid>https://blog.itrf.cn/posts/f77d/</guid>
       <pubDate>Fri, 02 Jan 2026 07:03:23 GMT</pubDate>
       
         
@@ -37,14 +67,14 @@
       <category domain="https://blog.itrf.cn/tags/NAT/">NAT</category>
       
       
-      <comments>https://blog.itrf.cn/nat-3e9c16b9b06f/#disqus_thread</comments>
+      <comments>https://blog.itrf.cn/posts/f77d/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>EdgeOne加速Vercel配置及踩坑</title>
-      <link>https://blog.itrf.cn/vercel-ec68f96264c1/</link>
-      <guid>https://blog.itrf.cn/vercel-ec68f96264c1/</guid>
+      <link>https://blog.itrf.cn/posts/7eac/</link>
+      <guid>https://blog.itrf.cn/posts/7eac/</guid>
       <pubDate>Sat, 06 Dec 2025 08:39:55 GMT</pubDate>
       
         
@@ -67,14 +97,14 @@
       <category domain="https://blog.itrf.cn/tags/Vercel/">Vercel</category>
       
       
-      <comments>https://blog.itrf.cn/vercel-ec68f96264c1/#disqus_thread</comments>
+      <comments>https://blog.itrf.cn/posts/7eac/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>数据库分页 vs 程序分页：核心决策指南与实践方案</title>
-      <link>https://blog.itrf.cn/vs-739ea09d4020/</link>
-      <guid>https://blog.itrf.cn/vs-739ea09d4020/</guid>
+      <link>https://blog.itrf.cn/posts/516b/</link>
+      <guid>https://blog.itrf.cn/posts/516b/</guid>
       <pubDate>Sat, 29 Nov 2025 05:00:00 GMT</pubDate>
       
         
@@ -93,14 +123,14 @@
       <category domain="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/">零碎知识</category>
       
       
-      <comments>https://blog.itrf.cn/vs-739ea09d4020/#disqus_thread</comments>
+      <comments>https://blog.itrf.cn/posts/516b/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>Flask项目无法获取favicon.ico原因以及解决方案</title>
-      <link>https://blog.itrf.cn/favicon-324dcbe00342/</link>
-      <guid>https://blog.itrf.cn/favicon-324dcbe00342/</guid>
+      <link>https://blog.itrf.cn/posts/c93f/</link>
+      <guid>https://blog.itrf.cn/posts/c93f/</guid>
       <pubDate>Sat, 29 Nov 2025 04:59:16 GMT</pubDate>
       
         
@@ -119,14 +149,14 @@
       <category domain="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/">零碎知识</category>
       
       
-      <comments>https://blog.itrf.cn/favicon-324dcbe00342/#disqus_thread</comments>
+      <comments>https://blog.itrf.cn/posts/c93f/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>EdgeOne 获取用户真实 IP 完整解决方案（Nginx 适配版）</title>
-      <link>https://blog.itrf.cn/edgeone-adb468b0a8c0/</link>
-      <guid>https://blog.itrf.cn/edgeone-adb468b0a8c0/</guid>
+      <link>https://blog.itrf.cn/posts/8ab6/</link>
+      <guid>https://blog.itrf.cn/posts/8ab6/</guid>
       <pubDate>Sat, 29 Nov 2025 04:58:50 GMT</pubDate>
       
         
@@ -147,14 +177,14 @@
       <category domain="https://blog.itrf.cn/tags/EdgeOne/">EdgeOne</category>
       
       
-      <comments>https://blog.itrf.cn/edgeone-adb468b0a8c0/#disqus_thread</comments>
+      <comments>https://blog.itrf.cn/posts/8ab6/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>Pymusic一款Flask框架开发的音乐网站</title>
-      <link>https://blog.itrf.cn/pymusic-55808baffa35/</link>
-      <guid>https://blog.itrf.cn/pymusic-55808baffa35/</guid>
+      <link>https://blog.itrf.cn/posts/3a52/</link>
+      <guid>https://blog.itrf.cn/posts/3a52/</guid>
       <pubDate>Fri, 14 Nov 2025 04:49:40 GMT</pubDate>
       
         
@@ -179,14 +209,14 @@
       <category domain="https://blog.itrf.cn/tags/%E5%8E%9F%E5%88%9B%E9%A1%B9%E7%9B%AE/">原创项目</category>
       
       
-      <comments>https://blog.itrf.cn/pymusic-55808baffa35/#disqus_thread</comments>
+      <comments>https://blog.itrf.cn/posts/3a52/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>href属性中/的不同作用</title>
-      <link>https://blog.itrf.cn/herf-e7f8ddf1cad4/</link>
-      <guid>https://blog.itrf.cn/herf-e7f8ddf1cad4/</guid>
+      <link>https://blog.itrf.cn/posts/b272/</link>
+      <guid>https://blog.itrf.cn/posts/b272/</guid>
       <pubDate>Sun, 09 Nov 2025 04:58:36 GMT</pubDate>
       
         
@@ -206,14 +236,14 @@
       <category domain="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/">零碎知识</category>
       
       
-      <comments>https://blog.itrf.cn/herf-e7f8ddf1cad4/#disqus_thread</comments>
+      <comments>https://blog.itrf.cn/posts/b272/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>Linux 常用命令大全</title>
-      <link>https://blog.itrf.cn/linux-7ec40fedb040/</link>
-      <guid>https://blog.itrf.cn/linux-7ec40fedb040/</guid>
+      <link>https://blog.itrf.cn/posts/bf2c/</link>
+      <guid>https://blog.itrf.cn/posts/bf2c/</guid>
       <pubDate>Wed, 29 Oct 2025 05:06:38 GMT</pubDate>
       
         
@@ -235,14 +265,14 @@
       <category domain="https://blog.itrf.cn/tags/Linux/">Linux</category>
       
       
-      <comments>https://blog.itrf.cn/linux-7ec40fedb040/#disqus_thread</comments>
+      <comments>https://blog.itrf.cn/posts/bf2c/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>SQL Server学习笔记</title>
-      <link>https://blog.itrf.cn/sqlserver-2e1afddb047d/</link>
-      <guid>https://blog.itrf.cn/sqlserver-2e1afddb047d/</guid>
+      <link>https://blog.itrf.cn/posts/d3d/</link>
+      <guid>https://blog.itrf.cn/posts/d3d/</guid>
       <pubDate>Thu, 24 Jul 2025 04:46:41 GMT</pubDate>
       
         
@@ -266,14 +296,14 @@
       <category domain="https://blog.itrf.cn/tags/SQL-Server/">SQL Server</category>
       
       
-      <comments>https://blog.itrf.cn/sqlserver-2e1afddb047d/#disqus_thread</comments>
+      <comments>https://blog.itrf.cn/posts/d3d/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>Git 推送失败问题解决指南</title>
-      <link>https://blog.itrf.cn/git-8a2ab4cae0a3/</link>
-      <guid>https://blog.itrf.cn/git-8a2ab4cae0a3/</guid>
+      <link>https://blog.itrf.cn/posts/9c16/</link>
+      <guid>https://blog.itrf.cn/posts/9c16/</guid>
       <pubDate>Sun, 20 Jul 2025 04:41:27 GMT</pubDate>
       
         
@@ -295,14 +325,14 @@
       <category domain="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</category>
       
       
-      <comments>https://blog.itrf.cn/git-8a2ab4cae0a3/#disqus_thread</comments>
+      <comments>https://blog.itrf.cn/posts/9c16/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>正则表达式学习笔记</title>
-      <link>https://blog.itrf.cn/regex-85fc7a023f9c/</link>
-      <guid>https://blog.itrf.cn/regex-85fc7a023f9c/</guid>
+      <link>https://blog.itrf.cn/posts/3a56/</link>
+      <guid>https://blog.itrf.cn/posts/3a56/</guid>
       <pubDate>Sun, 20 Jul 2025 04:27:11 GMT</pubDate>
       
         
@@ -326,7 +356,7 @@
       <category domain="https://blog.itrf.cn/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</category>
       
       
-      <comments>https://blog.itrf.cn/regex-85fc7a023f9c/#disqus_thread</comments>
+      <comments>https://blog.itrf.cn/posts/3a56/#disqus_thread</comments>
       
     </item>
     
