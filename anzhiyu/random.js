@@ -1,4 +1,4 @@
-var posts=["posts/c93f/","posts/8ab6/","posts/b272/","posts/9c16/","posts/5f08/","posts/bf2c/","posts/f77d/","posts/3a52/","posts/7eac/","posts/3a56/","posts/d3d/","posts/516b/"];function toRandomPost(){
+var posts=["posts/8ab6/","posts/9c16/","posts/c93f/","posts/b272/","posts/f77d/","posts/5f08/","posts/bf2c/","posts/3a52/","posts/3a56/","posts/7eac/","posts/d3d/","posts/516b/"];function toRandomPost(){
     pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);
   };var friend_link_list=[{"name":"个人主页","link":"https://www.itrf.cn/","avatar":"/images/avatar.jpg","descr":"简单的介绍页"},{"name":"音悦台","link":"https://music.686909.xyz/","avatar":"https://music.686909.xyz/favicon.ico","descr":"快速、简单且强大的音乐网站"},{"name":"冈易云音乐","link":"https://mk.686909.xyz/","avatar":"https://mk.686909.xyz/favicon.ico","descr":"免费音乐网站"},{"name":"聚合影视","link":"https://tv.686909.xyz/","avatar":"https://tv.686909.xyz/image/logo.png","descr":"免费影视网站"},{"name":"BugPk-Api","link":"https://api.bugpk.com","avatar":"https://api.bugpk.com/favicon.ico","descr":"提供稳定、快速的免费API数据接口服务","siteshot":"https://t.alcy.cc/moez","color":"vip","tag":"技术"}];
     var refreshNum = 1;
