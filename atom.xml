@@ -29,7 +29,7 @@
     <summary type="html">前端开发中，有一个高频踩坑场景：前端绑定域名后，HTTP 协议下请求后端 IP 接口一切正常，可一旦开启 SSL 切换为 HTTPS，接口就直接请求失败，控制台报出红色错误 —— 这不是代码 Bug，而是浏览器的安全限制，核心原因就是「Mixed Content（混合内容）」。</summary>
     
     
-    <content src="https://t.alcy.cc/moez?_r_=c349a035-47e0-b96c-1ca2-09c80c30b6de" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=fd57efbd-2c92-ad5e-dcf7-d993c3c775fe" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -49,7 +49,7 @@
     <summary type="html">阿里云大模型工程师ACA认证学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/moez?_r_=a1baea3c-c390-c7e8-e542-acab96ab2c68" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=c54e9755-b16c-3abe-db75-ef84511e074b" type="image"/>
     
     
     <category term="学习笔记" scheme="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -73,7 +73,7 @@
     <summary type="html">本文介绍了各NAT类型打洞可行性，以及实际操作步骤。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=30ba1534-3ba9-ac94-1a74-f32df62437ee" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=fca0f424-4600-654c-3c0b-dd37f282f674" type="image"/>
     
     
     <category term="学习笔记" scheme="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -95,7 +95,7 @@
     <summary type="html">用过 Vercel 的开发者大概都对它的便捷性印象深刻 —— 将 Node 项目推送到 GitHub 后，几分钟内就能自动构建部署并提供访问服务，免费计划也足够日常折腾。但随着 Vercel 域名 DNS 污染越来越频繁，不挂梯子几乎无法访问，好好的免费资源就这么闲置了实在可惜。于是我尝试用腾讯云 EO（EdgeOne）对其进行加速，过程中踩了个典型的坑，最终摸索出解决方案，特此记录分享给有同样需求的朋友。</summary>
     
     
-    <content src="https://t.alcy.cc/moez?_r_=33020768-4aac-c388-b11d-d15d50f500a6" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=dbd76a97-239a-78b3-0fcd-2137d8fd495a" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -119,7 +119,7 @@
     <summary type="html">在数据查询场景中，“如何高效呈现大量数据” 是开发者绕不开的问题。分页作为解决 “数据量过大导致的内存溢出、响应缓慢” 的核心手段，主要分为数据库分页（数据库端过滤 + 限制返回条数）和程序分页（全量查询后内存中分片）两种实现方式。很多开发者在选型时会陷入纠结：到底该让数据库 “多干活”，还是让应用程序 “扛压力”？其实两者没有绝对优劣，核心取决于数据量、业务复杂度、实时性要求等关键因素。本文将从原理、场景、优缺点、实操建议四个维度，帮你彻底理清选型逻辑，避免踩坑。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=808f8469-d598-d1c1-3cfc-0078b7b05c5f" type="image"/>
+    <content src="https://t.alcy.cc/moez?_r_=1f1fb965-de1b-4569-5417-a956a108e57a" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -139,7 +139,7 @@
     <summary type="html">Flask项目无法获取favicon.ico原因以及解决方案</summary>
     
     
-    <content src="https://t.alcy.cc/moez?_r_=613c5af6-512f-a320-ec8f-950e227f82cb" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=f390edf0-d31b-63cf-dc16-11df3b38499d" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -161,7 +161,7 @@
     <summary type="html">在使用腾讯云 EdgeOne 海外节点加速海外业务时，很多开发者会遇到一个核心问题：Nginx 日志中记录的是 EdgeOne 节点 IP 而非用户真实 IP，导致无法进行用户行为分析、地域统计和异常访问拦截。本文将从「问题原理」「手动配置」「自动化更新」「故障排查」四个维度，提供一套适配 Nginx + 宝塔面板的完整解决方案，新手也能快速上手。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=b65362ce-89fd-9627-bef0-ea951dfc1870" type="image"/>
+    <content src="https://t.alcy.cc/moez?_r_=24cecffd-ce02-dad6-ac00-d41f488821a5" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -183,7 +183,7 @@
     <summary type="html">这是一个基于Flask框架开发的个人音乐播放器项目，旨在模拟网易云音乐的核心功能并提供简洁的用户体验。该项目集成了网易云音乐API，支持音乐搜索、歌单管理、用户认证等功能，为音乐爱好者提供一个轻量级的音乐播放和管理平台。</summary>
     
     
-    <content src="https://t.alcy.cc/moez?_r_=632014da-70e0-148d-9109-d2645e6a1a43" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=258d58fb-9e90-cf9d-8def-0d8bf0f778c2" type="image"/>
     
     
     <category term="Flask" scheme="https://blog.itrf.cn/tags/Flask/"/>
@@ -207,7 +207,7 @@
     <summary type="html">href属性中/的不同作用</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=a7b26fd2-807a-ccec-515e-de6a85c15806" type="image"/>
+    <content src="https://t.alcy.cc/moez?_r_=db1d5ff5-781c-5a21-0a18-8f07471fecef" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -227,7 +227,7 @@
     <summary type="html">Linux 常用命令大全</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=02e3fba0-49b4-342b-2c72-04c31cd17aba" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=711b2a83-86c9-26ea-3b65-36f9b9331c07" type="image"/>
     
     
     <category term="学习笔记" scheme="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -249,7 +249,7 @@
     <summary type="html">SQL Server学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/moez?_r_=c0c5d9a1-dea8-eb9c-b913-0e99cae46b7a" type="image"/>
+    <content src="https://t.alcy.cc/moez?_r_=c8868129-6608-0ae5-fe12-26e4f816edaa" type="image"/>
     
     
     <category term="学习笔记" scheme="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -271,7 +271,7 @@
     <summary type="html">Git 推送失败问题解决指南</summary>
     
     
-    <content src="https://t.alcy.cc/moez?_r_=316f69ad-b128-0250-2464-70c1b6a5fcc0" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=bac9e954-21bc-bbf0-cf2c-9e77cfc67ef2" type="image"/>
     
     
     <category term="Git" scheme="https://blog.itrf.cn/tags/Git/"/>
@@ -293,7 +293,7 @@
     <summary type="html">正则表达式学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/moez?_r_=35914dbc-24e1-a447-6a74-1ef24bd822d5" type="image"/>
+    <content src="https://t.alcy.cc/moez?_r_=d8cc143a-0bc6-b897-382f-d5b8c6b10ccb" type="image"/>
     
     
     <category term="学习笔记" scheme="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
