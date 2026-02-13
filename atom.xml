@@ -6,7 +6,7 @@
   <link href="https://blog.itrf.cn/atom.xml" rel="self"/>
   
   <link href="https://blog.itrf.cn/"/>
-  <updated>2026-01-27T16:36:35.502Z</updated>
+  <updated>2026-02-13T15:34:34.956Z</updated>
   <id>https://blog.itrf.cn/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HTTPS页面请求HTTP接口失败？一文讲透Mixed Content</title>
+    <link href="https://blog.itrf.cn/posts/ceca/"/>
+    <id>https://blog.itrf.cn/posts/ceca/</id>
+    <published>2026-02-13T15:15:57.000Z</published>
+    <updated>2026-02-13T15:34:34.956Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="HTTPS页面请求HTTP接口失败？一文讲透Mixed-Content"><a href="#HTTPS页面请求HTTP接口失败？一文讲透Mixed-Content" class="headerlink" title="HTTPS页面请求HTTP接口失败？一文讲透Mixed Content"></a>HTTPS页面请求HTTP接口失败？一文讲透Mixed Content</h1><blockquote><p>前端开发中，有一个高频踩坑场景：前端绑定域名后，HTTP 协议下请求后端 IP 接口一切正常，可一旦开启 SSL 切换为 HTTPS，接口就直接请求失败，控制台报出红色错误 —— 这不是代码 Bug，而是浏览器的安全限制，核心原因就是「Mixed Content（混合内容）」。</p></blockquote><h2 id="一、先明确核心概念：Mixed-Content（混合内容）"><a href="#一、先明确核心概念：Mixed-Content（混合内容）" class="headerlink" title="一、先明确核心概念：Mixed Content（混合内容）"></a>一、先明确核心概念：Mixed Content（混合内容）</h2><p>首先厘清两个基础认知，避免混淆：</p><ol><li><p>HTTPS 的本质</p><p>HTTPS = HTTP + TLS（Transport Layer Security，传输层安全协议），相当于给 HTTP 传输的数据加了一层加密外套，防止数据被窃听、篡改，保障访问安全；而 HTTP 是明文传输，无任何加密保护。我们常说的「开启 SSL」，本质就是启用 HTTPS 加密。</p></li><li><p>Mixed Content（混合内容）的定义</p><p>当 HTTPS 加密页面 中，请求了 HTTP 明文资源 时，就属于 Mixed Content（混合内容）。</p><p>浏览器的安全逻辑：HTTPS 页面代表用户处于安全的加密环境，若此时请求 HTTP 明文接口，传输的数据会暴露在风险中，可能被抓包、篡改。因此，浏览器会强制拦截此类请求，这是无法通过后端配置绕过的硬规则。</p></li></ol><p>浏览器控制台的标准报错：</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Mixed</span> <span class="title class_">Content</span>: <span class="title class_">The</span> page at <span class="string">&#x27;https://yourdomain.com&#x27;</span> was loaded over <span class="variable constant_">HTTPS</span>, but requested an insecure <span class="title class_">XMLHttpRequest</span> endpoint <span class="string">&#x27;http://your-server-ip:port/api&#x27;</span>. <span class="title class_">This</span> request has been blocked; the content must be served over <span class="variable constant_">HTTPS</span>.</span><br></pre></td></tr></table></figure><h2 id="二、重点解答：HTTPS-页面能否请求-HTTP-接口？"><a href="#二、重点解答：HTTPS-页面能否请求-HTTP-接口？" class="headerlink" title="二、重点解答：HTTPS 页面能否请求 HTTP 接口？"></a>二、重点解答：HTTPS 页面能否请求 HTTP 接口？</h2><p>结论：对于接口请求（fetch/axios/XHR），现代浏览器 100% 拦截，无生产可用的例外场景。</p><p>浏览器将 Mixed Content 分为两类，仅被动内容有极特殊情况：</p><ul><li>被动内容（Passive Mixed Content）：如图片、CSS、字体，部分浏览器可能放行，但会标红警告，无实际生产意义；</li><li>主动内容（Active Mixed Content）：如接口请求、JS 脚本、XHR/fetch，所有现代浏览器（Chrome/Edge/Firefox 等）一律强制拦截，这也是我们踩坑的核心场景。</li></ul><p>补充：手动关闭浏览器混合内容拦截（仅测试用），无法推广给普通用户，生产环境完全不可用。</p><h2 id="三、最简单、一劳永逸的解决方案（Nginx-代理）"><a href="#三、最简单、一劳永逸的解决方案（Nginx-代理）" class="headerlink" title="三、最简单、一劳永逸的解决方案（Nginx 代理）"></a>三、最简单、一劳永逸的解决方案（Nginx 代理）</h2><p>核心思路：让前端和接口「同域名、同 HTTPS」，彻底规避 Mixed Content 和跨域，无需修改后端代码。</p><h3 id="最终实现效果"><a href="#最终实现效果" class="headerlink" title="最终实现效果"></a>最终实现效果</h3><p>前端：<a href="https://yourdomain.com">https://yourdomain.com</a> （HTTPS 加密，原域名）；</p><p>接口：<a href="https://yourdomain.com/api">https://yourdomain.com/api</a> （同域名、同 HTTPS，通过 Nginx 代理到后端）。</p><h3 id="Nginx-核心配置（复制即用，替换实际信息）"><a href="#Nginx-核心配置（复制即用，替换实际信息）" class="headerlink" title="Nginx 核心配置（复制即用，替换实际信息）"></a>Nginx 核心配置（复制即用，替换实际信息）</h3><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="attribute">listen</span> <span class="number">443</span> ssl;</span><br><span class="line"></span><br><span class="line"><span class="attribute">server_name</span> [yourdomain.com](https://yourdomain.com);  <span class="comment"># 你的前端域名</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SSL 证书配置（复用前端证书，无需额外申请）</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">ssl_certificate</span> /your-ssl-path/yourdomain.pem;</span><br><span class="line"></span><br><span class="line"><span class="attribute">ssl_certificate_key</span> /your-ssl-path/yourdomain.key;</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 前端静态资源配置（无需部署前端可删除）</span></span><br><span class="line"></span><br><span class="line"><span class="section">location</span> / &#123;</span><br><span class="line"></span><br><span class="line"><span class="attribute">root</span> /your-frontend-path;</span><br><span class="line"></span><br><span class="line"><span class="attribute">index</span> index.html;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">#核心：接口代理，转发 /api 请求到后端 HTTP 服务</span></span><br><span class="line">    </span><br><span class="line"><span class="section">location</span> /api &#123;</span><br><span class="line"></span><br><span class="line"><span class="attribute">proxy_pass</span> http://your-server-ip:your-server-port;  <span class="comment"># 后端 IP + 端口</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可选：80 端口自动跳转 HTTPS，优化用户体验</span></span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">server_name</span> [yourdomain.com](https://yourdomain.com);</span><br><span class="line"></span><br><span class="line"><span class="attribute">return</span> <span class="number">301</span> https://hostrequest_uri;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="前端代码修改（1-行搞定）"><a href="#前端代码修改（1-行搞定）" class="headerlink" title="前端代码修改（1 行搞定）"></a>前端代码修改（1 行搞定）</h3><p>原写法（硬编码 HTTP 协议和 IP 地址，触发 Mixed Content 拦截）：</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;http://your-server-ip:your-server-port/api/xxx&#x27;</span>)</span><br></pre></td></tr></table></figure><p>修改后（使用相对路径，自动继承页面的 HTTPS 协议和域名，规避混合内容）：</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;/api/xxx&#x27;</span>)</span><br></pre></td></tr></table></figure><h2 id="四、终极避坑口诀（记牢不踩坑）"><a href="#四、终极避坑口诀（记牢不踩坑）" class="headerlink" title="四、终极避坑口诀（记牢不踩坑）"></a>四、终极避坑口诀（记牢不踩坑）</h2><ol><li>HTTPS 页面只能请求 HTTPS 接口，否则触发 Mixed Content 拦截；</li><li>HTTP 页面可请求 HTTP/HTTPS 接口，无 Mixed Content 限制；</li><li>跨域可通过后端 CORS 解决，Mixed Content 只能统一 HTTPS 协议；</li><li>接口类主动内容，HTTPS 页面请求 HTTP 接口必失败，无例外。</li></ol>]]></content>
+    
+    
+    <summary type="html">前端开发中，有一个高频踩坑场景：前端绑定域名后，HTTP 协议下请求后端 IP 接口一切正常，可一旦开启 SSL 切换为 HTTPS，接口就直接请求失败，控制台报出红色错误 —— 这不是代码 Bug，而是浏览器的安全限制，核心原因就是「Mixed Content（混合内容）」。</summary>
+    
+    
+    <content src="https://t.alcy.cc/moez?_r_=c349a035-47e0-b96c-1ca2-09c80c30b6de" type="image"/>
+    
+    
+    <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
+    
+  </entry>
   
   <entry>
     <title>阿里云大模型工程师ACA认证学习笔记</title>
@@ -29,7 +49,7 @@
     <summary type="html">阿里云大模型工程师ACA认证学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/moez?_r_=89e5c3a1-d3fb-48f1-345f-1f9e939421d1" type="image"/>
+    <content src="https://t.alcy.cc/moez?_r_=a1baea3c-c390-c7e8-e542-acab96ab2c68" type="image"/>
     
     
     <category term="学习笔记" scheme="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -53,7 +73,7 @@
     <summary type="html">本文介绍了各NAT类型打洞可行性，以及实际操作步骤。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=2a5dd2ab-50be-b1f6-4b23-9593d08b8dc4" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=30ba1534-3ba9-ac94-1a74-f32df62437ee" type="image"/>
     
     
     <category term="学习笔记" scheme="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -75,7 +95,7 @@
     <summary type="html">用过 Vercel 的开发者大概都对它的便捷性印象深刻 —— 将 Node 项目推送到 GitHub 后，几分钟内就能自动构建部署并提供访问服务，免费计划也足够日常折腾。但随着 Vercel 域名 DNS 污染越来越频繁，不挂梯子几乎无法访问，好好的免费资源就这么闲置了实在可惜。于是我尝试用腾讯云 EO（EdgeOne）对其进行加速，过程中踩了个典型的坑，最终摸索出解决方案，特此记录分享给有同样需求的朋友。</summary>
     
     
-    <content src="https://t.alcy.cc/moez?_r_=5e2abfb4-d336-3042-2bce-a2ed342ab08e" type="image"/>
+    <content src="https://t.alcy.cc/moez?_r_=33020768-4aac-c388-b11d-d15d50f500a6" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -99,7 +119,7 @@
     <summary type="html">在数据查询场景中，“如何高效呈现大量数据” 是开发者绕不开的问题。分页作为解决 “数据量过大导致的内存溢出、响应缓慢” 的核心手段，主要分为数据库分页（数据库端过滤 + 限制返回条数）和程序分页（全量查询后内存中分片）两种实现方式。很多开发者在选型时会陷入纠结：到底该让数据库 “多干活”，还是让应用程序 “扛压力”？其实两者没有绝对优劣，核心取决于数据量、业务复杂度、实时性要求等关键因素。本文将从原理、场景、优缺点、实操建议四个维度，帮你彻底理清选型逻辑，避免踩坑。</summary>
     
     
-    <content src="https://t.alcy.cc/moez?_r_=0556bd77-691f-feae-c286-85b5727077b3" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=808f8469-d598-d1c1-3cfc-0078b7b05c5f" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -119,7 +139,7 @@
     <summary type="html">Flask项目无法获取favicon.ico原因以及解决方案</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=0f414281-5234-7c89-5f2c-683c483ef8cf" type="image"/>
+    <content src="https://t.alcy.cc/moez?_r_=613c5af6-512f-a320-ec8f-950e227f82cb" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -141,7 +161,7 @@
     <summary type="html">在使用腾讯云 EdgeOne 海外节点加速海外业务时，很多开发者会遇到一个核心问题：Nginx 日志中记录的是 EdgeOne 节点 IP 而非用户真实 IP，导致无法进行用户行为分析、地域统计和异常访问拦截。本文将从「问题原理」「手动配置」「自动化更新」「故障排查」四个维度，提供一套适配 Nginx + 宝塔面板的完整解决方案，新手也能快速上手。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=572364f1-adc8-fda5-b8ec-a15e8f5b1fe2" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=b65362ce-89fd-9627-bef0-ea951dfc1870" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -163,7 +183,7 @@
     <summary type="html">这是一个基于Flask框架开发的个人音乐播放器项目，旨在模拟网易云音乐的核心功能并提供简洁的用户体验。该项目集成了网易云音乐API，支持音乐搜索、歌单管理、用户认证等功能，为音乐爱好者提供一个轻量级的音乐播放和管理平台。</summary>
     
     
-    <content src="https://t.alcy.cc/moez?_r_=c99efa75-7bc8-1c07-10e6-fe5b1b027a2f" type="image"/>
+    <content src="https://t.alcy.cc/moez?_r_=632014da-70e0-148d-9109-d2645e6a1a43" type="image"/>
     
     
     <category term="Flask" scheme="https://blog.itrf.cn/tags/Flask/"/>
@@ -187,7 +207,7 @@
     <summary type="html">href属性中/的不同作用</summary>
     
     
-    <content src="https://t.alcy.cc/moez?_r_=67ec706c-e8f7-d696-5a46-ddf4874ccffa" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=a7b26fd2-807a-ccec-515e-de6a85c15806" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -207,7 +227,7 @@
     <summary type="html">Linux 常用命令大全</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=309c564d-5d20-ab68-a69c-a4f9b8304a6b" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=02e3fba0-49b4-342b-2c72-04c31cd17aba" type="image"/>
     
     
     <category term="学习笔记" scheme="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -229,7 +249,7 @@
     <summary type="html">SQL Server学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=8bf459ca-5cea-359a-7812-09dac81271c7" type="image"/>
+    <content src="https://t.alcy.cc/moez?_r_=c0c5d9a1-dea8-eb9c-b913-0e99cae46b7a" type="image"/>
     
     
     <category term="学习笔记" scheme="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -251,7 +271,7 @@
     <summary type="html">Git 推送失败问题解决指南</summary>
     
     
-    <content src="https://t.alcy.cc/moez?_r_=3161fe12-09b8-abf9-58bb-4d9c4c581353" type="image"/>
+    <content src="https://t.alcy.cc/moez?_r_=316f69ad-b128-0250-2464-70c1b6a5fcc0" type="image"/>
     
     
     <category term="Git" scheme="https://blog.itrf.cn/tags/Git/"/>
@@ -273,7 +293,7 @@
     <summary type="html">正则表达式学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=dbd4449a-0b3d-ae71-d752-e776b9849734" type="image"/>
+    <content src="https://t.alcy.cc/moez?_r_=35914dbc-24e1-a447-6a74-1ef24bd822d5" type="image"/>
     
     
     <category term="学习笔记" scheme="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
