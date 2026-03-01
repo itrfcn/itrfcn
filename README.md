@@ -57,19 +57,19 @@
     </tr>
     <!-- 第二行：双列统计卡片 -->
     <tr>
-      <!-- <!-- 左侧：核心统计卡片 -->
+      <!-- 左侧：核心统计卡片 -->
       <td style="width: 50%; padding: 20px 10px 20px 20px; border: none; vertical-align: top;">
         <!-- 卡片主体 -->
         <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(140, 54, 219, 0.06); transition: all 0.3s ease;">
-          <img src="https://github-readme-stats.vercel.app/api?username=itrfcn&show_icons=true&theme=default&hide_border=true&count_private=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db&title_color=8c36db" style="width: 100%; height: auto; display: block;">
+          <img src="https://github-stats-extended.vercel.app/api?username=itrfcn&show_icons=true&theme=default&hide_border=true&count_private=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db&title_color=8c36db" style="width: 100%; height: auto; display: block;">
         </div>
       </td>
       <!-- 右侧：语言统计卡片 -->
       <td style="width: 50%; padding: 20px 20px 20px 10px; border: none; vertical-align: top;">
         <!-- 卡片主体 -->
         <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(140, 54, 219, 0.06); transition: all 0.3s ease;">
-          <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=itrfcn&layout=compact&theme=default&hide_border=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db&title_color=8c36db" style="width: 100%; height: auto; display: block;">
+          <img src="https://github-stats-extended.vercel.app/api/top-langs/?username=itrfcn&layout=compact&theme=default&hide_border=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db&title_color=8c36db" style="width: 100%; height: auto; display: block;">
         </div>
-      </td> -->
+      </td>
     </tr>
   </table>
