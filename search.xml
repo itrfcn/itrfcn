@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>OpenClaw-QQBot 插件安装失败（npm install failed）完整解决方案</title>
+      <link href="/posts/29b5/"/>
+      <url>/posts/29b5/</url>
+      
+        <content type="html"><![CDATA[<p>今天安装openclaw对接qq机器人遇到了一个问题，直接运行</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openclaw plugins install @tencent-connect/openclaw-qqbot@latest</span><br></pre></td></tr></table></figure><p>这个脚本，会出现下面这个提示</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install failed:</span><br></pre></td></tr></table></figure><p>npm 安装依赖失败，尝试了很多次都会提示这个(之前运行这个脚本就没遇到这个情况，很玄学) 。</p><p>经过了一天的折腾，找到了问题所在和解决方案</p><h2 id="问题核心原因"><a href="#问题核心原因" class="headerlink" title="问题核心原因"></a>问题核心原因</h2><h4 id="1-OpenClaw-内置安装机制的「过度限制」"><a href="#1-OpenClaw-内置安装机制的「过度限制」" class="headerlink" title="1. OpenClaw 内置安装机制的「过度限制」"></a>1. OpenClaw 内置安装机制的「过度限制」</h4><p>OpenClaw 的 <code>plugins install</code> 命令不是简单调用 <code>npm install</code>，而是加了多层校验：</p><ul><li>检测插件代码中的 <code>child_process</code>（Shell 执行）、环境变量读取等行为，即使是插件正常功能，也会触发「安全拦截」；</li><li>内置的 npm 执行环境被限制了权限 / 超时时间，一旦依赖下载稍慢或编译耗时，就会直接判定「npm install failed」；</li><li>临时目录（<code>/tmp/openclaw-plugin-*</code>）的权限 / 生命周期管控严格，手动操作稍慢就会被自动清理。</li></ul><h4 id="2-服务器基础环境不匹配"><a href="#2-服务器基础环境不匹配" class="headerlink" title="2. 服务器基础环境不匹配"></a>2. 服务器基础环境不匹配</h4><ul><li>Node.js 版本：插件要求 <code>node &gt;=24</code>，openclaw安装脚本安装的默认版本是 v22.22.1，部分依赖编译会出现问题；</li><li>编译依赖缺失：插件中的音频转换、系统调用类依赖需要 <code>gcc/g++/python</code>，即使安装了基础编译环境，低版本系统仍可能编译失败；</li><li>资源不足：服务器内存 / CPU 不足时，<code>npm install</code> 会因资源抢占卡住，表现为「无报错但一直卡」。</li></ul><h4 id="3-网络层的隐性问题"><a href="#3-网络层的隐性问题" class="headerlink" title="3. 网络层的隐性问题"></a>3. 网络层的隐性问题</h4><ul><li>npm 源的「安全审计接口」在国内镜像（如淘宝源）未实现，触发 404 警告，OpenClaw 会误判为安装失败；</li><li>依赖包分片下载时，服务器网络波动导致超时，npm 无重试机制，直接终止安装；</li><li>部分依赖包（如二进制预编译包）的 CDN 节点在境外，下载速度极慢甚至超时。</li></ul><h2 id="分步解决方案"><a href="#分步解决方案" class="headerlink" title="分步解决方案"></a>分步解决方案</h2><h4 id="1-升级node版本"><a href="#1-升级node版本" class="headerlink" title="1.升级node版本"></a>1.升级node版本</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全局安装 n 工具</span></span><br><span class="line">npm install -g n</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果提示权限不足（Permission denied），加 sudo 执行</span></span><br><span class="line"><span class="built_in">sudo</span> npm install -g n</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装并切换到 v24 最新稳定版</span></span><br><span class="line"><span class="built_in">sudo</span> n 24</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 Node.js 版本（输出 v24.x.x 即为成功）</span></span><br><span class="line">node -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 npm 版本（同步升级，无需单独操作）</span></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure><h4 id="2-将npm源改成官方源"><a href="#2-将npm源改成官方源" class="headerlink" title="2.将npm源改成官方源"></a>2.将npm源改成官方源</h4><p>国内镜像会出现更新不同步的问题</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmjs.org/</span><br></pre></td></tr></table></figure><h4 id="3-直接通过npm安装插件"><a href="#3-直接通过npm安装插件" class="headerlink" title="3.直接通过npm安装插件"></a>3.直接通过npm安装插件</h4><p> 绕过OpenClaw 插件安装机制的限制</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g @tencent-connect/openclaw-qqbot@latest</span><br></pre></td></tr></table></figure><p>等待安装好之后把 npm 安装好的包迁移到 OpenClaw 插件目录</p><h4 id="4-定位插件安装路径"><a href="#4-定位插件安装路径" class="headerlink" title="4.定位插件安装路径"></a>4.定位插件安装路径</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 自动定位 npm 全局安装的插件路径（兼容不同系统）</span></span><br><span class="line">PLUGIN_PATH=$(npm root -g)/@tencent-connect/openclaw-qqbot</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 验证路径是否存在（不存在则提示错误）</span></span><br><span class="line"><span class="keyword">if</span> [ ! -d <span class="string">&quot;<span class="variable">$PLUGIN_PATH</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;❌ 插件安装失败，请检查 npm install 命令是否执行成功&quot;</span></span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;✅ 插件安装路径：<span class="variable">$PLUGIN_PATH</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure><h4 id="5-迁移到-OpenClaw-插件目录"><a href="#5-迁移到-OpenClaw-插件目录" class="headerlink" title="5.迁移到 OpenClaw 插件目录"></a>5.迁移到 OpenClaw 插件目录</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 删除 OpenClaw 旧的未完成目录</span></span><br><span class="line"><span class="built_in">rm</span> -rf /root/.openclaw/extensions/openclaw-qqbot</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 将 npm 安装好的插件完整复制过去</span></span><br><span class="line"><span class="built_in">cp</span> -r <span class="variable">$PLUGIN_PATH</span> /root/.openclaw/extensions/openclaw-qqbot</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 赋予正确权限</span></span><br><span class="line"><span class="built_in">chown</span> -R <span class="variable">$USER</span>:<span class="variable">$USER</span> /root/.openclaw/extensions/openclaw-qqbot</span><br><span class="line"><span class="built_in">chmod</span> -R 755 /root/.openclaw/extensions/openclaw-qqbot</span><br></pre></td></tr></table></figure><h4 id="6-配置信任-amp-验证插件"><a href="#6-配置信任-amp-验证插件" class="headerlink" title="6.配置信任 &amp; 验证插件"></a>6.配置信任 &amp; 验证插件</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 配置 plugins.allow 消除安全提示</span></span><br><span class="line"><span class="built_in">cat</span> &gt; /root/.openclaw/config.json &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">  &quot;plugins&quot;: &#123;</span></span><br><span class="line"><span class="string">    &quot;allow&quot;: [&quot;@tencent-connect/openclaw-qqbot&quot;, &quot;wecom-app&quot;]</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.重启OpenClaw服务</span></span><br><span class="line">openclaw gateway restart</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 最终验证（看到插件名称即为成功）</span></span><br><span class="line">openclaw plugins list | grep openclaw-qqbot</span><br><span class="line"></span><br></pre></td></tr></table></figure><h4 id="7-配置-QQ-机器人"><a href="#7-配置-QQ-机器人" class="headerlink" title="7.配置 QQ 机器人"></a>7.配置 QQ 机器人</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.配置绑定当前QQ机器人</span></span><br><span class="line">openclaw channels add --channel qqbot --token <span class="string">&quot;190xxxxx:iT9xxxxxx&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.重启OpenClaw服务</span></span><br><span class="line">openclaw gateway restart</span><br></pre></td></tr></table></figure><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol><li>核心解决思路：<strong>绕过 OpenClaw 内置安装机制</strong>，手动用 npm 安装插件后迁移到指定目录；</li><li>关键前置：升级 Node.js 到 v24+、安装编译依赖、切换 npm 官方源，解决底层环境问题；</li><li>验证要点：插件迁移后需配置信任列表，重启服务并通过 <code>openclaw plugins list</code> 确认加载成功。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习心得 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 零碎知识 </tag>
+            
+            <tag> openclaw </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>一文读懂比特币工作原理</title>
       <link href="/posts/34af/"/>
       <url>/posts/34af/</url>
@@ -134,9 +161,9 @@
             
             <tag> 零碎知识 </tag>
             
-            <tag> Vercel </tag>
-            
             <tag> EdgeOne </tag>
+            
+            <tag> Vercel </tag>
             
         </tags>
       
