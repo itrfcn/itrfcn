@@ -1,0 +1,1264 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>Java学习笔记01 | RF极客日志</title><meta name="keywords" content="编程技术，软件开发，前端开发，后端开发，算法设计，开源项目，个人博客，人工智能，大数据，云计算，移动应用开发，编程学习，技术笔记，项目实操，代码优化，生活随笔，读书笔记，旅行故事，摄影分享，美食体验，灵感记录，生活感悟，日常碎片"><meta name="author" content="Lynx Frost"><meta name="copyright" content="Lynx Frost"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="Java学习笔记01"><meta name="application-name" content="Java学习笔记01"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="Java学习笔记01"><meta property="og:url" content="https://blog.itrf.cn/posts/9e72/index.html"><meta property="og:site_name" content="RF极客日志"><meta property="og:description" content="Java概述Java是由Sun Microststems 公司于1995年5月推出的面向对象的程序设计语言，作者 詹姆斯•高斯林。 Java技术体系平台 Java SE 标准版 Java EE 企业版    主要学习这个 Java ME 小型版  Java重要特点 语言简单 面向对象 oop 分布式"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://t.alcy.cc/ycy?_r_=8d26b109-b9f1-9be7-4a08-3cbc49e4fa65"><meta property="article:author" content="Lynx Frost"><meta property="article:tag" content="编程技术，软件开发，前端开发，后端开发，算法设计，开源项目，个人博客，人工智能，大数据，云计算，移动应用开发，编程学习，技术笔记，项目实操，代码优化，生活随笔，读书笔记，旅行故事，摄影分享，美食体验，灵感记录，生活感悟，日常碎片"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://t.alcy.cc/ycy?_r_=8d26b109-b9f1-9be7-4a08-3cbc49e4fa65"><meta name="description" content="Java概述Java是由Sun Microststems 公司于1995年5月推出的面向对象的程序设计语言，作者 詹姆斯•高斯林。 Java技术体系平台 Java SE 标准版 Java EE 企业版    主要学习这个 Java ME 小型版  Java重要特点 语言简单 面向对象 oop 分布式"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="canonical" href="https://blog.itrf.cn/posts/9e72/"><link rel="preconnect" href="//cdn.cbd.int"><link rel="preconnect" href="//static.cloudflareinsights.com"><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="google-site-verification" content="xxx"><meta name="baidu-site-verification" content="code-xxx"><meta name="msvalidate.01" content="xxx"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/@fortawesome/fontawesome-free@7.1.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@6.1.6/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;92f7e5d47192435eb3dd16ee2cd0b3af&quot;}"></script><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: undefined,
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机"]},
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Lynx Frost","link":"链接: ","source":"来源: RF极客日志","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.2.0/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.2.0/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true,
+  shortcutKey: {"enable":true,"delay":100,"shiftDelay":200},
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'RF极客日志',
+  title: 'Java学习笔记01',
+  postAI: '',
+  pageFillDescription: 'Java概述, Java技术体系平台, Java重要特点, Java虚拟机 JVM, JDK、JRE, 注意事项, Java基础语法, 命名规范, 变量, 数据类型, 注意事项, 补充知识浮点数的计算机存储, 基本数据类型转换, 为什么long是8个字节float是4个字节但是long会自动转为float？, 注意看：, 注意事项：, 强制类型转化, 基本数据类型和String类型的转换, +号的作用, Java 转义字符, 特殊转义字符\r, 注释, 代码规范, 修饰符, 运算符, 算术运算符, 注意事项, 面试题, 补充知识点, Java：向零取整 (Truncate), Python：向下取整 (Floor), 关系运算符, 位运算符, 逻辑运算符, 赋值运算符, 三元运算符, 运算优先级, 补充知识点原码反码补码, 程序控制结构, 数组、排序、查找, Arrays类, 一.概述, 二、常用核心方法, 三、一维数组 vs 多维数组配套方法汇总, 四、高频易错考点, 五、拓展：数组转集合（asList）概述是由公司于年月推出的面向对象的程序设计语言作者詹姆斯高斯林技术体系平台标准版企业版主要学习这个小型版重要特点语言简单面向对象分布式语言健壮安全体系结构中立可移植跨平台解释型语言需要解释器高性能动态虚拟机用于在不同的设备上运行字节码文件屏蔽系统差异开发工具包开发者用开发工具运行环境普通用户用核心类库注意事项文件名必须与类名一致一个源文件中最多只能有一个类编译之后每一个类对应一个文件语言严格区分大小写每个语句以结束命令之后跟类名方法就是程序的唯一合法入口原则一个文件只写一个类基础语法命名规范标识符类型命名范式示例备注包全小写建议使用反向域名类大驼峰名词方法小驼峰动词变量小驼峰描述性名词常量大写下划线修饰抽象类大驼峰通常以开头异常类大驼峰必须以结尾变量变量是程序的基本组成单位三要素类型名称值变量必须先声明再使用同一个作用域之内变量不能重名数据类型基本数据类型数值型整数类型存放整数浮点小数类型字符型存放单个字符布尔型存放引用数据类型类接口数组注意事项整型常量默认为型声明型常量须后加或浮点型常量默认为型声明型常量须后加或小向大是顺水推舟自动完成大向小是强人所难必须强转浮点数符号位指数位尾数位尾数部分可能丢失造成精度损失小数都是近似值永远不要用来比较两个浮点数应该判断它们的差值是否小于一个极小的数值如当我们对运算结果是小数的进行相等判断是要小心应该是以两个数的差值的绝对值在某个精度范围类判断字符常量只能用单引号引用只能存单个字符或者是数字本质是存储的是一个整数对映的编码可以进行计算补充知识浮点数的计算机存储计算机里的浮点数就像一个精密的二进制科学计数法其存储结构固定为符号位位正负指数位作用决定数值范围小数点移动多少位黑科技使用偏移码通过给真实指数加一个固定值如强行把负指数变成正整数方便硬件直接比较大小尾数位作用决定数值精度长什么样黑科技隐藏整数位的既然二进制规格化后第一位必然是干脆省掉不存多赚位精度基本数据类型转换路径路径为什么是个字节是个字节但是会自动转为它们底层的二进制存储方式完全不同数值范围的大小并不取决于它占用了多少字节而取决于它的结构设计位定点数位符号位位数值位纯精确整数位浮点数位符号位位指数位位尾数位字节最大值约字节最大值约范围远大于引入指数位后表达范围被几何级放大注意看可以自动转不能直接转也不能直接转但是它们都可以统一自动转为再计算原因是和有符号提升原则表达式结果的类型自动提升为操作数中最大的类型最小是类型注意事项类型的变量进行计算都会转换成类型类型的常量字面常量进行计算会进行优化机制常量计算不溢出时类型由左侧接收变量决定直通不升格一旦溢出则被视为类型导致报错只要公式中出现了一个变量整个公式的常量优化特权就会立即消失全面进入变量运算规则强制类型转化将容量大的数据类型转换为容量小的数据类型使用时要加上强制转换符但可能造成精度降低或溢出格外要注意基本数据类型中数值类型和不能互相强制转换基本数据类型和类型的转换基本数据类型转类型将基本类型的值类型转基本数据类型利用包装类包装类的作用让基本数据类型能够像对象一样工作具备属性和方法基本数据类型对应的包装类号的作用当左右两边都是数值类型时则做加法运算当左右两边有一方为字符串则做拼接运算运算顺序从左到右转义字符转义字符含义单引号双引号反斜杠换行回车制表符缩进退格换页很少用特殊转义字符功能将光标移动到当前行的开头不同的操作系统对换行的定义曾各不相同使用回车换行代表一行结束统一使用换行代表一行结束有一个非常酷的用途制作简单的命令行进度条进度利用回到行首不断覆盖暂停一小会儿注释单行注释多行注释文档注释被注释的文字不会被解释执行代码规范类方法的注释要以的方式来写非的注释往往是给代码维护者看的使用进行右移进行左移运算符和两边习惯性各加一个空格源文件使用编码行宽度不要超过个字符代码编写推荐行尾风格修饰符公开的无论是哪个类哪个包还是外部项目都可以直接访问受保护的同一个包内的类可以访问不同包中的子类也可以访问默认无修饰符包级私有只有同一个包内的类可以访问跨包了就不能访问私有的只有在定义它的类内部才能访问体现了面向对象的封装性通常属性会设为然后通过方法来间接访问运算符算术运算符示例查看与的不同结果注意事项从数学来看是中是猜猜结果是多少原因的计算先发生因为两个都是所以先算出了赋值算出之后才把这个整数赋值给这时变成了在的本质看一个公式由公式可以知道在的取模运算中结果的符号只取决于左操作数被除数的符号而与右操作数除数无关面试题答案是过程答案是过程补充知识点和在处理的时候采用不同的处理方法向零取整的整数除法采用的是截断除法简单来说就是直接把小数点后面的部分扔掉计算结果是截断后变成推导向下取整的整数除法采用的是地板除它向数轴的左侧负无穷方向取整计算结果是向左取整变成推导关系运算符示例结果关系运算符的结果都是类型也是就是要么要么判断对象是不是某个类子类接口的实例返回布尔值判断运行类型对象类型判断是不是的实例位运算符示例结果逻辑运算符叫逻辑与规则当和同时为则结果为否则为叫短路与规则当和同时为则结果为否则为叫逻辑或规则当和有一个为则结果为否则为叫短路或规则当和有一个为则结果为否则为叫取反或者非运算当为则结果为当为是结果为叫逻辑异或当和不同时则结果为否则为对于短路与而言如果第一个条件为后面的条件不再判断效率高对于逻辑与而言如果第一个条件为后面的条件仍然会判断效率低短路或如果第一个条件为则第二个条件不会判断最终结果为效率高逻辑或不管第一个条件是否为第二个条件都要判断效率低赋值运算符示例结果赋值运算符特点运算顺序从右往左赋值运算符的左边只能是变量右边可以是变量表达式常量值复合赋值运算符等价于下面的效果比如等价于复合赋值运算符会进行类型转换等价三元运算符条件表达式表达式表达式运算规则如果条件表达式为运算后的结果是表达式如果条件表达式为运算后的结果是表达式注意事项表达式和表达式要为可以赋给接收变量的类型或可以自动转换三元运算符可以转成语句运算优先级优先级运算符类别结合性最高后置自增后置自减从左右正负类型前置单目自增自减正负取反强制类型转换从右左乘除取模从左右加减含字符串拼接从左右移位运算符从左右关系比较类型判断从左右相等不相等从左右按位与非短路逻辑与从左右按位异或从左右按位或非短路逻辑或从左右短路逻辑与从左右短路逻辑或从左右三元条件运算符从右左最低全部赋值复合赋值从右左补充知识点原码反码补码原码最高位为符号位正负其余位是数值直观但难算有两套写法反码正数不变负数符号位不变数值位按位取反进化的中间产物解决了符号位参与运算的问题补码正数不变负数在反码基础上计算机真正采用的格式所有运算都在补码基础上进行程序控制结构顺序控制程序从上到下逐行执行中间没有任何判断和跳转分支控制单分支双分支多分支分支表达式数据类型应和后的变量类型一致或者可以自动转成可以比较的类型表达式中的表达式的返回值必须是子句中的值必须是常量而不能是变量子句是可选的当没有匹配的时执行语句用来在执行完成一个分支后使程序跳语句块如果没有程序会顺序执行直到遇到循环控制循环循环四个要素循环变量初始化循环条件循环操作循环变量迭代注意循环里面创建的变量都是临时的用完就销毁循环初始值可以有多条初始化语句但要求类型一样并且中间用逗号隔开循环变量迭代也可以有多条变量迭代语句中间用逗号隔开循环循环先执行再判断最少会执行一次最后有一个多重循环控制终止循环跳出本次循环跳转控制语句跳出所在的方法数组排序查找数组定义方式动态分配数据类型数组名数组类型大小先声明再分配数据类型数组名数组名数组类型大小数组名表示数组的大小长度数据类型数组名也可以数据类型数组名注意事项数组是多个相同类型数据的组合实现对这些数据的统一管理数组中的元素可以是任何数据类型包括基本类型和引用类型但是不能混用数组创建后如果没有赋值有默认值类型默认值使用数组的步骤声明数组并开辟空间给数组各个元素赋值使用数组数组的下标是从开始的数组下标必须在指定范围内使用否则报下标越界异常数组属引用类型数组型数据是对象和是单独的空间互不影响基本数据类型和是引用同一个地址相互影响引用数据类型类一概述数组工具类包使用需要导包所有方法都是静态方法直接方法名调用构造方法私有不能对象作用提供数组打印排序查找复制填充比较等工具方法二常用核心方法打印数组普通数组直接打印输出地址打印数组内容输出注意只支持一维数组多维数组使用数组排序基本类型数组升序排序快速排序对象数组自定义排序引用类型数组支持自定义顺序只能用于包装类型数组不能用要用降序重点基本类型不支持直接传入比较器拓展可以指定区间排序左闭右开二分查找前提条件数组必须先升序排序否则结果不可预测找到返回元素索引找不到返回插入点返回找不到返回负数数组复制数组新长度从头复制可扩容缩容数组起始索引结束索引区间复制左闭右开区别数组自身和效果类似底层调用数组填充给数组全部指定区间统一赋值全部填充下标填充判断两个数组内容是否相同误区比较数组地址比较数组中每个元素的值多维数组比较使用三一维数组多维数组配套方法汇总功能一维数组多维数组打印内容比较内容四高频易错考点二分查找必须先排序无序数组结果错误基本类型只能升序想要降序必须使用包装数组产生新数组原数组不会改变不能打印多维数组只会输出地址要用数组是引用类型默认比较地址一定要用比较元素五拓展数组转集合重要坑接收引用类型数组不能直接传基本类型数组返回的是内部静态类固定大小不能会抛出异常集合和原数组互相引用修改数组元素集合同步变化',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-09-02 20:08:51',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="RF极客日志" type="application/atom+xml">
+<link rel="alternate" href="/rss.xml" title="RF极客日志" type="application/rss+xml">
+</head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="/images/avatar.jpg"><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">切换线路</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog-eo.itrf.cn/" title="EO线路"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blog-eo.itrf.cn/favicon.ico" alt="EO线路"><span class="back-menu-item-text">EO线路</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog-cf.itrf.cn/" title="CF线路"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blog-cf.itrf.cn/favicon.ico" alt="CF线路"><span class="back-menu-item-text">CF线路</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">个人站点</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://www.itrf.cn/" title="个人主页"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://www.itrf.cn/favicon.ico" alt="个人主页"><span class="back-menu-item-text">个人主页</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/itrfcn" title="Github"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://github.com/favicon.ico" alt="Github"><span class="back-menu-item-text">Github</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">RF极客日志</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><!-- 插件挂载容器--><div id="tp-weather-widget"></div><!-- 心知天气核心脚本（Pug语法适配）--><script>(function(a,h,g,f,e,d,c,b){
+  b=function(){
+    d=h.createElement(g);
+    c=h.getElementsByTagName(g)[0];
+    d.src=e;
+    d.charset="utf-8";
+    d.async=1;
+    c.parentNode.insertBefore(d,c)
+  };
+  a["SeniverseWeatherWidgetObject"]=f;
+  a[f]||(a[f]=function(){(a[f].q=a[f].q||[]).push(arguments)});
+  a[f].l=+new Date();
+  if(a.attachEvent){
+    a.attachEvent("onload",b)
+  }else{
+    a.addEventListener("load",b,false)
+  }
+})(window,document,"script","SeniverseWeatherWidget","//cdn.sencdn.com/widget2/static/js/bundle.js?t="+parseInt((new Date().getTime() / 100000000).toString(),10));
+
+window.SeniverseWeatherWidget('show', {
+  flavor: "slim",
+  location: "WS10730EM8EV", // 青岛定位编码
+  geolocation: false,       // 强制显示青岛
+  language: "zh-Hans",
+  unit: "c",
+  theme: "auto",         
+  token: "205d75c0-884b-4795-9281-a24aad86d2c8",
+  hover: "disabled",
+  container: "tp-weather-widget"
+})</script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/equipment/"><i class="anzhiyufont anzhiyu-icon-dice-d20 faa-tada" style="font-size: 0.9em;"></i><span> 我的装备</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li><li><a class="site-page child faa-parent animated-hover" target="_blank" rel="noopener" href="https://www.itrf.cn/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 介绍页</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="/images/wx.jpg" target="_blank"><img class="post-qr-code-img" alt="微信" src="/images/wx.jpg"></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/images/zfb.jpg" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="/images/zfb.jpg"></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/ACA%E8%AE%A4%E8%AF%81/" style="font-size: 1.05rem;">ACA认证<sup>1</sup></a><a href="/tags/EdgeOne/" style="font-size: 1.05rem;">EdgeOne<sup>2</sup></a><a href="/tags/Flask/" style="font-size: 1.05rem;">Flask<sup>2</sup></a><a href="/tags/Git/" style="font-size: 1.05rem;">Git<sup>1</sup></a><a href="/tags/Linux/" style="font-size: 1.05rem;">Linux<sup>1</sup></a><a href="/tags/NAT/" style="font-size: 1.05rem;">NAT<sup>1</sup></a><a href="/tags/Python/" style="font-size: 1.05rem;">Python<sup>1</sup></a><a href="/tags/SQL-Server/" style="font-size: 1.05rem;">SQL Server<sup>1</sup></a><a href="/tags/Vercel/" style="font-size: 1.05rem;">Vercel<sup>1</sup></a><a href="/tags/btc/" style="font-size: 1.05rem;">btc<sup>1</sup></a><a href="/tags/openclaw/" style="font-size: 1.05rem;">openclaw<sup>1</sup></a><a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" style="font-size: 1.05rem;">区块链<sup>1</sup></a><a href="/tags/%E5%8E%9F%E5%88%9B%E9%A1%B9%E7%9B%AE/" style="font-size: 1.05rem;">原创项目<sup>1</sup></a><a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" style="font-size: 1.05rem;">大模型<sup>1</sup></a><a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 1.05rem;">学习笔记<sup>6</sup></a><a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 1.05rem;">正则表达式<sup>1</sup></a><a href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" style="font-size: 1.05rem;">比特币<sup>1</sup></a><a href="/tags/%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81/" style="font-size: 1.05rem;">虚拟货币<sup>1</sup></a><a href="/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/" style="font-size: 1.05rem;">零碎知识<sup>7</sup></a></div></div><hr></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/09/"><span class="card-archive-list-date">九月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/03/"><span class="card-archive-list-date">三月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/02/"><span class="card-archive-list-date">二月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/01/"><span class="card-archive-list-date">一月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/12/"><span class="card-archive-list-date">十二月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/11/"><span class="card-archive-list-date">十一月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">5</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/10/"><span class="card-archive-list-date">十月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/07/"><span class="card-archive-list-date">七月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li></ul></div><hr></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div><div class="console-btn-item" id="consoleKeyboard" onclick="anzhiyu.keyboardToggle()" title="快捷键开关"><a class="keyboard-switch"><i class="anzhiyufont anzhiyu-icon-keyboard"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="article-meta tags"></span></div></div><h1 class="post-title" itemprop="name headline">Java学习笔记01</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2026-09-02T12:07:47.000Z" title="发表于 2026-09-02 20:07:47">2026-09-02</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2026-09-02T12:08:51.756Z" title="更新于 2026-09-02 20:08:51">2026-09-02</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">5.4k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>20分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="Java学习笔记01"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为China"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>China</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://t.alcy.cc/ycy?_r_=8d26b109-b9f1-9be7-4a08-3cbc49e4fa65"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope="" itemtype="https://blog.itrf.cn/posts/9e72/"><header><h1 id="CrawlerTitle" itemprop="name headline">Java学习笔记01</h1><span itemprop="author" itemscope="" itemtype="http://schema.org/Person">Lynx Frost</span><time itemprop="dateCreated datePublished" datetime="2026-09-02T12:07:47.000Z" title="发表于 2026-09-02 20:07:47">2026-09-02</time><time itemprop="dateCreated datePublished" datetime="2026-09-02T12:08:51.756Z" title="更新于 2026-09-02 20:08:51">2026-09-02</time></header><h2 id="Java概述"><a href="#Java概述" class="headerlink" title="Java概述"></a>Java概述</h2><p>Java是由Sun Microststems 公司于1995年5月推出的面向对象的程序设计语言，作者 詹姆斯•高斯林。</p>
+<h4 id="Java技术体系平台"><a href="#Java技术体系平台" class="headerlink" title="Java技术体系平台"></a>Java技术体系平台</h4><ul>
+<li>Java SE 标准版</li>
+<li>Java EE 企业版    主要学习这个</li>
+<li>Java ME 小型版</li>
+</ul>
+<h4 id="Java重要特点"><a href="#Java重要特点" class="headerlink" title="Java重要特点"></a>Java重要特点</h4><ul>
+<li>语言简单</li>
+<li>面向对象 oop</li>
+<li>分布式</li>
+<li>语言健壮</li>
+<li>安全</li>
+<li>体系结构中立</li>
+<li>可移植</li>
+<li>跨平台   </li>
+<li>解释型语言  需要解释器</li>
+<li>高性能</li>
+<li>动态</li>
+</ul>
+<h4 id="Java虚拟机-JVM"><a href="#Java虚拟机-JVM" class="headerlink" title="Java虚拟机 JVM"></a>Java虚拟机 JVM</h4><p>用于在不同的设备上运行.class字节码文件，屏蔽系统差异</p>
+<h4 id="JDK、JRE"><a href="#JDK、JRE" class="headerlink" title="JDK、JRE"></a>JDK、JRE</h4><p>JDK java开发工具包 Java Development Kit   开发者用</p>
+<p>JDK=JRE+java开发工具</p>
+<p>JRE java运行环境  Java Runtime Environment  普通用户用</p>
+<p>JRE=JVM+Java核心类库</p>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ol>
+<li>文件名必须与public类名一致</li>
+<li>一个源文件中最多只能有一个public类</li>
+<li>编译之后每一个类对应一个.class文件</li>
+<li>Java语言严格区分大小写</li>
+<li>每个语句以 “;” 结束</li>
+<li>java 命令之后跟类名</li>
+<li>main 方法就是 Java 程序的唯一合法入口</li>
+<li>原则：一个文件只写一个类</li>
+</ol>
+<h2 id="Java基础语法"><a href="#Java基础语法" class="headerlink" title="Java基础语法"></a>Java基础语法</h2><h4 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>标识符类型</strong></th>
+<th><strong>命名范式</strong></th>
+<th><strong>示例</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>包 (Package)</strong></td>
+<td>全小写</td>
+<td><code>com.apple.ios</code></td>
+<td>建议使用反向域名</td>
+</tr>
+<tr>
+<td><strong>类 (Class)</strong></td>
+<td>大驼峰</td>
+<td><code>StudentInfo</code></td>
+<td>名词</td>
+</tr>
+<tr>
+<td><strong>方法 (Method)</strong></td>
+<td>小驼峰</td>
+<td><code>getScore()</code></td>
+<td>动词</td>
+</tr>
+<tr>
+<td><strong>变量 (Variable)</strong></td>
+<td>小驼峰</td>
+<td><code>studentAge</code></td>
+<td>描述性名词</td>
+</tr>
+<tr>
+<td><strong>常量 (Constant)</strong></td>
+<td>大写 + 下划线</td>
+<td><code>MAX_AGE</code></td>
+<td><code>static final</code> 修饰</td>
+</tr>
+<tr>
+<td><strong>抽象类</strong></td>
+<td>大驼峰</td>
+<td><code>AbstractService</code></td>
+<td>通常以 Abstract 开头</td>
+</tr>
+<tr>
+<td><strong>异常类</strong></td>
+<td>大驼峰</td>
+<td><code>LoginException</code></td>
+<td>必须以 Exception 结尾</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>变量是程序的基本组成单位</p>
+<p>三要素  ：类型+名称+值</p>
+<p>变量必须先声明再使用</p>
+<p>同一个作用域之内变量不能重名</p>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><ul>
+<li>基本数据类型<ul>
+<li>数值型<ul>
+<li>整数类型，存放整数：<code>byte[1]</code>、<code>short[2]</code>、<code>int[4]</code>、<code>long[8]</code></li>
+<li>浮点 (小数) 类型：<code>float[4]</code>、<code>double[8]</code></li>
+</ul>
+</li>
+<li>字符型：<code>char[2]</code>，存放单个字符 <code>'a'</code></li>
+<li>布尔型：<code>boolean[1]</code>，存放 <code>true</code>、<code>false</code></li>
+</ul>
+</li>
+<li>引用数据类型<ul>
+<li>类 (class)</li>
+<li>接口 (interface)</li>
+<li>数组 ([])</li>
+</ul>
+</li>
+</ul>
+<h5 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h5><ol>
+<li>整型常量默认为 int 型，声明 long 型常量须后加‘l’或‘L’</li>
+<li>浮点型常量默认为 double 型，声明 float 型常量，须后加‘f’或‘F’ </li>
+<li>“小向大”是顺水推舟，自动完成；“大向小”是强人所难，必须强转。</li>
+<li>浮点数=符号位+指数位+尾数位  尾数部分可能丢失，造成精度损失(小数都是近似值)</li>
+<li>永远不要用 <code>==</code> 来比较两个浮点数。应该判断它们的差值是否小于一个极小的数值（如 <code>1e-9</code>）</li>
+<li>当我们对运算结果是小数的进行相等判断是，要小心应该是以两个数的差值的绝对值，在某个精度范围类判断</li>
+<li>char字符常量只能用单引号<code>''</code>引用，只能存单个字符或者是数字，本质是存储的是一个整数unicode对映的编码，可以进行计算</li>
+</ol>
+<h5 id="补充知识浮点数的计算机存储"><a href="#补充知识浮点数的计算机存储" class="headerlink" title="补充知识浮点数的计算机存储"></a>补充知识浮点数的计算机存储</h5><p>计算机里的浮点数就像一个精密的<strong>二进制科学计数法</strong>，其存储结构固定为：</p>
+<script type="math/tex; mode=display">\text{Value} = (-1)^S \times (1.M) \times 2^{E-Bias}</script><ul>
+<li><strong>符号位 (Sign)</strong>：1位。<code>0</code>正<code>1</code>负。</li>
+<li><strong>指数位 (Exponent)</strong>：<ul>
+<li><strong>作用</strong>：决定数值范围（小数点移动多少位）。</li>
+<li><strong>黑科技</strong>：使用<strong>偏移码（Bias）</strong>，通过给真实指数加一个固定值（如127），强行把负指数变成正整数，方便硬件直接比较大小。</li>
+</ul>
+</li>
+<li><strong>尾数位 (Mantissa)</strong>：<ul>
+<li><strong>作用</strong>：决定数值精度（长什么样）。</li>
+<li><strong>黑科技</strong>：<strong>隐藏整数位的 <code>1</code></strong>。既然二进制规格化后第一位必然是1，干脆省掉不存，多赚1位精度。</li>
+</ul>
+</li>
+</ul>
+<h5 id="基本数据类型转换"><a href="#基本数据类型转换" class="headerlink" title="基本数据类型转换"></a>基本数据类型转换</h5><p><strong>路径 A：</strong> <code>byte</code> → <code>short</code> → <code>int</code> → <code>long</code> → <code>float</code> → <code>double</code></p>
+<p><strong>路径 B：</strong> <code>char</code> → <code>int</code> → <code>long</code> → <code>float</code> → <code>double</code></p>
+<h6 id="为什么long是8个字节，float是4个字节，但是long会自动转为float？"><a href="#为什么long是8个字节，float是4个字节，但是long会自动转为float？" class="headerlink" title="为什么long是8个字节，float是4个字节，但是long会自动转为float？"></a>为什么long是8个字节，float是4个字节，但是long会自动转为float？</h6><p>它们底层的二进制存储方式完全不同。数值范围的大小并不取决于它占用了多少字节，而取决于它的结构设计</p>
+<p><strong><code>long</code>（64 位定点数）</strong>：1 位符号位 + 63 位数值位，纯精确整数。</p>
+<p><strong><code>float</code>（32 位 IEEE 754 浮点数）</strong>：1 位符号位 + <strong>8 位指数位</strong> + 23 位尾数位。</p>
+<p><code>long</code>（8 字节）：最大值约 $9.22 \times 10^{18}$</p>
+<p><code>float</code>（4 字节）：最大值约 $3.4 \times 10^{38}$（范围远大于 <code>long</code>）</p>
+<p>引入指数位后，表达范围被几何级放大。</p>
+<h6 id="注意看："><a href="#注意看：" class="headerlink" title="注意看："></a><strong>注意看：</strong></h6><p><code>byte</code> 可以自动转 <code>short</code>。<code>short</code> <strong>不能</strong>直接转 <code>char</code>。<code>byte</code> 也 <strong>不能</strong>直接转 <code>char</code>。但是它们都可以统一自动转为 <strong><code>int</code></strong>再计算。原因是<code>short</code>和<code>byte</code>有符号。</p>
+<p>提升原则：表达式结果的类型自动提升为操作数中最大的类型，最小是int类型</p>
+<h5 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h5><p><code>byte</code> <code>short</code> <code>char</code> 类型的变量进行计算都会转换成 <code>int</code> 类型</p>
+<p><code>byte</code> <code>short</code> <code>char</code> 类型的常量(字面常量)进行计算会进行优化机制</p>
+<p>常量计算不溢出时，类型由左侧接收变量决定（直通不升格）；一旦溢出，则被视为 <code>int</code> 类型（导致报错）。</p>
+<p>只要公式中<strong>出现了一个变量</strong>，整个公式的“常量优化”特权就会立即消失，全面进入<strong>变量运算规则</strong>。</p>
+<h5 id="强制类型转化"><a href="#强制类型转化" class="headerlink" title="强制类型转化"></a>强制类型转化</h5><p><strong>将容量大的数据类型转换为容量小的数据类型</strong>。使用时要加上强制转换符 ( )，但可能造成<strong>精度降低或溢出</strong>,格外要注意。</p>
+<p>Java基本数据类型中，数值类型和boolean<strong>不能互相强制转换</strong></p>
+<h5 id="基本数据类型和String类型的转换"><a href="#基本数据类型和String类型的转换" class="headerlink" title="基本数据类型和String类型的转换"></a>基本数据类型和String类型的转换</h5><p>基本数据类型转String类型：将基本类型的值+“”</p>
+<p>String类型转基本数据类型：利用包装类  xxx.parsexxx(“”)</p>
+<p>包装类的作用：让基本数据类型能够像对象一样工作，具备属性和方法</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>基本数据类型</strong></th>
+<th><strong>对应的包装类</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>byte</code></td>
+<td><code>Byte</code></td>
+</tr>
+<tr>
+<td><code>short</code></td>
+<td><code>Short</code></td>
+</tr>
+<tr>
+<td><strong><code>int</code></strong></td>
+<td><strong><code>Integer</code></strong></td>
+</tr>
+<tr>
+<td><code>long</code></td>
+<td><code>Long</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td><code>Float</code></td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td><code>Double</code></td>
+</tr>
+<tr>
+<td><strong><code>char</code></strong></td>
+<td><strong><code>Character</code></strong></td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>Boolean</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h6 id="号的作用"><a href="#号的作用" class="headerlink" title="+号的作用"></a>+号的作用</h6><ol>
+<li>当左右两边都是数值类型时，则做加法运算</li>
+<li>当左右两边有一方为字符串，则做拼接运算</li>
+<li>运算顺序，从左到右</li>
+</ol>
+<h4 id="Java-转义字符"><a href="#Java-转义字符" class="headerlink" title="Java 转义字符"></a>Java 转义字符</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>转义字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\'</code></td>
+<td>单引号 <code>'</code></td>
+</tr>
+<tr>
+<td><code>\"</code></td>
+<td>双引号 <code>"</code></td>
+</tr>
+<tr>
+<td><code>\\</code></td>
+<td>反斜杠 <code>\</code></td>
+</tr>
+<tr>
+<td><code>\n</code></td>
+<td>换行</td>
+</tr>
+<tr>
+<td><code>\r</code></td>
+<td>回车</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>Tab 制表符（缩进）</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>退格</td>
+</tr>
+<tr>
+<td><code>\f</code></td>
+<td>换页（很少用）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="特殊转义字符-r"><a href="#特殊转义字符-r" class="headerlink" title="特殊转义字符\r"></a>特殊转义字符\r</h5><p>功能：将光标移动到当前行的开头</p>
+<p>不同的操作系统对“换行”的定义<strong>曾</strong>各不相同：</p>
+<ul>
+<li><strong>Windows</strong>: 使用 <code>\r\n</code>（回车 + 换行）代表一行结束。</li>
+<li><strong>Unix / Linux / macOS</strong>: 统一使用 <code>\n</code>（换行）代表一行结束。</li>
+</ul>
+<p><code>\r</code> 有一个非常酷的用途：<strong>制作简单的命令行进度条。</strong></p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt;= <span class="number">100</span>; i++) {</span><br><span class="line">    System.out.print(<span class="string">"进度: "</span> + i + <span class="string">"%\r"</span>); <span class="comment">// 利用 \r 回到行首不断覆盖</span></span><br><span class="line">    Thread.sleep(<span class="number">100</span>); <span class="comment">// 暂停一小会儿</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><ul>
+<li>单行注释  //</li>
+<li>多行注释  /<em> </em>/</li>
+<li>文档注释  /<em>*  </em>/</li>
+</ul>
+<p>被注释的文字，不会被JVM解释执行</p>
+<h4 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h4><ol>
+<li>类、方法的注释，要以Javadoc的方式来写</li>
+<li>非Java Doc 的注释，往往是给代码维护者看的</li>
+<li>使用Tab进行右移，shift+tab 进行左移</li>
+<li>运算符和=两边习惯性各加一个空格</li>
+<li>源文件使用utf-8编码</li>
+<li>行宽度不要超过80个字符</li>
+<li>代码编写推荐行尾风格</li>
+</ol>
+<h2 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h2><ol>
+<li><strong><code>public</code></strong>：公开的。无论是哪个类、哪个包、还是外部项目，都可以直接访问。</li>
+<li><strong><code>protected</code></strong>：受保护的。同一个包内的类可以访问；不同包中的<strong>子类</strong>也可以访问。</li>
+<li><strong>默认（无修饰符）</strong>：包级私有（package-private）。只有<strong>同一个包</strong>内的类可以访问，跨包了就不能访问。</li>
+<li><strong><code>private</code></strong>：私有的。只有在<strong>定义它的类内部</strong>才能访问，体现了面向对象的封装性。通常属性会设为 <code>private</code>，然后通过 <code>get/set</code> 方法来间接访问。</li>
+</ol>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h4 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h4><p>示例</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> {</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> {</span><br><span class="line">     <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">     <span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line">     <span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> <span class="number">25</span>;</span><br><span class="line">     <span class="type">int</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">25</span>;</span><br><span class="line">     System.out.println(<span class="string">"a + b = "</span> + (a + b) );</span><br><span class="line">     System.out.println(<span class="string">"a - b = "</span> + (a - b) );</span><br><span class="line">     System.out.println(<span class="string">"a * b = "</span> + (a * b) );</span><br><span class="line">     System.out.println(<span class="string">"b / a = "</span> + (b / a) );</span><br><span class="line">     System.out.println(<span class="string">"b % a = "</span> + (b % a) );</span><br><span class="line">     System.out.println(<span class="string">"c % a = "</span> + (c % a) );</span><br><span class="line">     System.out.println(<span class="string">"a++   = "</span> +  (a++) );</span><br><span class="line">     System.out.println(<span class="string">"a--   = "</span> +  (a--) );</span><br><span class="line">     <span class="comment">// 查看  d++ 与 ++d 的不同</span></span><br><span class="line">     System.out.println(<span class="string">"d++   = "</span> +  (d++) );</span><br><span class="line">     System.out.println(<span class="string">"d     = "</span> +  d);</span><br><span class="line">     System.out.println(<span class="string">"++d   = "</span> +  (++d) );</span><br><span class="line">  }</span><br><span class="line">} </span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>结果</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line">a + b = <span class="number">30</span></span><br><span class="line">a - b = -<span class="number">10</span></span><br><span class="line">a * b = <span class="number">200</span></span><br><span class="line">b / a = <span class="number">2</span></span><br><span class="line">b % a = <span class="number">0</span></span><br><span class="line">c % a = <span class="number">5</span></span><br><span class="line">a++   = <span class="number">10</span></span><br><span class="line">a--   = <span class="number">11</span></span><br><span class="line">d++   = <span class="number">25</span></span><br><span class="line">d     =<span class="number">26</span></span><br><span class="line">++d   = <span class="number">27</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h5 id="注意事项-2"><a href="#注意事项-2" class="headerlink" title="注意事项"></a>注意事项</h5><figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line">System.out.println(<span class="number">10</span> / <span class="number">4</span>); <span class="comment">//从数学来看是 2.5, java 中 2</span></span><br><span class="line">System.out.println(<span class="number">10.0</span> / <span class="number">4</span>); <span class="comment">//java 是 2.5</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">total</span> <span class="operator">=</span> <span class="number">4</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">score</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="type">double</span> <span class="variable">result</span> <span class="operator">=</span> score / total; <span class="comment">// 猜猜结果是多少？ 2.0</span></span><br><span class="line">System.out.println(result);</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>原因：</strong> <code>score / total</code> 的计算先发生，因为两个都是 <code>int</code>，所以先算出了 <code>2</code>。</p>
+<p><strong>赋值：</strong> 算出 <code>2</code> 之后，才把这个整数赋值给 <code>double result</code>。这时 <code>2</code> 变成了 <code>2.0</code>。</p>
+<p>在 % 的本质 看一个公式<code>a % b = a - a / b * b</code></p>
+<p>由公式可以知道：在 Java 的取模运算中，结果的符号只取决于左操作数（被除数 $a$）的符号，而与右操作数（除数 $b$）无关。</p>
+<h6 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h6><figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>；</span><br><span class="line">i = i++；</span><br><span class="line">System.out.println(i);</span><br></pre></td></tr></tbody></table></figure>
+<p>答案是 1</p>
+<p>过程 <code>temp = i    i=i+1   i=temp</code></p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>；</span><br><span class="line">i = ++i；</span><br><span class="line">System.out.println(i);</span><br></pre></td></tr></tbody></table></figure>
+<p>答案是 2</p>
+<p>过程 <code>i=i+1  temp=i  i=temp</code></p>
+<h5 id="补充知识点"><a href="#补充知识点" class="headerlink" title="补充知识点"></a>补充知识点</h5><p>java和python在处理/的时候采用不同的处理方法</p>
+<h6 id="Java：向零取整-Truncate"><a href="#Java：向零取整-Truncate" class="headerlink" title="Java：向零取整 (Truncate)"></a>Java：向零取整 (Truncate)</h6><p>Java 的整数除法采用的是 <strong>截断除法</strong>。简单来说，就是直接把小数点后面的部分“扔掉”。</p>
+<ul>
+<li><strong>计算 <code>-7 / 3</code>：</strong> 结果是 <code>-2.333...</code>，截断后变成 <code>-2</code>。</li>
+<li><strong>推导 <code>%</code>：</strong> $-7 - (3 \times -2) = -7 + 6 = -1$。</li>
+</ul>
+<h6 id="Python：向下取整-Floor"><a href="#Python：向下取整-Floor" class="headerlink" title="Python：向下取整 (Floor)"></a>Python：向下取整 (Floor)</h6><p>Python 的整数除法（<code>//</code>）采用的是 <strong>地板除</strong>。它向数轴的左侧（负无穷方向）取整。</p>
+<ul>
+<li><strong>计算 <code>-7 // 3</code>：</strong> 结果是 <code>-2.333...</code>，向左取整变成 <code>-3</code>。</li>
+<li><strong>推导 <code>%</code>：</strong> $-7 - (3 \times -3) = -7 + 9 = 2$。</li>
+</ul>
+<h4 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h4><p>示例</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> {</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> {</span><br><span class="line">     <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">     <span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line">     System.out.println(<span class="string">"a == b = "</span> + (a == b) );</span><br><span class="line">     System.out.println(<span class="string">"a != b = "</span> + (a != b) );</span><br><span class="line">     System.out.println(<span class="string">"a &gt; b = "</span> + (a &gt; b) );</span><br><span class="line">     System.out.println(<span class="string">"a &lt; b = "</span> + (a &lt; b) );</span><br><span class="line">     System.out.println(<span class="string">"b &gt;= a = "</span> + (b &gt;= a) );</span><br><span class="line">     System.out.println(<span class="string">"b &lt;= a = "</span> + (b &lt;= a) );</span><br><span class="line">   } </span><br><span class="line">}  </span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>结果</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line">a == b = <span class="literal">false</span></span><br><span class="line">a != b = <span class="literal">true</span></span><br><span class="line">a &gt; b = <span class="literal">false</span></span><br><span class="line">a &lt; b = <span class="literal">true</span> b &gt;= a = <span class="literal">true</span></span><br><span class="line">b &lt;= a = <span class="literal">false</span> </span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>关系运算符的结果都是boolean类型，也是就是要么true要么false</p>
+<p>instanceof <strong>判断对象是不是某个类 / 子类 / 接口的实例</strong>，返回布尔值 <code>true / false</code> 判断运行类型</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line">对象  <span class="keyword">instanceof</span>  类型</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">"hello"</span>);</span><br><span class="line"><span class="comment">// 判断obj是不是String的实例</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">res</span> <span class="operator">=</span> obj <span class="keyword">instanceof</span> String;</span><br><span class="line">System.out.println(res); <span class="comment">// true</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h4><p>示例</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> {</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> {</span><br><span class="line">     <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">60</span>; <span class="comment">/* 60 = 0011 1100 */</span> </span><br><span class="line">     <span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">13</span>; <span class="comment">/* 13 = 0000 1101 */</span></span><br><span class="line">     <span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">     c = a &amp; b;       <span class="comment">/* 12 = 0000 1100 */</span></span><br><span class="line">     System.out.println(<span class="string">"a &amp; b = "</span> + c );</span><br><span class="line"></span><br><span class="line">     c = a | b;       <span class="comment">/* 61 = 0011 1101 */</span></span><br><span class="line">     System.out.println(<span class="string">"a | b = "</span> + c );</span><br><span class="line"></span><br><span class="line">     c = a ^ b;       <span class="comment">/* 49 = 0011 0001 */</span></span><br><span class="line">     System.out.println(<span class="string">"a ^ b = "</span> + c );</span><br><span class="line"></span><br><span class="line">     c = ~a;          <span class="comment">/*-61 = 1100 0011 */</span></span><br><span class="line">     System.out.println(<span class="string">"~a = "</span> + c );</span><br><span class="line"></span><br><span class="line">     c = a &lt;&lt; <span class="number">2</span>;     <span class="comment">/* 240 = 1111 0000 */</span></span><br><span class="line">     System.out.println(<span class="string">"a &lt;&lt; 2 = "</span> + c );</span><br><span class="line">     c = a &gt;&gt; <span class="number">2</span>;     <span class="comment">/* 215 = 1111 */</span></span><br><span class="line">     System.out.println(<span class="string">"a &gt;&gt; 2  = "</span> + c );</span><br><span class="line">  </span><br><span class="line">     c = a &gt;&gt;&gt; <span class="number">2</span>;     <span class="comment">/* 215 = 0000 1111 */</span></span><br><span class="line">     System.out.println(<span class="string">"a &gt;&gt;&gt; 2 = "</span> + c );</span><br><span class="line">  }</span><br><span class="line">} </span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>结果</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line">a &amp; b = <span class="number">12</span></span><br><span class="line">a | b = <span class="number">61</span></span><br><span class="line">a ^ b = <span class="number">49</span></span><br><span class="line">~a = -<span class="number">61</span></span><br><span class="line">a &lt;&lt; <span class="number">2</span> = <span class="number">240</span> </span><br><span class="line">a &gt;&gt; <span class="number">2</span> = <span class="number">15</span></span><br><span class="line">a &gt;&gt;&gt; <span class="number">2</span> = <span class="number">15</span></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h4><p>1) a&amp;b : &amp; 叫逻辑与：规则：当 a 和 b 同时为 true ,则结果为 true, 否则为 false<br>2) a&amp;&amp;b : &amp;&amp; 叫短路与：规则：当 a 和 b 同时为 true ,则结果为 true,否则为 false<br>3) a|b : | 叫逻辑或，规则：当 a 和 b ，有一个为 true ,则结果为 true,否则为 false<br>4) a||b : || 叫短路或，规则：当 a 和 b ，有一个为 true ,则结果为 true,否则为 false<br>5) !a : 叫取反，或者非运算。当 a 为 true, 则结果为 false, 当 a 为 false 是，结果为 true<br>6) a^b: 叫逻辑异或，当 a 和 b 不同时，则结果为 true, 否则为 false</p>
+<p>对于&amp;&amp;短路与而言，如果第一个条件为 false ,后面的条件不再判断，效率高</p>
+<p>对于&amp;逻辑与而言，如果第一个条件为 false ,后面的条件仍然会判断，效率低</p>
+<p>||短路或：如果第一个条件为 true，则第二个条件不会判断，最终结果为 true，效率高</p>
+<p>| 逻辑或：不管第一个条件是否为 true，第二个条件都要判断，效率低</p>
+<h4 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h4><p>示例</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> {</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> {</span><br><span class="line">     <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">     <span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line">     <span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">     c = a + b;</span><br><span class="line">     System.out.println(<span class="string">"c = a + b = "</span> + c );</span><br><span class="line">     c += a ;</span><br><span class="line">     System.out.println(<span class="string">"c += a  = "</span> + c );</span><br><span class="line">     c -= a ;</span><br><span class="line">     System.out.println(<span class="string">"c -= a = "</span> + c );</span><br><span class="line">     c *= a ;</span><br><span class="line">     System.out.println(<span class="string">"c *= a = "</span> + c );</span><br><span class="line">     a = <span class="number">10</span>;</span><br><span class="line">     c = <span class="number">15</span>;</span><br><span class="line">     c /= a ;</span><br><span class="line">     System.out.println(<span class="string">"c /= a = "</span> + c );</span><br><span class="line">     a = <span class="number">10</span>;</span><br><span class="line">     c = <span class="number">15</span>;</span><br><span class="line">     c %= a ;</span><br><span class="line">     System.out.println(<span class="string">"c %= a  = "</span> + c );</span><br><span class="line">     c &lt;&lt;= <span class="number">2</span> ; </span><br><span class="line">     System.out.println(<span class="string">"c &lt;&lt;= 2 = "</span> + c ); </span><br><span class="line">     c &gt;&gt;= <span class="number">2</span> ;</span><br><span class="line">     System.out.println(<span class="string">"c &gt;&gt;= 2 = "</span> + c );</span><br><span class="line">     c &gt;&gt;= <span class="number">2</span> ;</span><br><span class="line">     System.out.println(<span class="string">"c &gt;&gt;= a = "</span> + c );</span><br><span class="line">     c &amp;= a ;</span><br><span class="line">     System.out.println(<span class="string">"c &amp;= a = "</span> + c );</span><br><span class="line">     c ^= a ;</span><br><span class="line">     System.out.println(<span class="string">"c ^= a = "</span> + c );</span><br><span class="line">     c |= a ;</span><br><span class="line">     System.out.println(<span class="string">"c |= a = "</span> + c );</span><br><span class="line">  }</span><br><span class="line">} </span><br></pre></td></tr></tbody></table></figure>
+<p>结果</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line">c = a + b = <span class="number">30</span></span><br><span class="line">c += a  = <span class="number">40</span></span><br><span class="line">c -= a = <span class="number">30</span></span><br><span class="line">c *= a = <span class="number">300</span></span><br><span class="line">c /= a = <span class="number">1</span></span><br><span class="line">c %= a  = <span class="number">5</span></span><br><span class="line">c &lt;&lt;= <span class="number">2</span> = <span class="number">20</span> c &gt;&gt;= <span class="number">2</span> = <span class="number">5</span></span><br><span class="line">c &gt;&gt;= <span class="number">2</span> = <span class="number">1</span></span><br><span class="line">c &amp;= a  = <span class="number">0</span></span><br><span class="line">c ^= a   = <span class="number">10</span></span><br><span class="line">c |= a   = <span class="number">10</span></span><br></pre></td></tr></tbody></table></figure>
+<p>赋值运算符特点</p>
+<p>1) 运算顺序从右往左 </p>
+<p>2) 赋值运算符的左边 只能是变量,右边 可以是变量、表达式、常量值</p>
+<p>3) 复合赋值运算符等价于下面的效果比如：a+=3;等价于 a=a+3;<br>4) 复合赋值运算符会进行类型转换。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="type">byte</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line">b += <span class="number">2</span>; <span class="comment">// 等价 b = (byte)(b + 2);</span></span><br><span class="line">b++; <span class="comment">// b = (byte)(b+1);</span></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h4><p>条件表达式 ? 表达式 1: 表达式 2;</p>
+<p>运算规则：</p>
+<ol>
+<li>如果条件表达式为 true，运算后的结果是表达式 1；</li>
+<li>如果条件表达式为 false，运算后的结果是表达式 2；</li>
+</ol>
+<p>注意事项</p>
+<p>1) 表达式 1 和表达式 2 要为可以赋给接收变量的类型(或可以自动转换)<br>2) 三元运算符可以转成 if—else 语句</p>
+<h4 id="运算优先级"><a href="#运算优先级" class="headerlink" title="运算优先级"></a>运算优先级</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>运算符</th>
+<th>类别</th>
+<th>结合性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1（最高）</td>
+<td><code>expr++</code> <code>expr--</code></td>
+<td>后置自增、后置自减</td>
+<td>从左→右</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>++expr</code> <code>--expr</code> <code>+expr(正)</code> <code>-expr(负)</code> <code>~</code> <code>!</code> <code>(类型)</code></td>
+<td>前置单目（自增自减、正负、取反、强制类型转换）</td>
+<td><strong>从右→左</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>*</code> <code>/</code> <code>%</code></td>
+<td>乘、除、取模</td>
+<td>从左→右</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>+</code> <code>-</code></td>
+<td>加、减（含字符串拼接）</td>
+<td>从左→右</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>&lt;&lt;</code> <code>&gt;&gt;</code> <code>&gt;&gt;&gt;</code></td>
+<td>移位运算符</td>
+<td>从左→右</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>&lt;</code> <code>&lt;=</code> <code>&gt;</code> <code>&gt;=</code> <code>instanceof</code></td>
+<td>关系比较、类型判断</td>
+<td>从左→右</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>==</code> <code>!=</code></td>
+<td>相等、不相等</td>
+<td>从左→右</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>&amp;</code></td>
+<td>按位与 / 非短路逻辑与</td>
+<td>从左→右</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>^</code></td>
+<td>按位异或</td>
+<td>从左→右</td>
+</tr>
+<tr>
+<td>10</td>
+<td>`</td>
+<td>`</td>
+<td>按位或 / 非短路逻辑或</td>
+<td>从左→右</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>&amp;&amp;</code></td>
+<td>短路逻辑与</td>
+<td>从左→右</td>
+</tr>
+<tr>
+<td>12</td>
+<td>`</td>
+<td></td>
+<td>`</td>
+<td>短路逻辑或</td>
+<td>从左→右</td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>? :</code></td>
+<td>三元条件运算符</td>
+<td><strong>从右→左</strong></td>
+</tr>
+<tr>
+<td>14（最低）</td>
+<td><code>=</code> <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>%=</code> <code>&amp;=</code> <code>^=</code> `</td>
+<td>=<code>`&lt;&lt;=</code> <code>&gt;&gt;=</code> <code>&gt;&gt;&gt;=</code></td>
+<td>全部赋值复合赋值</td>
+<td><strong>从右→左</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="补充知识点，原码反码补码"><a href="#补充知识点，原码反码补码" class="headerlink" title="补充知识点，原码反码补码"></a>补充知识点，原码反码补码</h4><p><strong>原码 (Sign-Magnitude)</strong>：最高位为符号位（0正1负），其余位是数值。</p>
+<ul>
+<li><em>直观但难算，0有两套写法。</em></li>
+</ul>
+<p><strong>反码 (Ones’ Complement)</strong>：正数不变；负数符号位不变，数值位按位取反。</p>
+<ul>
+<li><em>进化的中间产物，解决了符号位参与运算的问题。</em></li>
+</ul>
+<p><strong>补码 (Two’s Complement)</strong>：正数不变；负数在反码基础上 <strong>+1</strong>。</p>
+<ul>
+<li><em>计算机真正采用的格式。</em></li>
+</ul>
+<p>所有运算都在补码（Two’s Complement）基础上进行</p>
+<h2 id="程序控制结构"><a href="#程序控制结构" class="headerlink" title="程序控制结构"></a>程序控制结构</h2><ol>
+<li><p>顺序控制</p>
+<p>程序从上到下逐行执行，中间没有任何判断和跳转</p>
+</li>
+<li><p>分支控制</p>
+<ol>
+<li><p>单分支  if</p>
+</li>
+<li><p>双分支  if-else</p>
+</li>
+<li><p>多分支  if-else  if-  else</p>
+</li>
+<li><p>switch分支</p>
+<p>表达式数据类型应和case后的变量类型一致，或者可以自动转成可以比较的类型</p>
+<p>switch(表达式)中的表达式的返回值必须是：byte short int char enum String</p>
+<p>case子句中的值必须是常量，而不能是变量</p>
+<p>default子句是可选的，当没有匹配的case时，执行default</p>
+<p>break语句用来在执行完成一个case分支后使程序跳switch语句块，如果没有break，程序会顺序执行，直到遇到break</p>
+</li>
+</ol>
+</li>
+<li><p>循环控制</p>
+<ol>
+<li><p>for循环</p>
+<p>for循环四个要素  循环变量初始化  循环条件  循环操作  循环变量迭代</p>
+<p>注意 循环里面创建的变量都是临时的，用完就销毁</p>
+<p>循环初始值可以有多条初始化语句，但要求类型一样，并且中间用逗号隔开，循环变量迭代也可以有多条变量迭代语句，中间用逗号隔开。</p>
+</li>
+<li><p>while循环</p>
+</li>
+<li><p>do while循环</p>
+<p>先执行再判断，最少会执行一次</p>
+<p>最后  有一个;</p>
+</li>
+</ol>
+</li>
+<li><p>多重循环控制</p>
+<ol>
+<li>break   终止循环</li>
+<li>continue  跳出本次循环</li>
+</ol>
+</li>
+<li><p>跳转控制语句 - return</p>
+<p>跳出所在的方法</p>
+</li>
+</ol>
+<h2 id="数组、排序、查找"><a href="#数组、排序、查找" class="headerlink" title="数组、排序、查找"></a>数组、排序、查找</h2><p>数组定义方式</p>
+<ol>
+<li><p>动态分配   </p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line">数据类型 数组名[] = <span class="keyword">new</span> 数组类型[大小];</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>先声明再分配  </p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line">数据类型 数组名[];</span><br><span class="line">数组名 = <span class="keyword">new</span> 数组类型[大小];</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>数组名.length   表示数组的大小/长度</p>
+</li>
+<li><p>数据类型 数组名[]; 也可以 数据类型[] 数组名;</p>
+</li>
+</ol>
+<p>注意事项</p>
+<ol>
+<li><p>数组是多个<strong>相同类型</strong>数据的组合，实现对这些数据的统一管理</p>
+</li>
+<li><p>数组中的元素可以是任何数据类型，包括基本类型和引用类型，但是不能混用。</p>
+</li>
+<li><p>数组创建后，如果没有赋值，有默认值</p>
+<p>| 类型    | 默认值 |<br>| ———- | ——— |<br>| byte    | 0      |<br>| short   | 0      |<br>| int     | 0      |<br>| long    | 0      |<br>| float   | 0.0    |<br>| double  | 0.0    |<br>| char    | \u0000 |<br>| boolean | false  |<br>| String  | null   |</p>
+</li>
+<li><p>使用数组的步骤</p>
+<ol>
+<li><p>声明数组并开辟空间 </p>
+</li>
+<li><p>给数组各个元素赋值 </p>
+</li>
+<li>使用数组</li>
+</ol>
+</li>
+<li><p>数组的<strong>下标是从</strong> <strong>0</strong> <strong>开始的</strong>。</p>
+</li>
+<li><p>数组下标必须在指定范围内使用，否则报：下标越界异常，</p>
+</li>
+<li><p>数组属引用类型，数组型数据是对象(object)</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>；</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> a；</span><br><span class="line">a和b是单独的空间，互不影响     基本数据类型</span><br><span class="line"><span class="type">int</span>[] a = [<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line"><span class="type">int</span>[] b = a;</span><br><span class="line">a和b是引用同一个地址，相互影响    引用数据类型</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="Arrays类"><a href="#Arrays类" class="headerlink" title="Arrays类"></a>Arrays类</h4><h5 id="一-概述"><a href="#一-概述" class="headerlink" title="一.概述"></a>一.概述</h5><p><code>java.util.Arrays</code>：数组工具类</p>
+<ol>
+<li>包：<code>java.util</code>，使用需要导包</li>
+<li>所有方法都是 <strong>static 静态方法</strong>，直接 <code>Arrays.方法名()</code> 调用</li>
+<li>构造方法私有，不能 new Arrays 对象</li>
+<li>作用：提供数组打印、排序、查找、复制、填充、比较等工具方法</li>
+</ol>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="二、常用核心方法"><a href="#二、常用核心方法" class="headerlink" title="二、常用核心方法"></a>二、常用核心方法</h5><ol>
+<li>toString () 打印数组</li>
+</ol>
+<p>普通数组直接打印输出地址，<strong>Arrays.toString 打印数组内容</strong></p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="type">int</span>[] arr = {<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>};</span><br><span class="line">System.out.println(Arrays.toString(arr));</span><br><span class="line"><span class="comment">//输出：[1, 3, 2]</span></span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>注意：只支持<strong>一维数组</strong></p>
+<p>多维数组使用：<code>deepToString()</code></p>
+</blockquote>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="type">int</span>[][] arr2 = {{<span class="number">1</span>,<span class="number">2</span>},{<span class="number">3</span>,<span class="number">4</span>}};</span><br><span class="line">System.out.println(Arrays.deepToString(arr2));</span><br></pre></td></tr></tbody></table></figure>
+<ol>
+<li>sort () 数组排序</li>
+</ol>
+<p>① 基本类型数组：<strong>升序排序（快速排序）</strong></p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="type">int</span>[] arr = {<span class="number">5</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">1</span>};</span><br><span class="line">Arrays.sort(arr);</span><br><span class="line">System.out.println(Arrays.toString(arr)); <span class="comment">// [1, 2, 5, 9]</span></span><br></pre></td></tr></tbody></table></figure>
+<p>② 对象数组 / 自定义排序（引用类型）</p>
+<p><code>Arrays.sort(数组, Comparator)</code> 支持自定义顺序（<strong>只能用于包装类型数组，不能用 int []，要用 Integer []</strong>）</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line">Integer[] arr = {<span class="number">5</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">1</span>};</span><br><span class="line"><span class="comment">//降序</span></span><br><span class="line">Arrays.sort(arr, (a,b)-&gt;b-a);</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>重点：基本类型 sort 不支持直接传入比较器！</p>
+<p>拓展：可以指定区间排序 <code>Arrays.sort(arr,from,to)</code> 左闭右开</p>
+</blockquote>
+<ol>
+<li>binarySearch () 二分查找</li>
+</ol>
+<p><strong>前提条件：数组必须先升序排序！否则结果不可预测</strong></p>
+<ul>
+<li>找到：返回元素索引</li>
+<li>找不到：返回 <code>-(插入点)-1</code></li>
+</ul>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="type">int</span>[] arr = {<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">9</span>};</span><br><span class="line"><span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> Arrays.binarySearch(arr,<span class="number">5</span>); <span class="comment">//返回2</span></span><br><span class="line"><span class="type">int</span> <span class="variable">index2</span> <span class="operator">=</span> Arrays.binarySearch(arr,<span class="number">3</span>); <span class="comment">//找不到，返回负数</span></span><br></pre></td></tr></tbody></table></figure>
+<ol>
+<li>copyOf () /copyOfRange () 数组复制</li>
+</ol>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line">copyOf (数组，新长度)</span><br></pre></td></tr></tbody></table></figure>
+<p>从头复制，可扩容 / 缩容</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="type">int</span>[] old = {<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>};</span><br><span class="line"><span class="type">int</span>[] newArr = Arrays.copyOf(old,<span class="number">5</span>);</span><br><span class="line"><span class="comment">// [1,2,3,0,0]</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line">copyOfRange (数组，起始索引，结束索引)</span><br></pre></td></tr></tbody></table></figure>
+<p>区间复制，<strong>左闭右开 [start,end)</strong></p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="type">int</span>[] arr = {<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>};</span><br><span class="line"><span class="type">int</span>[] sub = Arrays.copyOfRange(arr,<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line"><span class="comment">// [20,30]</span></span><br></pre></td></tr></tbody></table></figure>
+<p>区别：数组自身 clone () 和 Arrays.copyOf 效果类似；copyOf 底层调用 System.arraycopy。</p>
+<ol>
+<li>fill () 数组填充</li>
+</ol>
+<p>给数组全部 / 指定区间统一赋值</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="type">int</span>[] arr = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">5</span>];</span><br><span class="line">Arrays.fill(arr,<span class="number">8</span>); <span class="comment">//全部填充8</span></span><br><span class="line"><span class="comment">// [8,8,8,8,8]</span></span><br><span class="line"></span><br><span class="line">Arrays.fill(arr,<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>); <span class="comment">//下标1~2填充6</span></span><br></pre></td></tr></tbody></table></figure>
+<ol>
+<li>equals () 判断两个数组内容是否相同</li>
+</ol>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="type">int</span>[] a = {<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>};</span><br><span class="line"><span class="type">int</span>[] b = {<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>};</span><br><span class="line">System.out.println(Arrays.equals(a,b)); <span class="comment">//true</span></span><br></pre></td></tr></tbody></table></figure>
+<p>误区：</p>
+<p><code>a==b</code> 比较数组地址；</p>
+<p><code>Arrays.equals()</code> 比较数组中每个元素的值。</p>
+<p>多维数组比较使用：<code>deepEquals()</code></p>
+<h5 id="三、一维数组-vs-多维数组配套方法汇总"><a href="#三、一维数组-vs-多维数组配套方法汇总" class="headerlink" title="三、一维数组 vs 多维数组配套方法汇总"></a>三、一维数组 vs 多维数组配套方法汇总</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">一维数组</th>
+<th style="text-align:center">多维数组</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">打印内容</td>
+<td style="text-align:center">toString()</td>
+<td style="text-align:center">deepToString()</td>
+</tr>
+<tr>
+<td style="text-align:center">比较内容</td>
+<td style="text-align:center">equals()</td>
+<td style="text-align:center">deepEquals()</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="四、高频易错考点"><a href="#四、高频易错考点" class="headerlink" title="四、高频易错考点"></a>四、高频易错考点</h5><ol>
+<li><code>binarySearch</code> 二分查找<strong>必须先排序</strong>，无序数组结果错误</li>
+<li>Arrays.sort 基本类型只能升序；想要降序必须使用包装数组 + Comparator</li>
+<li>copyOf 产生<strong>新数组</strong>，原数组不会改变</li>
+<li><code>Arrays.toString</code> 不能打印多维数组，只会输出地址，要用 deepToString</li>
+<li>数组是引用类型，<code>equals()</code> 默认比较地址，<strong>一定要用 Arrays.equals 比较元素</strong></li>
+</ol>
+<h6 id="五、拓展：数组转集合（asList）"><a href="#五、拓展：数组转集合（asList）" class="headerlink" title="五、拓展：数组转集合（asList）"></a>五、拓展：数组转集合（asList）</h6><figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line">Integer[] nums = {<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>};</span><br><span class="line">List&lt;Integer&gt; list = Arrays.asList(nums);</span><br></pre></td></tr></tbody></table></figure>
+<p>重要坑：</p>
+<ol>
+<li>asList 接收<strong>引用类型数组</strong>；不能直接传基本类型数组<code>int[]</code></li>
+<li>返回的 List 是 Arrays 内部静态类，<strong>固定大小！不能 add/remove</strong>，会抛出异常</li>
+<li>集合和原数组<strong>互相引用</strong>，修改数组元素，集合同步变化</li>
+</ol>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/avatar.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/avatar.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">Lynx Frost</div><div class="post-copyright__author_desc">技术引领，智慧践行</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://blog.itrf.cn/posts/9e72/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://blog.itrf.cn/posts/9e72/')">Java学习笔记01</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="/images/wx.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/wx.jpg" alt="微信"></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/images/zfb.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/zfb.jpg" alt="支付宝"></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://blog.itrf.cn/posts/9e72/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.itrf.cn" target="_blank">RF极客日志</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"></div></div></div><div class="post_share"><div class="social-share" data-image="https://t.alcy.cc/ycy?_r_=8d26b109-b9f1-9be7-4a08-3cbc49e4fa65" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/posts/29b5/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://t.alcy.cc/moez?_r_=3bdb11ff-30b9-a4b6-02c8-8b9cfdd6c3e0" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">OpenClaw-QQBot 插件安装失败（npm install failed）完整解决方案</div></div></a></div></nav><hr><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)" style="display: none">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">编程技术</b>相关的问题和看法，还有<b style="color:#fff">热门网络资源</b>和<b style="color:#fff">学习心得分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">Lynx Frost</h1><div class="author-info__desc">技术引领，智慧践行</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/itrfcn" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/488325249" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>公告</span></div><div class="announcement_content">根据相关法律法规要求，本站将会对评论内容进行审核，审核通过后才会显示，如有疑问请联系站长。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">Java概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Java%E6%8A%80%E6%9C%AF%E4%BD%93%E7%B3%BB%E5%B9%B3%E5%8F%B0"><span class="toc-number">1.1.</span> <span class="toc-text">Java技术体系平台</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java%E9%87%8D%E8%A6%81%E7%89%B9%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">Java重要特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM"><span class="toc-number">1.3.</span> <span class="toc-text">Java虚拟机 JVM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JDK%E3%80%81JRE"><span class="toc-number">1.4.</span> <span class="toc-text">JDK、JRE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.5.</span> <span class="toc-text">注意事项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">Java基础语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83"><span class="toc-number">2.1.</span> <span class="toc-text">命名规范</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">2.2.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.3.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-1"><span class="toc-number">2.3.1.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8"><span class="toc-number">2.3.2.</span> <span class="toc-text">补充知识浮点数的计算机存储</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.3.3.</span> <span class="toc-text">基本数据类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88long%E6%98%AF8%E4%B8%AA%E5%AD%97%E8%8A%82%EF%BC%8Cfloat%E6%98%AF4%E4%B8%AA%E5%AD%97%E8%8A%82%EF%BC%8C%E4%BD%86%E6%98%AFlong%E4%BC%9A%E8%87%AA%E5%8A%A8%E8%BD%AC%E4%B8%BAfloat%EF%BC%9F"><span class="toc-number">2.3.3.1.</span> <span class="toc-text">为什么long是8个字节，float是4个字节，但是long会自动转为float？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%9C%8B%EF%BC%9A"><span class="toc-number">2.3.3.2.</span> <span class="toc-text">注意看：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%EF%BC%9A"><span class="toc-number">2.3.4.</span> <span class="toc-text">注意事项：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96"><span class="toc-number">2.3.5.</span> <span class="toc-text">强制类型转化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8CString%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.3.6.</span> <span class="toc-text">基本数据类型和String类型的转换</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8F%B7%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">2.3.6.1.</span> <span class="toc-text">+号的作用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java-%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6"><span class="toc-number">2.4.</span> <span class="toc-text">Java 转义字符</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6-r"><span class="toc-number">2.4.1.</span> <span class="toc-text">特殊转义字符\r</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">2.5.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83"><span class="toc-number">2.6.</span> <span class="toc-text">代码规范</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">3.</span> <span class="toc-text">修饰符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">4.</span> <span class="toc-text">运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">4.1.</span> <span class="toc-text">算术运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-2"><span class="toc-number">4.1.1.</span> <span class="toc-text">注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-number">4.1.1.1.</span> <span class="toc-text">面试题</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-number">4.1.2.</span> <span class="toc-text">补充知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Java%EF%BC%9A%E5%90%91%E9%9B%B6%E5%8F%96%E6%95%B4-Truncate"><span class="toc-number">4.1.2.1.</span> <span class="toc-text">Java：向零取整 (Truncate)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Python%EF%BC%9A%E5%90%91%E4%B8%8B%E5%8F%96%E6%95%B4-Floor"><span class="toc-number">4.1.2.2.</span> <span class="toc-text">Python：向下取整 (Floor)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">4.2.</span> <span class="toc-text">关系运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">4.3.</span> <span class="toc-text">位运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">4.4.</span> <span class="toc-text">逻辑运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">4.5.</span> <span class="toc-text">赋值运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">4.6.</span> <span class="toc-text">三元运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">4.7.</span> <span class="toc-text">运算优先级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%8C%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81"><span class="toc-number">4.8.</span> <span class="toc-text">补充知识点，原码反码补码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84"><span class="toc-number">5.</span> <span class="toc-text">程序控制结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E3%80%81%E6%8E%92%E5%BA%8F%E3%80%81%E6%9F%A5%E6%89%BE"><span class="toc-number">6.</span> <span class="toc-text">数组、排序、查找</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Arrays%E7%B1%BB"><span class="toc-number">6.1.</span> <span class="toc-text">Arrays类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%80-%E6%A6%82%E8%BF%B0"><span class="toc-number">6.1.1.</span> <span class="toc-text">一.概述</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B8%B8%E7%94%A8%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95"><span class="toc-number">6.1.2.</span> <span class="toc-text">二、常用核心方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84-vs-%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84%E9%85%8D%E5%A5%97%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB"><span class="toc-number">6.1.3.</span> <span class="toc-text">三、一维数组 vs 多维数组配套方法汇总</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%AB%98%E9%A2%91%E6%98%93%E9%94%99%E8%80%83%E7%82%B9"><span class="toc-number">6.1.4.</span> <span class="toc-text">四、高频易错考点</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%8B%93%E5%B1%95%EF%BC%9A%E6%95%B0%E7%BB%84%E8%BD%AC%E9%9B%86%E5%90%88%EF%BC%88asList%EF%BC%89"><span class="toc-number">6.1.4.1.</span> <span class="toc-text">五、拓展：数组转集合（asList）</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/9e72/" title="Java学习笔记01"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://t.alcy.cc/ycy?_r_=8d26b109-b9f1-9be7-4a08-3cbc49e4fa65" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java学习笔记01"></a><div class="content"><a class="title" href="/posts/9e72/" title="Java学习笔记01">Java学习笔记01</a><time datetime="2026-09-02T12:07:47.000Z" title="发表于 2026-09-02 20:07:47">2026-09-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/29b5/" title="OpenClaw-QQBot 插件安装失败（npm install failed）完整解决方案"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://t.alcy.cc/moez?_r_=3bdb11ff-30b9-a4b6-02c8-8b9cfdd6c3e0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OpenClaw-QQBot 插件安装失败（npm install failed）完整解决方案"></a><div class="content"><a class="title" href="/posts/29b5/" title="OpenClaw-QQBot 插件安装失败（npm install failed）完整解决方案">OpenClaw-QQBot 插件安装失败（npm install failed）完整解决方案</a><time datetime="2026-03-15T14:28:26.000Z" title="发表于 2026-03-15 22:28:26">2026-03-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/34af/" title="一文读懂比特币工作原理"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://t.alcy.cc/ycy?_r_=a6c831f2-8bbb-a1f4-30a9-af3d50e50661" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文读懂比特币工作原理"></a><div class="content"><a class="title" href="/posts/34af/" title="一文读懂比特币工作原理">一文读懂比特币工作原理</a><time datetime="2026-02-28T18:55:17.000Z" title="发表于 2026-03-01 02:55:17">2026-03-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/ceca/" title="HTTPS页面请求HTTP接口失败？一文讲透Mixed Content"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://t.alcy.cc/moez?_r_=122293cd-cc2a-b779-2c68-c385553968cb" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HTTPS页面请求HTTP接口失败？一文讲透Mixed Content"></a><div class="content"><a class="title" href="/posts/ceca/" title="HTTPS页面请求HTTP接口失败？一文讲透Mixed Content">HTTPS页面请求HTTP接口失败？一文讲透Mixed Content</a><time datetime="2026-02-13T15:15:57.000Z" title="发表于 2026-02-13 23:15:57">2026-02-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/5f08/" title="阿里云大模型工程师ACA认证学习笔记"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://t.alcy.cc/moez?_r_=1c44cf94-4705-955b-fa15-a03c2028a62c" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="阿里云大模型工程师ACA认证学习笔记"></a><div class="content"><a class="title" href="/posts/5f08/" title="阿里云大模型工程师ACA认证学习笔记">阿里云大模型工程师ACA认证学习笔记</a><time datetime="2026-01-27T09:14:17.000Z" title="发表于 2026-01-27 17:14:17">2026-01-27</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="mailto:admin@itrf.cn" title="email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><a class="deal_link" href="/rss.xml" title="RSS"><i class="anzhiyufont anzhiyu-icon-rss"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/avatar.jpg" size="50px"><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/itrfcn" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="deal_link" href="/copyright" title="CC"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i></a></div><div id="workboard"><img class="workSituationImg boardsign" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/svg/上课摸鱼中.svg" alt="上课中，专心听讲，认真码字~" title="上课中，专心听讲，认真码字~"><div id="runtimeTextTip"></div></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="RF极客日志" target="_blank" rel="noopener" href="https://www.itrf.cn/">RF极客日志</a><a class="footer-item" title="冈易云音乐" target="_blank" rel="noopener" href="https://mk.686909.xyz/">冈易云音乐</a></div></div><div class="footer-group"><div class="footer-title">协议</div><div class="footer-links"><a class="footer-item" title="隐私协议" href="/privacy/">隐私协议</a><a class="footer-item" title="Cookies" href="/cookies/">Cookies</a><a class="footer-item" title="版权协议" href="/copyright/">版权协议</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v8.0.0" title="博客框架为Hexo_v8.0.0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v8.0.0"></a><a class="github-badge" target="_blank" href="https://hexo.anheyu.com/" style="margin-inline:5px" data-title="本站使用AnZhiYu主题" title="本站使用AnZhiYu主题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.9/img/Theme-AnZhiYu-2E67D3.svg" alt="本站使用AnZhiYu主题"></a><a class="github-badge" target="_blank" href="https://www.edgeone.ai/" style="margin-inline:5px" data-title="本站中国站点由EdgeOne托管并提供CDN加速" title="本站中国站点由EdgeOne托管并提供CDN加速"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/svg/CDNtencent.svg" alt="本站中国站点由EdgeOne托管并提供CDN加速"></a><a class="github-badge" target="_blank" href="https://www.cloudflare.com/" style="margin-inline:5px" data-title="本站国际站点由Cloudflare托管并提供CDN加速" title="本站国际站点由Cloudflare托管并提供CDN加速"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/svg/CDNcloudflare.svg" alt="本站国际站点由Cloudflare托管并提供CDN加速"></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title="本站项目由Github托管"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Source-Github.svg" alt="本站项目由Github托管"></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/Copyright-BY-NC-SA.svg" alt="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">©2023 - 2026 By <a class="footer-bar-link" href="/" title="Lynx Frost" target="_blank">Lynx Frost</a></div></div><div id="footer-type-tips"></div><div class="js-pjax"><script>function subtitleType () {
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      if (true) {
+        const from = '出自 ' + data.from
+        const sub = []
+        sub.unshift(data.hitokoto, from)
+        window.typed = new Typed('#footer-type-tips', {
+          strings: sub,
+          startDelay: 300,
+          typeSpeed: 150,
+          loop: true,
+          backSpeed: 50,
+        })
+      } else {
+        document.getElementById('footer-type-tips').innerHTML = data.hitokoto
+      }
+    })
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.cbd.int/typed.js@2.1.0/dist/typed.umd.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}
+</script></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" title="鲁ICP备2025144988号-1"><img class="footer-bar-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/icp.png" alt="鲁ICP备2025144988号-1">鲁ICP备2025144988号-1</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://beian.mps.gov.cn/#/query/webSearch?code=37078502371082" title="鲁公网安备37078502371082号"><img class="footer-bar-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/images/beian.png" alt="鲁公网安备37078502371082号">鲁公网安备37078502371082号</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">2</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">切换线路</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog-eo.itrf.cn/" title="EO线路"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blog-eo.itrf.cn/favicon.ico" alt="EO线路"><span class="back-menu-item-text">EO线路</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog-cf.itrf.cn/" title="CF线路"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blog-cf.itrf.cn/favicon.ico" alt="CF线路"><span class="back-menu-item-text">CF线路</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">个人站点</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://www.itrf.cn/" title="个人主页"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://www.itrf.cn/favicon.ico" alt="个人主页"><span class="back-menu-item-text">个人主页</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/itrfcn" title="Github"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://github.com/favicon.ico" alt="Github"><span class="back-menu-item-text">Github</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/equipment/"><i class="anzhiyufont anzhiyu-icon-dice-d20 faa-tada" style="font-size: 0.9em;"></i><span> 我的装备</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li><li><a class="site-page child faa-parent animated-hover" target="_blank" rel="noopener" href="https://www.itrf.cn/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 介绍页</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/ACA%E8%AE%A4%E8%AF%81/" style="font-size: 0.88rem;">ACA认证<sup>1</sup></a><a href="/tags/EdgeOne/" style="font-size: 0.88rem;">EdgeOne<sup>2</sup></a><a href="/tags/Flask/" style="font-size: 0.88rem;">Flask<sup>2</sup></a><a href="/tags/Git/" style="font-size: 0.88rem;">Git<sup>1</sup></a><a href="/tags/Linux/" style="font-size: 0.88rem;">Linux<sup>1</sup></a><a href="/tags/NAT/" style="font-size: 0.88rem;">NAT<sup>1</sup></a><a href="/tags/Python/" style="font-size: 0.88rem;">Python<sup>1</sup></a><a href="/tags/SQL-Server/" style="font-size: 0.88rem;">SQL Server<sup>1</sup></a><a href="/tags/Vercel/" style="font-size: 0.88rem;">Vercel<sup>1</sup></a><a href="/tags/btc/" style="font-size: 0.88rem;">btc<sup>1</sup></a><a href="/tags/openclaw/" style="font-size: 0.88rem;">openclaw<sup>1</sup></a><a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" style="font-size: 0.88rem;">区块链<sup>1</sup></a><a href="/tags/%E5%8E%9F%E5%88%9B%E9%A1%B9%E7%9B%AE/" style="font-size: 0.88rem;">原创项目<sup>1</sup></a><a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" style="font-size: 0.88rem;">大模型<sup>1</sup></a><a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 0.88rem;">学习笔记<sup>6</sup></a><a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 0.88rem;">正则表达式<sup>1</sup></a><a href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" style="font-size: 0.88rem;">比特币<sup>1</sup></a><a href="/tags/%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81/" style="font-size: 0.88rem;">虚拟货币<sup>1</sup></a><a href="/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/" style="font-size: 0.88rem;">零碎知识<sup>7</sup></a></div></div><hr></div></div><div id="keyboard-tips"><div class="keyboardTitle">博客快捷键</div><div class="keybordList"><div class="keybordItem"><div class="keyGroup"><div class="key">shift K</div></div><div class="keyContent"><div class="content">关闭快捷键功能</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift A</div></div><div class="keyContent"><div class="content">打开/关闭中控台</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift M</div></div><div class="keyContent"><div class="content">播放/暂停音乐</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift D</div></div><div class="keyContent"><div class="content">深色/浅色显示模式</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift S</div></div><div class="keyContent"><div class="content">站内搜索</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift R</div></div><div class="keyContent"><div class="content">随机访问</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift H</div></div><div class="keyContent"><div class="content">返回首页</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift F</div></div><div class="keyContent"><div class="content">友链鱼塘</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift L</div></div><div class="keyContent"><div class="content">友链页面</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift P</div></div><div class="keyContent"><div class="content">关于本站</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift I</div></div><div class="keyContent"><div class="content">原版/本站右键菜单</div></div></div></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="17514566321" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"></div></div><hr><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://music.163.com/#/playlist?id=17514566321&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@6.1.6/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.cbd.int/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><canvas id="universe"></canvas><script async="" src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2023 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎访问Lynx Frost 的博客!`,
+    `用力记住不幸，努力寻找确幸`,
+    `
+    
+    ▐▒▒░▄                                                                                        
+     ▒▒▒▒▒▒▒▒▄                                                                                   
+     ▐▒▒▒▒▒▒▒▒▒▒▒▄                                                                         ▄▄▒▒  
+      ▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▄                                                               ▄▄▒▒▒▒▒▒▒▒  
+      ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄                                                       ▄▒▒▒▒▒▒▒▒▒▒▒▒▒▌  
+       ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄                                               ▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒   
+        ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                        ▄░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░   
+         ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄                                ▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒    
+           ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▄▄▄▄░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒     
+            ▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀      
+              ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒        
+                ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒          
+                  ▀▒▒▒░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀            
+                     ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒▒▒▒▀               
+                   ▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░                  
+                   ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒                 
+                  ▒▒▒▒▒▒▒▒▒▒░▄▄▄  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▄▄▄  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒                
+                 ▒▒▒▒▒▒▒▒▒▒▒ ▀█▀   ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▐██▀   ▒▒▒▒▒▒▒▒▒▒▒▒▒▒░               
+                ▒▒▒▒▒▒▒▒▒▒▒▒       ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░       ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒               
+               ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▄   ▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄   ▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒              
+               ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀▀▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒              
+              ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▄  ▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒             
+              ▒▒░░░░░░░░▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░▒▒▒▒▒▒▒▒            
+             ▐▒░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░▐▒▒▒▒▒▒            
+             ▒▒░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀░░░░▄░░░▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░▐▒▒▒▒▒▒▒           
+             ▐▒▒░░░░░░░▄░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░▒▒▒▒▒▒▒▒           
+              ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒▒▒▒▒░▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░▒▒▒▒▒▒▒▒▒▒▒▒          
+              ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒▒▒▒░▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒          
+               ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄░▀▒▒▒▒▀░▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒         
+                ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒         
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2023 By RF极客日志 V1.7.0",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by RF极客日志 %c 你正在访问 Lynx Frost 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async="" src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("04/01/2023 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "/images/svg/下课啦.svg";
+        img.title = "下课啦，放松放松，休息休息~";
+        img.alt = "下课啦，放松放松，休息休息~";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  let initFn = window.walineFn || null
+
+  const initWaline = (Fn) => {
+    const waline = Fn(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline.itrf.cn/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+      imageUploader: true,
+    }, null))
+
+    const destroyWaline = () => {
+      waline.destroy()
+    }
+
+    anzhiyu.addGlobalFn('pjax', destroyWaline, 'destroyWaline')
+  }
+
+  const loadWaline = async () => {
+    if (initFn) initWaline(initFn)
+    else {
+      await getCSS('https://cdn.cbd.int/@waline/client@3.8.0/dist/waline.css')
+      if (true) await getCSS('https://cdn.cbd.int/@waline/client@3.8.0/dist/waline-meta.css')
+      const { init } = await import('https://cdn.cbd.int/@waline/client@3.8.0/dist/waline.js')
+      initFn = init || Waline.init
+      initWaline(initFn)
+      window.walineFn = initFn
+    }
+  }
+
+  if ('Waline' === 'Waline' || !true) {
+    if (true) anzhiyu.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>window.addEventListener('load', () => {
+  const changeContent = content => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = async () => {
+    try {
+      const res = await fetch('https://waline.itrf.cn/api/comment?type=recent&count=6', { method: 'GET' })
+      const result = await res.json()
+      const walineArray = result.data.map(e => {
+        return {
+          'content': changeContent(e.comment),
+          'avatar': e.avatar,
+          'nick': e.nick,
+          'url': e.url + '#' + e.objectId,
+          'date': e.time || e.insertedAt
+        }
+      })
+      saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), 10/(60*24))
+      generateHtml(walineArray)
+    } catch (err) {
+      console.error(err)
+      const $dom = document.querySelector('#card-newest-comments .aside-list')
+      $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+    }
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('waline-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script async="" data-pjax="" src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js"></script><script async="" data-pjax="" src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://cdn.cbd.int/qrcodejs@1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-show-text" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/click-show-text.min.js" data-mobile="false" data-text="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404')
+  }
+})</script><script async="" data-pjax="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
