@@ -18,15 +18,17 @@
     <rect width="101" height="20" fill="url(#s)"/>      <!-- 渐变叠加层 -->
   </g>
   
-  <!-- 文字层（完全复刻原版的缩放/字体/阴影规范） -->
+  <!-- 文字与 EdgeOne 标志层 -->
   <g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision" font-size="110">
     <!-- CDN文字（匹配原版的阴影+缩放逻辑） -->
     <text aria-hidden="true" x="160" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="210">CDN</text>
     <text x="160" y="140" transform="scale(.1)" fill="#fff" textLength="210">CDN</text>
     
-    <!-- EdgeOne文字（精准适配原版布局） -->
-    <text aria-hidden="true" x="665" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="580">EdgeOne</text>
-    <text x="665" y="140" transform="scale(.1)" fill="#fff" textLength="580">EdgeOne</text>
+    <!-- EdgeOne 云形 logo -->
+    <path aria-hidden="true" d="M382 147h86c17 0 30-12 30-27s-13-27-30-27c-6-21-25-36-48-36-22 0-41 14-47 34-2 0-4-1-6-1-18 0-33 13-33 29s13 28 29 28z" fill="#010101" fill-opacity=".3" transform="scale(.1)"/>
+    <path d="M382 140h86c17 0 30-12 30-27s-13-27-30-27c-6-21-25-36-48-36-22 0-41 14-47 34-2 0-4-1-6-1-18 0-33 13-33 29s13 28 29 28z" transform="scale(.1)"/>
+    <text aria-hidden="true" x="745" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="430">EdgeOne</text>
+    <text x="745" y="140" transform="scale(.1)" fill="#fff" textLength="430">EdgeOne</text>
     
     <!-- 保留原版风格的轻量入场动画 -->
     <animateMotion path="M0,-3 L0,0" dur="0.25s" fill="freeze" begin="0s"/>
