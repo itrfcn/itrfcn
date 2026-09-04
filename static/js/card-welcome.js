@@ -1,7 +1,7 @@
 window.IP_CONFIG = {
 	BLOG_LOCATION: {
-		lng: 113.666, // 经度
-		lat: 34.666 // 纬度
+		lng: 119.76, // 经度
+		lat: 36.35 // 纬度
 	},
 	CACHE_DURATION: 1000 * 60 * 60, // 可配置缓存时间(默认1小时)
 	HOME_PAGE_ONLY: false, // 是否只在首页显示
