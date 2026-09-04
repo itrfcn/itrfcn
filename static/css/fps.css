@@ -1,21 +1,77 @@
 /* 帧率检测 */
 #fps {
-    position: fixed;
-    /* 指定位置 */
+  position: fixed;
+  right: 16px;
+  bottom: 42px;
+  z-index: 1919810;
+  min-width: 132px;
+  padding: 7px 11px 7px 25px;
+  overflow: hidden;
+  border: 1px solid rgba(70, 205, 155, 0.35);
+  border-radius: 8px;
+  background: rgba(12, 24, 32, 0.78);
+  box-shadow: 0 6px 20px rgba(11, 31, 38, 0.18), inset 0 0 18px rgba(70, 205, 155, 0.06);
+  color: #b8f7dc;
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+  line-height: 1.4;
+  white-space: nowrap;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#fps::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #46d19c;
+  box-shadow: 0 0 0 3px rgba(70, 209, 156, 0.14), 0 0 10px #46d19c;
+  transform: translateY(-50%);
+  animation: fpsPulse 1.8s ease-in-out infinite;
+}
+
+#fps::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.08) 50%, transparent 80%);
+  transform: translateX(-110%);
+  pointer-events: none;
+  animation: fpsScan 4s ease-in-out infinite;
+}
+
+#fps:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 24px rgba(11, 31, 38, 0.24), inset 0 0 18px rgba(70, 205, 155, 0.1);
+}
+
+[data-theme="light"] #fps {
+  background: rgba(255, 255, 255, 0.82);
+  color: #19745d;
+}
+
+@keyframes fpsPulse {
+  0%, 100% { opacity: 0.55; transform: translateY(-50%) scale(0.85); }
+  50% { opacity: 1; transform: translateY(-50%) scale(1); }
+}
+
+@keyframes fpsScan {
+  0%, 55%, 100% { transform: translateX(-110%); }
+  75% { transform: translateX(110%); }
+}
+
+@media screen and (max-width: 768px) {
+  #fps {
     right: 10px;
-    bottom: 40px;
-    border-radius: 4px;
-    z-index: 1919810;
+    bottom: 36px;
+    min-width: 0;
+    padding: 6px 9px 6px 22px;
+    font-size: 10px;
   }
-  [data-theme="light"] #fps {
-    background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: var(--backdrop-filter);
-    padding: 4px;
-    border-radius: 4px;
-  }
-  [data-theme="dark"] #fps {
-    background-color: rgba(0, 0, 0, 0.72);
-    backdrop-filter: var(--backdrop-filter);
-    padding: 4px;
-    border-radius: 4px;
-  }
+}

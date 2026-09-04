@@ -332,13 +332,14 @@ rm.pasteText = function () {
 rm.rightMenuCommentText = function (txt) {
   rm.hideRightMenu();
   const postCommentDom = document.getElementById("post-comment");
+  if (!postCommentDom) return;
   var domTop = postCommentDom.offsetTop;
   window.scrollTo(0, domTop - 80);
   if (txt == "undefined" || txt == "null") txt = "好棒！";
   function setText() {
     setTimeout(() => {
-      var input = document.getElementsByClassName("el-textarea__inner")[0];
-      if (!input) setText();
+      var input = document.getElementsByClassName("el-textarea__inner")[0] || postCommentDom.querySelector("textarea");
+      if (!input) return;
       let evt = document.createEvent("HTMLEvents");
       evt.initEvent("input", true, true);
       let inputValue = replaceAll(txt, "\n", "\n> ");

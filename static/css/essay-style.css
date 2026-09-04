@@ -20,6 +20,15 @@ a.essay-avatar {
     display: block;
     border-radius: 10px;
     background: #fff;
+    overflow: hidden;
+}
+
+a.essay-avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
 }
 
 [data-theme=dark] a.essay-avatar {
@@ -44,6 +53,21 @@ a.essay-avatar {
 
 #bber {
     margin-top: -2rem;
+}
+
+#bber .bber-content-embed {
+    width: min(100%, 560px);
+    aspect-ratio: 16 / 9;
+    margin-bottom: 10px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #111;
+}
+
+#bber .bber-content-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
 
 #bber div.bber-content {
@@ -171,6 +195,20 @@ div#bber-tips {
         padding: 0;
         background: 0 0;
         box-shadow: none;
+    }
+
+    #bber .timeline #waterfall {
+        gap: 12px;
+        padding-left: 48px;
+    }
+
+    #bber .timeline #waterfall::before {
+        left: 18px;
+    }
+
+    #bber .user-avatar {
+        display: block;
+        left: -42px;
     }
 
     #bber .timeline ul li.bber-item:hover {

@@ -5,6 +5,10 @@ let mediaContainer = null;
 let scrollFadeHandler = null;
 let scrollMaskHandler = null;
 
+function isMediaHomePage() {
+  return window.location.pathname === '/' || window.location.pathname === '/index.html';
+}
+
 // ================= 新增滚动渐变效果函数 =================
 function initScrollFadeEffect() {
   const mc = document.getElementById('home-media-container');
@@ -93,6 +97,8 @@ function initScrollMaskEffect() {
 // ================= 底部遮罩层控制函数结束 =================
 
 function initResponsiveBackground() {
+  if (!isMediaHomePage()) return;
+
   // 赋值全局，禁止const重新声明
   mediaContainer = document.getElementById('home-media-container');
   if (!mediaContainer) {
@@ -105,9 +111,22 @@ function initResponsiveBackground() {
   const currentIsPortrait = window.innerHeight > window.innerWidth;
   const currentOrientation = currentIsPortrait ? 'portrait' : 'landscape';
 
-  // 如果方向未改变，则直接返回
-  if (lastOrientation === currentOrientation) {
-    console.log('[背景加载器] 方向未改变，无需重新加载');
+  // 根据方向选择资源
+  let mediaSrc, posterSrc, mediaType;
+  if (currentIsPortrait) {
+    mediaSrc = mediaContainer.dataset.portraitVideo || mediaContainer.dataset.portraitImg;
+    posterSrc = mediaContainer.dataset.portraitPoster;
+    mediaType = mediaContainer.dataset.portraitVideo ? 'video' : 'img';
+  } else {
+    mediaSrc = mediaContainer.dataset.landscapeVideo || mediaContainer.dataset.landscapeImg;
+    posterSrc = mediaContainer.dataset.landscapePoster;
+    mediaType = mediaContainer.dataset.landscapeVideo ? 'video' : 'img';
+  }
+
+  if (!mediaSrc) return;
+
+  const existingMedia = mediaContainer.querySelector('.home-media');
+  if (lastOrientation === currentOrientation && existingMedia && existingMedia.dataset.mediaSrc === mediaSrc) {
     return;
   }
 
@@ -126,42 +145,21 @@ function initResponsiveBackground() {
   }
 
   // 清除现有媒体元素和加载动画
-  const existingMedia = mediaContainer.querySelector('.home-media');
   const existingLoader = mediaContainer.querySelector('.custom-loader');
   if (existingMedia) existingMedia.remove();
   if (existingLoader) existingLoader.remove();
 
-  // 根据方向选择资源
-  let mediaSrc, posterSrc, mediaType;
-  if (currentIsPortrait) {
-    mediaSrc = mediaContainer.dataset.portraitVideo || mediaContainer.dataset.portraitImg;
-    posterSrc = mediaContainer.dataset.portraitPoster;
-    mediaType = mediaContainer.dataset.portraitVideo ? 'video' : 'img';
-  } else {
-    mediaSrc = mediaContainer.dataset.landscapeVideo || mediaContainer.dataset.landscapeImg;
-    posterSrc = mediaContainer.dataset.landscapePoster;
-    mediaType = mediaContainer.dataset.landscapeVideo ? 'video' : 'img';
-  }
-
-  if (!mediaSrc) {
-    console.error('[背景加载器] 未找到有效媒体资源');
-    return;
-  }
   console.log(`[背景加载器] 使用资源: ${mediaSrc} (类型: ${mediaType})`);
 
   // 赋值全局变量，禁止const！
   mediaElement = document.createElement(mediaType);
   mediaElement.className = 'home-media';
+  mediaElement.dataset.mediaSrc = mediaSrc;
   mediaElement.style.cssText = 'width:100%;height:100%;object-fit:cover';
 
   // 设置初始透明度
   mediaElement.style.opacity = '1';
   mediaElement.style.transition = 'opacity 0.5s ease';
-
-  mediaContainer.appendChild(mediaElement);
-  addMediaEffects(mediaElement, mediaType);
-
-  console.log('[背景加载器] 媒体元素已创建');
 
   // 创建自定义加载动画容器
   const loaderContainer = document.createElement('div');
@@ -221,31 +219,13 @@ function initResponsiveBackground() {
   // 错误处理
   mediaElement.onerror = function () {
     console.error(`[背景加载器] 资源加载失败: ${mediaSrc}`);
+    this.onerror = null;
+    this.pause?.();
     this.style.display = 'none';
-
-    console.warn('[背景加载器] 尝试回退到备用媒体');
-    const fallbackType = mediaType === 'video' ? 'img' : 'video';
-    const fallbackSrc = currentIsPortrait ?
-      (mediaContainer.dataset.portraitImg || mediaContainer.dataset.portraitVideo) :
-      (mediaContainer.dataset.landscapeImg || mediaContainer.dataset.landscapeVideo);
-
-    if (fallbackSrc && fallbackSrc !== mediaSrc) {
-      console.log(`[背景加载器] 使用备用资源: ${fallbackSrc}`);
-      mediaElement.src = fallbackSrc;
-      mediaElement.style.display = 'block';
-    }
-
-    setTimeout(() => {
-      if (!mediaElement || !mediaElement.parentNode) {
-        console.warn('[修复] 尝试完全重建');
-        lastOrientation = null;
-        initResponsiveBackground();
-        setTimeout(initScrollFadeEffect, 500);
-      }
-    }, 1000);
   };
 
   mediaContainer.appendChild(mediaElement);
+  addMediaEffects(mediaElement, mediaType);
   console.log('[背景加载器] 媒体元素已创建');
 
   initScrollFadeEffect();
@@ -377,6 +357,11 @@ function addMediaEffects(mediaElement, mediaType) {
 }
 
 function initMedia() {
+  if (!isMediaHomePage()) {
+    lastOrientation = null;
+    return;
+  }
+
   initResponsiveBackground();
   initScrollFadeEffect();
 }
@@ -392,6 +377,11 @@ document.addEventListener('pjax:complete', runMain);
 // 防抖处理窗口变化
 let resizeTimer;
 window.addEventListener('resize', () => {
+  if (!isMediaHomePage()) {
+    lastOrientation = null;
+    return;
+  }
+
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(() => {
     const currentIsPortrait = window.innerHeight > window.innerWidth;
@@ -408,6 +398,8 @@ window.addEventListener('resize', () => {
 
 // 页面可见性变化处理
 document.addEventListener('visibilitychange', () => {
+  if (!isMediaHomePage()) return;
+
   if (document.visibilityState === 'visible') {
     const video = document.querySelector('#home-media-container video');
     if (video && video.paused) {
