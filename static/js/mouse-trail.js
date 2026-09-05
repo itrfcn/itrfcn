@@ -8,12 +8,9 @@ function initMouseTrail() {
 
     const context = canvas.getContext('2d');
     const particles = [];
-    const maxParticles = 80;
-    const particleLifetime = 550;
+    const maxParticles = 30;
+    let hue = 0;
     let animationFrame;
-    let lastSpawnAt = 0;
-    let lastX = 0;
-    let lastY = 0;
 
     function resizeCanvas() {
         const devicePixelRatio = Math.min(window.devicePixelRatio || 1, 2);
@@ -22,30 +19,32 @@ function initMouseTrail() {
         context.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
     }
 
-    function getRandomColor() {
-        return `hsl(${Math.floor(Math.random() * 360)} 100% 65%)`;
-    }
-
     function animate(timestamp) {
         context.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
         for (let index = particles.length - 1; index >= 0; index--) {
             const particle = particles[index];
-            const age = timestamp - particle.createdAt;
+            particle.life -= 0.03 * Math.max(1, (timestamp - particle.lastFrame) / 16.67);
+            particle.lastFrame = timestamp;
 
-            if (age >= particleLifetime) {
+            if (particle.life <= 0) {
                 particles.splice(index, 1);
                 continue;
             }
 
-            context.globalAlpha = 1 - age / particleLifetime;
-            context.fillStyle = particle.color;
+            const size = (index / particles.length) * 6 + 2;
+            const color = `hsla(${particle.hue}, 100%, 65%, ${particle.life})`;
+            context.globalAlpha = particle.life;
+            context.fillStyle = color;
+            context.shadowBlur = 10;
+            context.shadowColor = color;
             context.beginPath();
-            context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+            context.arc(particle.x, particle.y, size, 0, Math.PI * 2);
             context.fill();
         }
 
         context.globalAlpha = 1;
+        context.shadowBlur = 0;
         animationFrame = particles.length ? requestAnimationFrame(animate) : null;
     }
 
@@ -55,22 +54,16 @@ function initMouseTrail() {
 
     document.addEventListener('mousemove', (event) => {
         const now = performance.now();
-        const distance = Math.hypot(event.clientX - lastX, event.clientY - lastY);
-
-        if (now - lastSpawnAt < 16 || distance < 3) return;
-
-        lastSpawnAt = now;
-        lastX = event.clientX;
-        lastY = event.clientY;
         particles.push({
             x: event.clientX,
             y: event.clientY,
-            radius: 1.5,
-            color: getRandomColor(),
-            createdAt: now
+            hue,
+            life: 1,
+            lastFrame: now
         });
 
         if (particles.length > maxParticles) particles.shift();
+        hue = (hue + 3) % 360;
         startAnimation();
     });
 
