@@ -172,6 +172,7 @@ const saveLocationPermission = (permission) => {
 };
 const showLocationPermissionDialog = () => {
 	const welcomeInfoElement = document.getElementById("welcome-info");
+	if (!welcomeInfoElement) return;
 	welcomeInfoElement.innerHTML = `
         <div class="permission-dialog">
             <div class="error-icon">❓</div>
@@ -182,6 +183,7 @@ const showLocationPermissionDialog = () => {
     `;
 
 	welcomeInfoElement.addEventListener('click', (e) => {
+		if (!e || !e.target) return;
 		if (e.target.tagName === 'BUTTON') {
 			const action = e.target.dataset.action;
 			const permission = action === 'allow' ? 'granted' : 'denied';

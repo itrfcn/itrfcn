@@ -1190,6 +1190,7 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(document.getElementById("post-comment"), config);
 
     function handleMouseOver(e) {
+      if (!e || !e.target) return;
       if (e.target.tagName == "IMG" && flag) {
         flag = 0;
         // 移入100毫秒后显示盒子

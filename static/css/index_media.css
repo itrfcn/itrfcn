@@ -8,6 +8,7 @@
     height: 100%;
     overflow: hidden;
     z-index: 0;
+    pointer-events: none;
     
     /* 添加底部向上渐变遮罩 */
     -webkit-mask-image: linear-gradient(to top, transparent 0%, black 0%);

@@ -52,6 +52,7 @@ let domImgSrc = "";
 let globalEvent = null;
 
 var oncontextmenuFunction = function (event) {
+  if (!event || !event.target) return false;
   if (document.body.clientWidth > 768) {
     let pageX = event.clientX + 10; //加10是为了防止显示时鼠标遮在菜单上
     let pageY = event.clientY;
@@ -123,7 +124,8 @@ var oncontextmenuFunction = function (event) {
     }
 
     // 判断是否为输入框
-    if (event.target.tagName.toLowerCase() === "input" || event.target.tagName.toLowerCase() === "textarea") {
+    const targetTagName = (event.target && event.target.tagName) ? event.target.tagName.toLowerCase() : "";
+    if (targetTagName === "input" || targetTagName === "textarea") {
       pluginMode = true;
       $rightMenuPasteText.style.display = "block";
     } else {
