@@ -1290,14 +1290,26 @@ totraveling: function () {
     if (!$categoryBar) return;
 
     if (urlinfo === "/") {
-      $categoryBar.querySelector("#首页").classList.add("select");
-    } else {
-      const pattern = /\/categories\/.*?\//;
-      const patbool = pattern.test(urlinfo);
-      if (!patbool) return;
+      const homeItem = $categoryBar.querySelector("#首页");
+      if (homeItem) homeItem.classList.add("select");
+      return;
+    }
 
-      const nowCategorie = urlinfo.split("/")[2];
-      $categoryBar.querySelector(`#${nowCategorie}`).classList.add("select");
+    const pattern = /^\/categories\/(.+?)\/?$/;
+    const match = urlinfo.match(pattern);
+    if (!match) return;
+
+    const categoryIdCandidates = [
+      "/" + urlinfo.replace(/^\/+/, "").replace(/\/$/, ""),
+      urlinfo.replace(/^\/categories\//, "/").replace(/\/$/, ""),
+    ];
+
+    const categoryItem = categoryIdCandidates
+      .map((id) => $categoryBar.querySelector(`[id="${id}"]`))
+      .find(Boolean);
+
+    if (categoryItem) {
+      categoryItem.classList.add("select");
     }
   },
   topCategoriesBarScroll: function () {

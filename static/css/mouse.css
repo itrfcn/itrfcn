@@ -1,0 +1,53 @@
+/* 全局默认普通光标 */
+*,
+*::before,
+*::after {
+  cursor: url(https://cos.cdn.azpay.cn/uploads/2021/11/28/arrow.cur), default;
+}
+
+/* 所有交互点击元素，手型自定义光标 */
+*:is(
+  a,
+  button,
+  img,
+  select,
+  summary,
+  [role="button"],
+  [role="link"],
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  input[type="image"],
+  label:has(input),
+  [onclick],
+  .btn,
+  .click
+) {
+  cursor: url(https://cos.cdn.azpay.cn/uploads/2021/11/28/btn.cur), pointer;
+}
+
+/* 文本输入类，保留原生文本光标，不要自定义cur */
+*:is(
+  input[type="text"],
+  input[type="password"],
+  input[type="tel"],
+  input[type="email"],
+  input[type="number"],
+  input[type="search"],
+  textarea
+) {
+  cursor: text;
+}
+
+/* 禁用状态 */
+*:is(:disabled, .disabled, [aria-disabled="true"]) {
+  cursor: not-allowed !important;
+}
+
+/* 拖拽光标 */
+.grab, [grab] {
+  cursor: grab;
+}
+.grabbing:active {
+  cursor: grabbing;
+}
