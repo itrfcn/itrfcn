@@ -911,6 +911,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  const updateRightsideTime = () => {
+    const timeElement = document.querySelector("#rightside-time");
+    if (!timeElement) return;
+    const now = new Date();
+    let hours = now.getHours();
+    const period = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12 || 12;
+    timeElement.querySelector(".rightside-time-clock").textContent = `${String(hours).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
+    timeElement.querySelector(".rightside-time-period").textContent = period;
+  };
+
+  updateRightsideTime();
+  setInterval(updateRightsideTime, 1000);
+
   //监听蒙版关闭
   document.addEventListener(
     "touchstart",

@@ -2826,7 +2826,7 @@ body {
   background: var(--global-bg);
   color: var(--font-color);
   font-size: var(--global-font-size);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: DingTalk-JinBuTi;
   line-height: 2;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -2974,7 +2974,7 @@ a:hover {
 #site-name,
 #aside-content .author-info__name,
 #aside-content .author-info__description {
-  font-family: DingTalk-JinBuTi，PingFang SC, 'Hiragino Sans GB', 'Microsoft JhengHei', 'Microsoft YaHei', sans-serif;
+  font-family: DingTalk-JinBuTi;
 }
 .is-center {
   text-align: center;
@@ -3834,8 +3834,8 @@ figure.highlight pre .javascript .function {
 }
 #article-container pre,
 #article-container code {
-  font-size: DingTalk-JinBuTi;
-  font-family: consolas, Menlo, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif !important;
+  font-size: var(--global-font-size);
+  font-family: DingTalk-JinBuTi !important;
 }
 #article-container code {
   padding: 2px 4px;
@@ -3862,7 +3862,7 @@ figure.highlight pre .javascript .function {
 #article-container figure.highlight figcaption,
 #article-container figure.highlight .caption {
   padding: 6px 0 2px 14px;
-  font-size: DingTalk-JinBuTi;
+  font-size: var(--global-font-size);
   line-height: 1em;
 }
 #article-container figure.highlight figcaption a,
@@ -3894,7 +3894,7 @@ figure.highlight pre .javascript .function {
   height: 2.15em;
   background: var(--hltools-bg);
   color: var(--hltools-color);
-  font-size: DingTalk-JinBuTi;
+  font-size: var(--global-font-size);
   border-bottom: var(--style-border-always);
 }
 #article-container .highlight-tools.closed {
@@ -4153,7 +4153,7 @@ figure.highlight pre .javascript .function {
   height: 100%;
   vertical-align: top;
   text-align: center;
-  font-family: DingTalk-JinBuTi，PingFang SC, 'Hiragino Sans GB', 'Microsoft JhengHei', 'Microsoft YaHei', sans-serif;
+  font-family: DingTalk-JinBuTi;
 }
 @media screen and (max-width: 768px) {
   .error404 #error-wrap .error-content .error-info {
@@ -6404,6 +6404,13 @@ body[data-type='about'] #web_bg {
 .collect h2 {
   margin-bottom: 0;
 }
+.collect h3.collect-subtitle {
+  margin: 20px 0 10px;
+  font-size: 1.3rem;
+  color: var(--text-color);
+  border-left: 4px solid var(--theme-color);
+  padding-left: 10px;
+}
 .collect .collect-desc {
   margin-bottom: 10px;
 }
@@ -6518,6 +6525,9 @@ body[data-type='about'] #web_bg {
   overflow: hidden;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
+}
+[data-theme='dark'] .collect h3.collect-subtitle {
+  color: #ddd;
 }
 [data-theme='dark'] .collect .collect-list .collect_box {
   color: #ddd !important;
@@ -9446,7 +9456,7 @@ body:has(#console.show) #nav-music {
   color: var(--anzhiyu-lighttext);
 }
 #tag #tag-page-tags a {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: DingTalk-JinBuTi;
   font-size: 0.9em;
 }
 #tag #tag-page-tags a:hover {
@@ -9465,7 +9475,7 @@ span.categoryes-punctuation .icon-biaoqian {
   font-size: 13px;
 }
 .tagsPageCount {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: DingTalk-JinBuTi;
 }
 [data-theme="light"] #post .tag_share .post-meta__box__tags span.tagsPageCount {
   background-color: transparent;
@@ -9758,7 +9768,7 @@ h1.page-title + .tag-cloud-list {
   padding: 0.5rem;
   text-align: center;
   font-size: 14px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: DingTalk-JinBuTi;
 }
 @media screen and (max-width: 768px) {
   #error-wrap .error-content .error-info {
@@ -16332,6 +16342,67 @@ blockquote {
 #rightside > div > a:hover {
   background-color: var(--btn-hover-color);
 }
+#rightside #rightside-time {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -o-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  gap: 1px;
+  margin-top: 7px;
+  width: 35px;
+  height: 52px;
+  border-radius: 18px;
+  background-color: var(--btn-bg);
+  color: var(--btn-color);
+  -webkit-box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  font-weight: 700;
+  line-height: 1.1;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#rightside #rightside-time:hover {
+  background-color: var(--btn-hover-color);
+}
+#rightside #rightside-time .rightside-time-clock {
+  font-size: 12px;
+  letter-spacing: 0.2px;
+}
+#rightside #rightside-time .rightside-time-period {
+  font-size: 10px;
+  text-transform: uppercase;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+@media screen and (max-width: 768px) {
+  #rightside #rightside-time {
+    width: 34px;
+    height: 50px;
+  }
+}
 #rightside #mobile-toc-button {
   display: none;
 }
@@ -17162,12 +17233,6 @@ li.card-category-list-item {
   background: url("/img/comment_bg.png") 100% 100% no-repeat;
 }
 #vcomment textarea:focus {
-  background-image: none;
-}
-#waline-wrap textarea {
-  background: url("https://waline.itrf.cn/ui") 100% 100% no-repeat;
-}
-#waline-wrap textarea:focus {
   background-image: none;
 }
 .fireworks {
