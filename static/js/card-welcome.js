@@ -7,6 +7,7 @@ window.IP_CONFIG = {
     HOME_PAGE_ONLY: false, // 是否只在首页显示
     TENCENT_MAP_KEY: "W4QBZ-KEPLL-WCPPR-ENDVU-I4NNO-KKB4G" // 填入自己申请的key
 };
+
 const insertAnnouncementComponent = () => {
     // 获取所有公告卡片
     const announcementCards = document.querySelectorAll('.card-widget.card-announcement');
@@ -16,38 +17,58 @@ const insertAnnouncementComponent = () => {
 };
 const getWelcomeInfoElement = () => document.querySelector('#welcome-info');
 
-// 已修改为腾讯地图IP定位接口，权限弹窗逻辑全部保留
-const fetchIpData = async () => {
-    const url = `https://apis.map.qq.com/ws/location/v1/ip?key=${IP_CONFIG.TENCENT_MAP_KEY}`;
-    const response = await fetch(url);
-    if (!response.ok) throw new Error('网络响应不正常');
-    const result = await response.json();
-    if (result.status !== 0) throw new Error(result.message || 'IP定位失败');
-    const ipInfo = result.result;
-    return {
-        ip: ipInfo.ip || '',
-        data: {
-            lng: Number(ipInfo.location.lng),
-            lat: Number(ipInfo.location.lat),
-            country: ipInfo.ad_info.nation,
-            prov: ipInfo.ad_info.province,
-            city: ipInfo.ad_info.city
-        }
-    };
-};
+// ==========================================
+// 【核心修改区】使用 JSONP 完美解决跨域问题
+// ==========================================
+const fetchIpData = () => {
+    return new Promise((resolve, reject) => {
+        // 1. 生成唯一的回调函数名
+        const callbackName = 'tencentMapCallback_' + Math.random().toString(36).substr(2, 9);
+        
+        // 2. 挂载全局回调函数
+        window[callbackName] = function(result) {
+            // 请求完成后清理全局变量和 DOM，防止内存泄漏
+            delete window[callbackName];
+            document.body.removeChild(script);
+            
+            if (result.status !== 0) {
+                reject(new Error(result.message || 'IP定位失败'));
+                return;
+            }
+            
+            const ipInfo = result.result;
+            resolve({
+                ip: ipInfo.ip || '',
+                data: {
+                    lng: Number(ipInfo.location.lng),
+                    lat: Number(ipInfo.location.lat),
+                    country: ipInfo.ad_info.nation,
+                    prov: ipInfo.ad_info.province,
+                    city: ipInfo.ad_info.city
+                }
+            });
+        };
 
-const showWelcome = ({
-    data,
-    ip
-}) => {
+        // 3. 创建 script 标签发起 JSONP 请求，注意增加 output=jsonp 参数
+        const script = document.createElement('script');
+        script.src = `https://apis.map.qq.com/ws/location/v1/ip?key=${IP_CONFIG.TENCENT_MAP_KEY}&output=jsonp&callback=${callbackName}`;
+        
+        // 4. 处理加载失败的情况
+        script.onerror = () => {
+            delete window[callbackName];
+            document.body.removeChild(script);
+            reject(new Error('网络请求失败或被拦截'));
+        };
+        
+        // 5. 将脚本注入页面触发请求
+        document.body.appendChild(script);
+    });
+};
+// ==========================================
+
+const showWelcome = ({ data, ip }) => {
     if (!data) return showErrorMessage();
-    const {
-        lng,
-        lat,
-        country,
-        prov,
-        city
-    } = data;
+    const { lng, lat, country, prov, city } = data;
     const welcomeInfo = getWelcomeInfoElement();
     if (!welcomeInfo) return;
     const dist = calculateDistance(lng, lat);
@@ -57,6 +78,7 @@ const showWelcome = ({
     welcomeInfo.style.height = 'auto';
     welcomeInfo.innerHTML = generateWelcomeMessage(pos, dist, ipDisplay, country, prov, city);
 };
+
 const calculateDistance = (lng, lat) => {
     const R = 6371; // 地球半径(km)
     const rad = Math.PI / 180;
@@ -67,10 +89,13 @@ const calculateDistance = (lng, lat) => {
         Math.sin(dLon / 2) * Math.sin(dLon / 2);
     return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
 };
+
 const formatIpDisplay = (ip) => ip.includes(":") ? "<br>好复杂，咱看不懂~(ipv6)" : ip;
+
 const formatLocation = (country, prov, city) => {
     return country ? (country === "中国" ? `${prov} ${city}` : country) : '神秘地区';
 };
+
 const generateWelcomeMessage = (pos, dist, ipDisplay, country, prov, city) => `
     欢迎来自 <b>${pos}</b> 的小友💖<br>
     你当前距博主约 <b>${dist}</b> 公里！<br>
@@ -78,6 +103,7 @@ const generateWelcomeMessage = (pos, dist, ipDisplay, country, prov, city) => `
     ${getTimeGreeting()}<br>
     Tip：<b>${getGreeting(country, prov, city)}🍂</b>
 `;
+
 const addStyles = () => {
     const style = document.createElement('style');
     style.textContent = `
@@ -152,7 +178,8 @@ const addStyles = () => {
     `;
     document.head.appendChild(style);
 };
-// 位置权限相关函数【全部保留】
+
+// 位置权限相关函数
 const checkLocationPermission = () => localStorage.getItem('locationPermission') === 'granted';
 const saveLocationPermission = (permission) => {
     localStorage.setItem('locationPermission', permission);
@@ -191,6 +218,7 @@ const showLoadingSpinner = () => {
     if (!welcomeInfoElement) return;
     welcomeInfoElement.innerHTML = '<div class="loading-spinner"></div>';
 };
+
 const IP_CACHE_KEY = 'ip_info_cache';
 const getIpInfoFromCache = () => {
     const cached = localStorage.getItem(IP_CACHE_KEY);
@@ -208,6 +236,7 @@ const setIpInfoCache = (data) => {
         timestamp: Date.now()
     }));
 };
+
 const fetchIpInfo = async () => {
     if (!checkLocationPermission()) {
         showLocationPermissionDialog();
@@ -228,6 +257,7 @@ const fetchIpInfo = async () => {
         showErrorMessage();
     }
 };
+
 const greetings = {
     "中国": {
         "北京市": "北——京——欢迎你~~~",
@@ -297,6 +327,7 @@ const greetings = {
     "加拿大": "拾起一片枫叶赠予你",
     "其他": "带我去你的国家逛逛吧"
 };
+
 const getGreeting = (country, province, city) => {
     const countryGreeting = greetings[country] || greetings["其他"];
     if (typeof countryGreeting === 'string') {
@@ -308,6 +339,7 @@ const getGreeting = (country, province, city) => {
     }
     return provinceGreeting[city] || provinceGreeting["其他"] || countryGreeting["其他"];
 };
+
 const getTimeGreeting = () => {
     const hour = new Date().getHours();
     if (hour < 11) return "早上好🌤️ ，一日之计在于晨";
@@ -316,20 +348,25 @@ const getTimeGreeting = () => {
     if (hour < 19) return "即将下班🚶‍♂️，记得按时吃饭~";
     return "晚上好🌙 ，夜生活嗨起来！";
 };
+
 const showErrorMessage = (message = '抱歉，无法获取信息') => {
     const welcomeInfoElement = document.getElementById("welcome-info");
+    if (!welcomeInfoElement) return;
     welcomeInfoElement.innerHTML = `
         <div class="error-message">
             <div class="error-icon">😕</div>
             <p>${message}</p>
-            <p>请<i id="retry-button" class="fa-solid fa-arrows-rotate"></i>重试或检查网络连接</p>
+            <p>请<i id="retry-button" class="fa-solid fa-arrows-rotate" style="cursor:pointer;"></i>重试或检查网络连接</p>
         </div>
     `;
-    document.getElementById('retry-button').addEventListener('click', fetchIpInfo);
+    const retryBtn = document.getElementById('retry-button');
+    if(retryBtn) retryBtn.addEventListener('click', fetchIpInfo);
 };
+
 const isHomePage = () => {
     return window.location.pathname === '/' || window.location.pathname === '/index.html';
 };
+
 // 初始化
 document.addEventListener('DOMContentLoaded', () => {
     addStyles();
