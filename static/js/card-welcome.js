@@ -9,7 +9,6 @@ window.IP_CONFIG = {
 };
 
 const insertAnnouncementComponent = () => {
-    // 获取所有公告卡片
     const announcementCards = document.querySelectorAll('.card-widget.card-announcement');
     if (!announcementCards.length) return;
     if (!document.querySelector('#welcome-info')) return;
@@ -17,17 +16,12 @@ const insertAnnouncementComponent = () => {
 };
 const getWelcomeInfoElement = () => document.querySelector('#welcome-info');
 
-// ==========================================
-// 【核心修改区】使用 JSONP 完美解决跨域问题
-// ==========================================
+// JSONP 跨域请求
 const fetchIpData = () => {
     return new Promise((resolve, reject) => {
-        // 1. 生成唯一的回调函数名
         const callbackName = 'tencentMapCallback_' + Math.random().toString(36).substr(2, 9);
         
-        // 2. 挂载全局回调函数
         window[callbackName] = function(result) {
-            // 请求完成后清理全局变量和 DOM，防止内存泄漏
             delete window[callbackName];
             document.body.removeChild(script);
             
@@ -49,22 +43,18 @@ const fetchIpData = () => {
             });
         };
 
-        // 3. 创建 script 标签发起 JSONP 请求，注意增加 output=jsonp 参数
         const script = document.createElement('script');
         script.src = `https://apis.map.qq.com/ws/location/v1/ip?key=${IP_CONFIG.TENCENT_MAP_KEY}&output=jsonp&callback=${callbackName}`;
         
-        // 4. 处理加载失败的情况
         script.onerror = () => {
             delete window[callbackName];
             document.body.removeChild(script);
             reject(new Error('网络请求失败或被拦截'));
         };
         
-        // 5. 将脚本注入页面触发请求
         document.body.appendChild(script);
     });
 };
-// ==========================================
 
 const showWelcome = ({ data, ip }) => {
     if (!data) return showErrorMessage();
@@ -72,7 +62,7 @@ const showWelcome = ({ data, ip }) => {
     const welcomeInfo = getWelcomeInfoElement();
     if (!welcomeInfo) return;
     const dist = calculateDistance(lng, lat);
-    const ipDisplay = formatIpDisplay(ip);
+    const ipDisplay = formatIpDisplay(ip); 
     const pos = formatLocation(country, prov, city);
     welcomeInfo.style.display = 'block';
     welcomeInfo.style.height = 'auto';
@@ -80,7 +70,7 @@ const showWelcome = ({ data, ip }) => {
 };
 
 const calculateDistance = (lng, lat) => {
-    const R = 6371; // 地球半径(km)
+    const R = 6371; 
     const rad = Math.PI / 180;
     const dLat = (lat - IP_CONFIG.BLOG_LOCATION.lat) * rad;
     const dLon = (lng - IP_CONFIG.BLOG_LOCATION.lng) * rad;
@@ -90,7 +80,14 @@ const calculateDistance = (lng, lat) => {
     return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
 };
 
-const formatIpDisplay = (ip) => ip.includes(":") ? "<br>好复杂，咱看不懂~(ipv6)" : ip;
+
+// 如果是 IPv6（包含冒号），为了防止字符串太长撑破 UI，加上特定的 class 以便在 CSS 中缩小字体和强制换行。
+const formatIpDisplay = (ip) => {
+    if (ip.includes(":")) {
+        return `<span class="ipv6-text">${ip}</span>`;
+    }
+    return ip;
+};
 
 const formatLocation = (country, prov, city) => {
     return country ? (country === "中国" ? `${prov} ${city}` : country) : '神秘地区';
@@ -134,9 +131,16 @@ const addStyles = () => {
         .ip-address {
             filter: blur(5px);
             transition: filter 0.3s ease;
+            display: inline-block; /* 保证滤镜和换行生效 */
         }
         .ip-address:hover {
             filter: blur(0);
+        }
+        /* 新增专门针对 IPv6 的样式 */
+        .ipv6-text {
+            font-size: 0.85em; /* 稍微缩小一点字体 */
+            word-break: break-all; /* 允许在任意字符间换行 */
+            white-space: normal;
         }
         .error-message {
             color: #ff6565;
