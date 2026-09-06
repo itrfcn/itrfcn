@@ -16342,6 +16342,9 @@ blockquote {
 #rightside > div > a:hover {
   background-color: var(--btn-hover-color);
 }
+#rightside > div #pwa-install-button[hidden] {
+  display: none !important;
+}
 #rightside #rightside-time {
   display: -webkit-box;
   display: -moz-box;
