@@ -1526,6 +1526,9 @@ document.addEventListener("DOMContentLoaded", function () {
           anzhiyu_musicPlaying = true;
           // navMusicEl.classList.add("stretch");
         });
+        if (GLOBAL_CONFIG.navMusicLocal) {
+          anzhiyu.loadLocalNavMusic(navMusicEl.querySelector("#nav-music meting-js").aplayer);
+        }
       }
     }, 16);
   };

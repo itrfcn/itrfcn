@@ -767,6 +767,18 @@ const anzhiyu = {
         anzhiyu.playMusic(songs);
       });
   },
+  // 加载导航栏本地歌单
+  loadLocalNavMusic(aplayer) {
+    if (window.navMusicLocalLoaded) return;
+    fetch("/json/music.json")
+      .then(response => response.json())
+      .then(songs => {
+        aplayer.list.clear();
+        aplayer.list.add(songs);
+        aplayer.list.switch(0);
+        window.navMusicLocalLoaded = true;
+      });
+  },
   // 播放音乐
   playMusic(songs) {
     const anMusicPage = document.getElementById("anMusic-page");
@@ -989,6 +1001,7 @@ const anzhiyu = {
     // 清除当前播放列表并添加新的歌曲
     metingAplayer.list.clear();
     metingAplayer.list.add(songs);
+    metingAplayer.list.switch(0);
 
     // 切换标志位
     changeMusicListFlag = !changeMusicListFlag;
