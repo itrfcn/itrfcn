@@ -16342,6 +16342,13 @@ blockquote {
 #rightside > div > a:hover {
   background-color: var(--btn-hover-color);
 }
+#rightside > div #switch-commentBarrage {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  -ms-transition: none;
+  transition: none;
+}
 #rightside > div #pwa-install-button[hidden] {
   display: none !important;
 }
@@ -24316,6 +24323,17 @@ body[data-type="essay"] #page .author-content-item .card-content .banner-button-
     margin-left: 55px;
   }
 
+  #bber .user-avatar {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-position: center !important;
+  }
+
   #bber div.bber-content > .right {
     width: 100%;
     margin-left: 0;
@@ -24368,6 +24386,14 @@ a.essay-avatar {
   height: 60px;
   border-radius: 10px;
   background: #fff;
+}
+
+a.essay-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
 }
 
 [data-theme="dark"] a.essay-avatar {
