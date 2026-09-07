@@ -1,10 +1,12 @@
-var posts=["posts/34af/","posts/ceca/","posts/c93f/","posts/8ab6/","posts/b272/","posts/9c16/","posts/83ea/","posts/9e72/","posts/bf2c/","posts/41ab/","posts/5f08/","posts/29b5/","posts/9f32/","posts/f77d/","posts/3a52/","posts/3a56/","posts/d3d/","posts/7eac/","posts/516b/"];function toRandomPost(){
+var posts=["posts/ceca/","posts/1a1/","posts/c93f/","posts/8ab6/","posts/9e72/","posts/b272/","posts/34af/","posts/9f32/","posts/9c16/","posts/41ab/","posts/3a52/","posts/bf2c/","posts/f77d/","posts/29b5/","posts/5f08/","posts/3a56/","posts/d3d/","posts/83ea/","posts/516b/","posts/7eac/"];function toRandomPost(){
     pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);
-  };var friend_link_list=[{"name":"个人主页","link":"https://www.itrf.cn/","avatar":"/images/avatar.jpg","descr":"简单的介绍页"},{"name":"冈易云音乐","link":"https://mk.686909.xyz/","avatar":"https://mk.686909.xyz/favicon.ico","descr":"免费音乐网站"},{"name":"聚合影视","link":"https://tv.686909.xyz/","avatar":"https://tv.686909.xyz/image/logo.png","descr":"免费影视网站"},{"name":"BugPk-Api","link":"https://api.bugpk.com","avatar":"https://api.bugpk.com/favicon.ico","descr":"提供稳定、快速的免费API数据接口服务","siteshot":"https://t.alcy.cc/moez","color":"vip","tag":"技术"}];
+  };var friend_link_list=[{"name":"个人主页","link":"https://www.itrf.cn/","avatar":"/images/avatar.jpg","descr":"简单的介绍页","tag":"旗下网站"},{"name":"冈易云音乐","link":"https://mk.686909.xyz/","avatar":"https://mk.686909.xyz/favicon.ico","tag":"旗下网站","descr":"免费音乐网站"},{"name":"聚合影视","link":"https://tv.686909.xyz/","avatar":"https://tv.686909.xyz/image/logo.png","descr":"免费影视网站","tag":"旗下网站"},{"name":"BugPk-Api","link":"https://api.bugpk.com","avatar":"https://api.bugpk.com/favicon.ico","descr":"提供稳定、快速的免费API数据接口服务","siteshot":"https://t.alcy.cc/moez","color":"vip","tag":"技术"}];
+    var friend_link_list_all=[{"name":"个人主页","link":"https://www.itrf.cn/","avatar":"/images/avatar.jpg","descr":"简单的介绍页","tag":"旗下网站"},{"name":"冈易云音乐","link":"https://mk.686909.xyz/","avatar":"https://mk.686909.xyz/favicon.ico","tag":"旗下网站","descr":"免费音乐网站"},{"name":"聚合影视","link":"https://tv.686909.xyz/","avatar":"https://tv.686909.xyz/image/logo.png","descr":"免费影视网站","tag":"旗下网站"},{"name":"BugPk-Api","link":"https://api.bugpk.com","avatar":"https://api.bugpk.com/favicon.ico","descr":"提供稳定、快速的免费API数据接口服务","siteshot":"https://t.alcy.cc/moez","color":"vip","tag":"技术"}];
     var refreshNum = 1;
     function friendChainRandomTransmission() {
-      const randomIndex = Math.floor(Math.random() * friend_link_list.length);
-      const { name, link } = friend_link_list.splice(randomIndex, 1)[0];
+      if (!friend_link_list_all.length) return;
+      const randomIndex = Math.floor(Math.random() * friend_link_list_all.length);
+      const { name, link } = friend_link_list_all[randomIndex];
       Snackbar.show({
         text:
           "点击前往按钮进入随机一个友链，不保证跳转网站的安全性和可用性。本次随机到的是本站友链：「" + name + "」",

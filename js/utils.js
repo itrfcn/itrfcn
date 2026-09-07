@@ -1000,11 +1000,30 @@ const anzhiyu = {
 
     // 清除当前播放列表并添加新的歌曲
     metingAplayer.list.clear();
+    // 重建歌词实例，隔离旧歌单（API）歌词的异步请求，避免切歌单后第一首歌词被旧请求覆盖
+    anzhiyu.resetMusicLrc(metingAplayer);
     metingAplayer.list.add(songs);
     metingAplayer.list.switch(0);
 
     // 切换标志位
     changeMusicListFlag = !changeMusicListFlag;
+  },
+  // 重建歌词实例：APlayer 的 lrc.switch 异步回调只校验歌曲索引，不校验歌词来源；
+  // 切歌单后旧歌单（API）在途的歌词请求仍会因索引相同而覆盖新歌词（第一首必中）。
+  // 这里换掉歌词容器并新建 lrc 实例，旧请求只能写入已移除的旧容器，不再影响显示。
+  resetMusicLrc: function (aplayer) {
+    if (!aplayer || !aplayer.lrc || !aplayer.template || !aplayer.template.lrcWrap) return;
+    const lrcWrap = aplayer.template.lrcWrap;
+    const oldLrcContainer = aplayer.template.lrc;
+    const newLrcContainer = document.createElement('div');
+    newLrcContainer.className = 'aplayer-lrc-contents';
+    lrcWrap.replaceChild(newLrcContainer, oldLrcContainer);
+    aplayer.template.lrc = newLrcContainer;
+    aplayer.lrc = new aplayer.lrc.constructor({
+      container: newLrcContainer,
+      async: true,
+      player: aplayer,
+    });
   },
   // 控制台音乐列表监听
   addEventListenerConsoleMusicList: function () {
