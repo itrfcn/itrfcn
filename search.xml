@@ -4,6 +4,106 @@
   
     
     <entry>
+      <title>JSONP一种解决跨域的古老方法</title>
+      <link href="/posts/4d2b/"/>
+      <url>/posts/4d2b/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>在修复博客欢迎卡片api接口的时候，想使用腾讯地图的接口，但是直接使用会出现跨域问题，搭建中转又太麻烦，在网上找到了一个很老的技术JSONP，完全符合我的需求。</p></blockquote><p><strong>JSONP（JSON with Padding</strong>）是一种非常经典、通用的前端跨域“黑客技巧”（Hack）。</p><h3 id="被逼出来的方案：同源策略与漏洞"><a href="#被逼出来的方案：同源策略与漏洞" class="headerlink" title="被逼出来的方案：同源策略与漏洞"></a>被逼出来的方案：同源策略与漏洞</h3><p>浏览器有一个铁律叫<strong>同源策略 (Same-Origin Policy)</strong>：如果两个页面的域名、协议或端口不同，前端直接用 <code>fetch</code> 或 <code>AJAX</code> 去请求对方的数据，浏览器就会报错拦截（也就是我们常说的 CORS 跨域报错）。</p><p>但在早期，前端工程师们发现了一个“官方漏洞”： 虽然 AJAX 被限制了，但是 HTML 里带有 <code>src</code> 属性的标签是<strong>不受跨域限制的</strong>！</p><ul><li>你可以毫无阻碍地加载别人域名的图片：<code>&lt;img src=&quot;别人家的.jpg&quot;&gt;</code></li><li>也可以加载别人域名的 CSS：<code>&lt;link href=&quot;别人家的.css&quot;&gt;</code></li><li><strong>最关键的是，你可以加载并执行别人域名的 JS 脚本：<code>&lt;script src=&quot;别人家的.js&quot;&gt;&lt;/script&gt;</code></strong></li></ul><p>JSONP 就是利用这个 <code>&lt;script&gt;</code> 标签可以跨域下载并执行代码的特性，巧妙地把数据“偷”回来的。</p><h3 id="JSONP-是怎么运作的？"><a href="#JSONP-是怎么运作的？" class="headerlink" title="JSONP 是怎么运作的？"></a>JSONP 是怎么运作的？</h3><p>假设你的网站 <code>a.com</code> 想向 <code>api.b.com</code> 获取用户数据：</p><p><strong>第一步：前端先在全局准备一个“接收器”</strong> 你先在自己的代码里定义好一个全局函数，等着接收数据。</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">receiveData</span> = <span class="keyword">function</span>(<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;太棒了，拿到了跨域数据：&quot;</span>, data);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p><strong>第二步：前端动态创建 <code>&lt;script&gt;</code> 标签发请求</strong> 你用 JS 动态创建一个 script 标签，把目标接口写在 <code>src</code> 里，<strong>并且通过参数把刚才的函数名告诉后端</strong>。</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> script = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>);</span><br><span class="line"><span class="comment">// 注意这里的 ?callback=receiveData</span></span><br><span class="line">script.<span class="property">src</span> = <span class="string">&#x27;https://api.b.com/get_user?callback=receiveData&#x27;</span>; </span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(script); <span class="comment">// 插入页面，浏览器立即发出请求</span></span><br></pre></td></tr></table></figure><p><strong>第三步：服务端配合“穿衣服”（最关键）</strong> <code>api.b.com</code> 的服务器收到请求，看到了 <code>callback=receiveData</code> 这个参数。 如果它只是返回纯粹的 JSON 数据 <code>{&quot;name&quot;: &quot;张三&quot;}</code>，浏览器的 script 标签是不认识的，会报错。 所以，服务端会把 JSON 数据当作参数，<strong>塞进你传过来的函数名里包裹起来</strong>（这就是 JSONP 中 Padding 的意思——填充/包裹），然后返回一段纯文本的JavaScript 代码：</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">receiveData</span>(&#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;张三&quot;</span>&#125;);</span><br></pre></td></tr></table></figure><p><strong>第四步：浏览器自动执行代码</strong> 你的浏览器下载完这段文本后，把它当成正常的 JS 代码直接执行。这一执行，正好调用了你在第一步里定义好的 <code>receiveData</code> 函数，数据就被完美地传进了你的系统里！</p><h3 id="为什么现在很少用-JSONP-了？"><a href="#为什么现在很少用-JSONP-了？" class="headerlink" title="为什么现在很少用 JSONP 了？"></a>为什么现在很少用 JSONP 了？</h3><p>虽然 JSONP 巧妙地绕过了浏览器的安全封锁，但它有几个致命的硬伤，导致现在正规开发中已经被边缘化：</p><ul><li><strong>只能发 GET 请求：</strong> 因为它本质上是给 <code>&lt;script&gt;</code> 标签赋值 <code>src</code> 来发起的，这就注定了它无法发送 POST、PUT、DELETE 等请求。如果你想上传一张图片或提交一大段表单，JSONP 毫无办法。</li><li><strong>巨大的安全隐患 (XSS 风险)：</strong> JSONP 的本质是<strong>无条件信任并执行别人服务器返回的代码</strong>。如果那个 API 被黑客劫持，或者由于漏洞被注入了恶意代码，它返回的不再是数据，而是一句 <code>alert(&#39;你被黑了&#39;)</code> 甚至窃取你网站用户密码的逻辑，你的网站也会直接执行。</li><li><strong>错误处理极差：</strong> 使用现代的 <code>fetch</code>，你可以轻松拿到 404、500 等 HTTP 状态码并处理错误。但用 JSONP，如果请求失败了，你只能靠 <code>script.onerror</code> 知道“它没连上”，根本无法获取具体的错误原因。</li></ul><p><strong>总结：</strong> JSONP 是特定历史时期的产物，是一种靠前后端默契配合绕开规则的技巧。如今，标准的 <strong>CORS（跨域资源共享）</strong> 才是王道——也就是服务端在响应头里明确告诉浏览器 <code>Access-Control-Allow-Origin: *</code>，允许前端直接跨域请求。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习心得 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 零碎知识 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>EdgeOne加速Vercel获取真实用户IP</title>
+      <link href="/posts/2fd6/"/>
+      <url>/posts/2fd6/</url>
+      
+        <content type="html"><![CDATA[<h2 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h2><p>使用Vercel部署的Twikoo并且启用了EdgeOne加速，开启了海内外分流，出现无法获取用户真实IP的问题，获取到的是CDN的IP。</p><h2 id="问题根源"><a href="#问题根源" class="headerlink" title="问题根源"></a>问题根源</h2><p>Vercel Hobby/Pro 会过滤、重写外部传入的 HTTP 头：</p><ol><li><code>EO‑Connecting‑IP</code>：EO 内置头，Vercel 直接丢弃</li><li><code>X‑Forwarded‑For</code>：Vercel 会重写覆盖，只能拿到 EO 节点 IP，所以 TwikooIP 属地错误</li></ol><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="EdgeOne-控制台配置"><a href="#EdgeOne-控制台配置" class="headerlink" title="EdgeOne 控制台配置"></a>EdgeOne 控制台配置</h3><p>使用「真实客户端 IP 头部」：</p><ul><li>开关打开</li><li><strong>头部名称</strong>：<code>Eo‑Client‑Ip</code></li><li>保存，等待 2‑5 分钟配置全网生效</li></ul><blockquote><p>EO 会自动把访客真实 IP 填入这个自定义头部，不需要手动写变量。</p></blockquote><h3 id="Vercel‑Twikoo-配置"><a href="#Vercel‑Twikoo-配置" class="headerlink" title="Vercel‑Twikoo 配置"></a>Vercel‑Twikoo 配置</h3><ol><li>环境变量 <code>TWIKOO_IP_HEADERS</code> 值（严格复制，小写 + 合法 JSON）</li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[&quot;headers.eo-client-ip&quot;]</span><br></pre></td></tr></table></figure><ol><li><strong>保存环境变量后必须点 Redeploy 重新部署 Vercel 项目</strong>，只保存不部署不会生效。</li></ol><h2 id="场景：分流"><a href="#场景：分流" class="headerlink" title="场景：分流"></a>场景：分流</h2><blockquote><p>架构：</p><ol><li><strong>国内用户 → EdgeOne CDN → Vercel</strong>：请求携带自定义头 <code>eo‑client‑ip</code></li><li><strong>海外用户：绕过 EdgeOne，直接访问 Vercel</strong>：不会携带 <code>eo‑client‑ip</code>，此时 Vercel 原生提供 <code>x‑forwarded‑for</code> 拿到访客真实 IPVercel</li></ol></blockquote><p>Twikoo 的<code>TWIKOO_IP_HEADERS</code>支持<strong>数组多表头，按顺序优先读取</strong>：数组写两个，优先读第一个；为空就自动往下读第二个。</p><ol><li><strong>国内访问域名（走 EdgeOne）</strong></li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&quot;eo-client-ip&quot;:&quot;你的国内公网IP&quot;,&quot;x-forwarded-for&quot;:&quot;EO节点IP&quot;&#125;</span><br></pre></td></tr></table></figure><p>Twikoo 优先读取<code>eo‑client‑ip</code>正确 IP。</p><ol><li><strong>海外环境直连 Vercel 域名（不走 EdgeOne）</strong></li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&quot;eo-client-ip&quot;:undefined,&quot;x-forwarded-for&quot;:&quot;海外访客真实IP&quot;&#125;</span><br></pre></td></tr></table></figure><p><code>eo‑client‑ip</code>为空，自动降级读取<code>x‑forwarded‑for</code>拿到真实 IP。</p><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol><li>只有<strong>海外请求绕过 EdgeOne 直接访问 Vercel</strong>的时候，<code>x‑forwarded‑for</code>才是可信真实 IP； 国内走 EdgeOne 的流量，Vercel 会重写 XFF，XFF 拿到的是 EO 节点 IP，所以<strong>数组顺序必须 eo‑client‑ip 放第一位</strong>。</li><li>修改 Vercel 环境变量，<strong>必须 Redeploy 重新构建</strong>。</li><li>EdgeOne 配置修改要等待 2‑5 分钟生效。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习心得 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 零碎知识 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>EdgeOne不自动部署</title>
+      <link href="/posts/6931/"/>
+      <url>/posts/6931/</url>
+      
+        <content type="html"><![CDATA[<h2 id="现象复现"><a href="#现象复现" class="headerlink" title="现象复现"></a>现象复现</h2><p>绑定 GitHub 仓库，推送到<code>page</code>分支(非主分支)，EdgeOne 不会自动触发部署；更新仓库内容，EdgeOne不会自动部署。</p><blockquote><p>注意在项目设置中正确配置域名所对应的分支</p></blockquote><h2 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h2><h3 id="方案-1：原生-Git-集成（Webhook-方式，优先）"><a href="#方案-1：原生-Git-集成（Webhook-方式，优先）" class="headerlink" title="方案 1：原生 Git 集成（Webhook 方式，优先）"></a>方案 1：原生 Git 集成（Webhook 方式，优先）</h3><ol><li>EdgeOne 断开 Git 关联</li><li>GitHub 应用<code>EdgeOne Makers</code>授权，确保该仓库拥有权限</li><li>EdgeOne 重新绑定仓库，生产分支指定<code>page</code>，开启自动部署</li><li>确认 GitHub 仓库出现 EdgeOne Webhook</li><li>push 代码到<code>page</code>分支，观察<code>Recent Deliveries</code>和 EdgeOne 部署列表</li></ol><h3 id="方案-2：兜底方案（原生-Webhook-持续异常时使用）"><a href="#方案-2：兜底方案（原生-Webhook-持续异常时使用）" class="headerlink" title="方案 2：兜底方案（原生 Webhook 持续异常时使用）"></a>方案 2：兜底方案（原生 Webhook 持续异常时使用）</h3><p>绕过 GitHub 仓库 Webhook，使用<strong>部署钩子 + GitHub Action</strong></p><ol><li>EdgeOne 项目设置 → 部署钩子，创建钩子，复制 POST 地址</li><li>在仓库新建<code>.github/workflows/edgeone-deploy.yml</code>，监听<code>page</code>分支 push，调用该 POST 地址触发部署。</li></ol><blockquote><p>由 GitHub Action 主动调用接口触发部署，不再依赖仓库 webhook。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习心得 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 零碎知识 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Git 仓库嵌套（嵌套 git / 子模块坑）</title>
+      <link href="/posts/1aa1/"/>
+      <url>/posts/1aa1/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>今天在备份博客的时候遇到了一个问题，主题目录无法提交到github仓库，最终发现是git仓库嵌套问题</p></blockquote><h2 id="什么是-Git-仓库嵌套"><a href="#什么是-Git-仓库嵌套" class="headerlink" title="什么是 Git 仓库嵌套?"></a>什么是 Git 仓库嵌套?</h2><p><strong>一个 git 仓库里面，放了另一个完整 git 仓库</strong>。 也就是父仓库文件夹里面，某个子文件夹内部藏了一个 <code>.git</code> 文件夹。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">你的主仓库(父git，有/.git)</span><br><span class="line">└── themes/anzhiyu   ← 这个文件夹里面又有一个 /.git</span><br></pre></td></tr></table></figure><blockquote><p>这就是仓库嵌套。父 git 会把这个子文件夹识别成一个<strong>特殊的 git 指针</strong>，<strong>不会读取子文件夹里面任何文件</strong>。</p></blockquote><h2 id="怎么产生的？"><a href="#怎么产生的？" class="headerlink" title="怎么产生的？"></a>怎么产生的？</h2><ol><li><code>git clone 地址 themes/anzhiyu</code> clone 下来的项目自带内部<code>.git</code></li><li>复制粘贴另一个 git 项目的整个文件夹过来，没删掉里面的<code>.git</code></li></ol><blockquote><p>重点：<strong>哪怕你后来把子文件夹内部的 <code>.git</code> 删除了，父 git 的索引缓存还会记住它曾经是嵌套仓库，问题依旧存在！GitHub 显示蓝色箭头文件夹</strong>。</p></blockquote><h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><ol><li>本地文件全都在，磁盘上看得见；</li><li><code>git add 子文件夹</code>，执行后 <code>git commit</code> → <code>nothing to commit, working tree clean</code>，提交不上文件；</li><li><code>git status</code>会显示：<code>xxx(modified content)</code>；</li><li>推上 GitHub：文件夹出现<strong>蓝色箭头</strong>，点不开，看不到里面真实源码，只存一个 commit 哈希指针。</li></ol><blockquote><p>GitHub 蓝色箭头 = git 子模块标记，仓库<strong>没有保存子文件夹的真实代码</strong>。</p></blockquote><h2 id="两种处理方案"><a href="#两种处理方案" class="headerlink" title="两种处理方案"></a>两种处理方案</h2><h3 id="方案-A：把子仓库变成普通文件夹"><a href="#方案-A：把子仓库变成普通文件夹" class="headerlink" title="方案 A：把子仓库变成普通文件夹"></a>方案 A：把子仓库变成普通文件夹</h3><p>彻底解除嵌套，把子文件夹当做普通文件交给父 git 管理。</p><ol><li>删除子文件夹内部隐藏的 <code>.git</code></li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># windows</span><br><span class="line">Remove-Item -Recurse -Force themes/anzhiyu\.git</span><br></pre></td></tr></table></figure><ol><li><strong>清除父 git 残留的缓存记录（必做！）</strong></li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git rm --cached themes/anzhiyu</span><br></pre></td></tr></table></figure><blockquote><p><code>--cached</code>：<strong>只删 git 索引，本地文件完全不动，千万不要丢掉这个参数</strong></p></blockquote><ol><li>如果有 <code>.gitmodules</code> 文件，删掉（子模块配置文件）</li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Remove-Item -Force .gitmodules</span><br></pre></td></tr></table></figure><ol><li>重新加入版本管理</li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add themes/anzhiyu</span><br><span class="line">git commit -m &quot;转为普通目录&quot;</span><br><span class="line">git push</span><br></pre></td></tr></table></figure><p>优点：简单，克隆仓库不需要额外命令。 缺点：子项目不能用 git 更新，后续更新只能手动下载覆盖。</p><hr><h3 id="方案-B：正式使用-Git-Submodule（网上查到的没试）"><a href="#方案-B：正式使用-Git-Submodule（网上查到的没试）" class="headerlink" title="方案 B：正式使用 Git Submodule（网上查到的没试）"></a>方案 B：正式使用 Git Submodule（网上查到的没试）</h3><p>如果你想保留子仓库的 git 版本，可以用子模块，而不是直接 clone 丢进去。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git submodule add https://github.com/xxx/xxx-theme.git themes/anzhiyu</span><br></pre></td></tr></table></figure><p>会自动生成 <code>.gitmodules</code> 文件，记录子仓库地址。</p><p>子模块的坑：</p><ol><li><strong>别人克隆你的完整仓库，必须多执行一步才能拿到子模块文件</strong></li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone 你的仓库地址</span><br><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure><p>不执行，拉下来的<code>themes/anzhiyu</code>是空文件夹。 2. 更新子模块、提交、切换分支都有额外命令，新手极易踩坑。</p><blockquote><p>Hexo 博客场景<strong>不推荐新手用 submodule</strong>。</p></blockquote><h2 id="避坑指南"><a href="#避坑指南" class="headerlink" title="避坑指南"></a>避坑指南</h2><ol><li>下载第三方项目 / 主题，优先下载 zip 压缩包解压，不要 git clone，从根源避免嵌套 git；</li><li>看到 GitHub 蓝色箭头文件夹，就代表这是子模块，没有存真实文件；</li><li>仅仅删除子文件夹内部<code>.git</code>不够，<strong>一定要执行<code>git rm --cached</code>清理父 git 旧缓存</strong>，否则旧记录还在；</li><li><code>.gitignore</code>不要写<code>themes/*</code>，会直接忽略整个主题目录。</li></ol><h2 id="快速排查命令"><a href="#快速排查命令" class="headerlink" title="快速排查命令"></a>快速排查命令</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#查看文件夹下全部文件，包含隐藏的.git</span><br><span class="line">ls themes/anzhiyu -Force</span><br><span class="line"></span><br><span class="line">#查看当前git状态，看是否存在嵌套仓库标记</span><br><span class="line">git status</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习心得 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 零碎知识 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java学习笔记04</title>
       <link href="/posts/83ea/"/>
       <url>/posts/83ea/</url>

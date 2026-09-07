@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://blog.itrf.cn/sitemap.xml
+Sitemap: https://blog.itrf.cn/baidusitemap.xml
