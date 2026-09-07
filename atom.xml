@@ -6,7 +6,7 @@
   <link href="https://blog.itrf.cn/atom.xml" rel="self"/>
   
   <link href="https://blog.itrf.cn/"/>
-  <updated>2026-09-07T07:30:42.697Z</updated>
+  <updated>2026-09-07T11:05:26.905Z</updated>
   <id>https://blog.itrf.cn/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo 使用 patch‑package 保存 node_modules 修改</title>
+    <link href="https://blog.itrf.cn/posts/8836/"/>
+    <id>https://blog.itrf.cn/posts/8836/</id>
+    <published>2026-09-07T09:02:51.000Z</published>
+    <updated>2026-09-07T11:05:26.905Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>适用场景：你手动修改了 <code>node_modules</code> 内部第三方包源码，重装依赖、换电脑迁移会丢失改动。 </p></blockquote><h2 id="什么是-patch‑package"><a href="#什么是-patch‑package" class="headerlink" title="什么是 patch‑package"></a>什么是 patch‑package</h2><p>直接修改 <code>node_modules</code> 只是临时效果，执行 <code>npm install</code> 就会被官方原版覆盖。 <code>patch‑package</code> 对比你修改前后代码，生成 <code>patches/*.patch</code> 补丁文件，提交进仓库；执行 <code>npm install</code> 自动把你的修改打回去，实现换电脑、重装依赖改动不丢失。</p><blockquote><p>Hexo 博客迁移电脑不再复制庞大、容易出错的 <code>node_modules</code>。</p></blockquote><h2 id="一、旧电脑生成补丁步骤"><a href="#一、旧电脑生成补丁步骤" class="headerlink" title="一、旧电脑生成补丁步骤"></a>一、旧电脑生成补丁步骤</h2><h3 id="1、安装-patch‑package"><a href="#1、安装-patch‑package" class="headerlink" title="1、安装 patch‑package"></a>1、安装 patch‑package</h3><p>进入你的 Hexo 项目根目录（<code>package.json</code>所在文件夹）执行：</p><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm install patch-package --save-dev</span><br></pre></td></tr></table></figure><h3 id="2、修改-package-json-scripts，增加-postinstall"><a href="#2、修改-package-json-scripts，增加-postinstall" class="headerlink" title="2、修改 package.json scripts，增加 postinstall"></a>2、修改 package.json scripts，增加 postinstall</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hexo-site&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;private&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;build&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hexo generate&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;clean&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hexo clean&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;deploy&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy &amp;&amp; python push_baidu.py &amp;&amp; hexo clean&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;server&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hexo server&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;postinstall&quot;</span><span class="punctuation">:</span> <span class="string">&quot;patch-package&quot;</span>  <span class="comment">//这里添加</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;hexo&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;8.1.1&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;dependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="comment">// 你的原有依赖不动</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;devDependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;patch-package&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^8.0.1&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><blockquote><p><code>&quot;postinstall&quot;: &quot;patch-package&quot;</code>：每次<code>npm install</code>结束自动执行补丁应用，<strong>不要手动运行这条命令</strong>，npm 会自动调用。</p></blockquote><h3 id="3、确认你的修改还在"><a href="#3、确认你的修改还在" class="headerlink" title="3、确认你的修改还在"></a>3、确认你的修改还在</h3><p><strong>关键前提，千万不要执行 <code>npm install</code>！</strong> 打开你改动过的 <code>node_modules/包名/xxx.js</code>，确认你的手动修改已经保存。</p><blockquote><p>一旦运行<code>npm install</code>，node_modules 恢复原版，改动直接消失，无法生成补丁。</p></blockquote><h3 id="4、生成补丁文件"><a href="#4、生成补丁文件" class="headerlink" title="4、生成补丁文件"></a>4、生成补丁文件</h3><p>项目根目录执行，把<code>包名</code>替换成你修改的包文件夹名字（<code>node_modules/</code>后面的文件夹名）。</p><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npx patch-package 包名</span><br></pre></td></tr></table></figure><p>示例：修改了 <code>node_modules/hexo-renderer-kramed</code></p><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npx patch-package hexo-renderer-kramed</span><br></pre></td></tr></table></figure><h4 id="成功输出"><a href="#成功输出" class="headerlink" title="成功输出"></a>成功输出</h4><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">created patch file patches/hexo-renderer-kramed+<span class="number">0</span>.<span class="number">1</span>.<span class="number">4</span>.patch</span><br></pre></td></tr></table></figure><p>项目根目录出现全新 <code>patches</code> 文件夹，补丁文件就在这里。</p><h4 id="报错：There-don-39-t-appear-to-be-any-changes"><a href="#报错：There-don-39-t-appear-to-be-any-changes" class="headerlink" title="报错：There don&#39;t appear to be any changes"></a>报错：<code>There don&#39;t appear to be any changes</code></h4><blockquote><p>含义：没有检测到任何改动。 原因：</p></blockquote><ol><li>你的修改已经丢失（执行过 npm install），需要重新手动改 node_modules 里面文件，保存，立刻执行上面命令；</li><li>包名字写错；</li><li>不在项目根目录执行命令。</li></ol><h3 id="5、git-提交文件清单"><a href="#5、git-提交文件清单" class="headerlink" title="5、git 提交文件清单"></a>5、git 提交文件清单</h3><p><strong>提交到 git</strong></p><ul><li><code>patches/</code>整个文件夹</li><li><code>package.json</code></li><li><code>package‑lock.json</code></li><li><code>source/</code>、<code>themes/</code>、<code>_config.yml</code>等博客源码配置</li></ul><p><strong>绝对不要提交</strong></p><ul><li><code>node_modules/</code></li></ul><p><code>.gitignore</code>确保有这几行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy_git/</span><br><span class="line">db.json</span><br></pre></td></tr></table></figure><p>提交示例：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add patches package.json package-lock.json</span><br><span class="line">git commit -m &quot;patch:保存第三方依赖自定义修改&quot;</span><br></pre></td></tr></table></figure><h2 id="二、新电脑迁移完整步骤"><a href="#二、新电脑迁移完整步骤" class="headerlink" title="二、新电脑迁移完整步骤"></a>二、新电脑迁移完整步骤</h2><ol><li>新电脑安装 <strong>和旧电脑一致大版本 Node.js</strong>，安装 Git。</li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 旧电脑查看版本</span><br><span class="line">node -v</span><br></pre></td></tr></table></figure><ol><li>获取博客源码 两种方式任选其一</li></ol><ul><li>git clone 你的仓库；</li><li>拷贝本地项目文件夹（<strong>不要拷贝 node_modules</strong>）。</li></ul><ol><li>Hexo 全局命令（如需要）</li></ol><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure><ol><li>安装项目依赖（核心）</li></ol><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure><blockquote><p>npm install 完成之后自动触发<code>postinstall</code>，控制台会打印<code>Applying patches...</code>，自动应用你写的修改，无需手动操作GitHub。</p></blockquote><ol><li>测试运行博客</li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run server</span><br></pre></td></tr></table></figure><p>访问 <code>http://localhost:4000</code>，验证你对依赖的自定义修改已经生效。</p><h2 id="三、本地测试补丁是否有效"><a href="#三、本地测试补丁是否有效" class="headerlink" title="三、本地测试补丁是否有效"></a>三、本地测试补丁是否有效</h2><p>生成补丁完成后，本地模拟迁移环境：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 删除本地node_modules</span><br><span class="line">rm -rf node_modules</span><br><span class="line"># 重新安装依赖，看补丁自动打上</span><br><span class="line">npm install</span><br><span class="line">npm run server</span><br></pre></td></tr></table></figure><p>如果功能正常，代表补丁完全没问题，可以放心迁移电脑。</p><h2 id="四、应急临时迁移方案"><a href="#四、应急临时迁移方案" class="headerlink" title="四、应急临时迁移方案"></a>四、应急临时迁移方案</h2><blockquote><p>仅用于临时搬家，<strong>不要提交 node_modules 到 git 仓库</strong></p></blockquote><ol><li>旧电脑复制<strong>整个项目文件夹，包含已经修改好的 node_modules</strong>；</li><li>拷贝到新电脑，直接运行<code>npm run server</code>；</li><li>新电脑跑通之后，立刻按照教程生成<code>patches</code>补丁，后续不再依赖拷贝 node_modules。</li></ol><h2 id="五、常见踩坑"><a href="#五、常见踩坑" class="headerlink" title="五、常见踩坑"></a>五、常见踩坑</h2><ol><li><strong>升级被打补丁的 npm 包</strong></li></ol><blockquote><p>补丁文件记录的是特定版本差异，一旦升级该依赖包，补丁大概率失效。 需要：重新修改新版本<code>node_modules</code>源码 → 再次执行<code>npx patch-package 包名</code>重新生成补丁。</p></blockquote><ol><li>部署 CI/GitHub Actions</li></ol><blockquote><p>只需要正常执行<code>npm install</code>，postinstall 钩子会自动打补丁，不需要额外脚本。</p></blockquote><ol><li>区分主题修改和依赖修改</li></ol><ul><li>修改<code>themes/xxx</code>：你的博客源码，直接 git 提交，<strong>不需要 patch‑package</strong>；</li><li>修改<code>node_modules/xxx</code>第三方库源码：必须使用 patch‑package。</li></ul><ol><li>查看补丁是否执行成功 运行<code>npm install</code>，看控制台输出是否打印 <code>Applying patches... xxx ✔</code>，代表补丁成功应用。</li></ol><h2 id="六、命令速查表"><a href="#六、命令速查表" class="headerlink" title="六、命令速查表"></a>六、命令速查表</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 安装工具</span><br><span class="line">npm install patch-package --save-dev</span><br><span class="line"></span><br><span class="line"># 生成补丁</span><br><span class="line">npx patch-package 包名</span><br><span class="line"></span><br><span class="line"># 测试补丁（模拟新电脑环境）</span><br><span class="line">rm -rf node_modules</span><br><span class="line">npm install</span><br><span class="line">npm run server</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">Hexo 使用 patch‑package 保存 node_modules 修改</summary>
+    
+    
+    <content src="https://t.alcy.cc/ycy?_r_=5325bb48-2db4-df5a-7e47-4cbee267dec9" type="image"/>
+    
+    
+    <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
+    
+  </entry>
   
   <entry>
     <title>JSONP一种解决跨域的古老方法</title>
@@ -29,7 +49,7 @@
     <summary type="html">JSONP一种解决跨域的古老方法</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=73c2b8c5-702c-33bd-4728-4a10707da780" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=aacfbdd4-6077-7f2e-61e1-380c6502c72c" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -49,7 +69,7 @@
     <summary type="html">EdgeOne加速Vercel获取真实用户IP</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=4cca5846-76be-c052-41ce-947641cbd201" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=ef552b04-e369-8821-0e92-f34ae214b3ee" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -69,7 +89,7 @@
     <summary type="html">EdgeOne 不会自动触发部署，更新仓库内容，EdgeOne不会自动部署。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=99e22299-9009-aeb6-a6b7-339a3433b26b" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=8aa89294-82d8-829d-5609-1c0c6741a905" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -89,7 +109,7 @@
     <summary type="html">解决git仓库嵌套的问题</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=2a422fea-f4c7-0052-9c2e-640127dc0587" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=14bcbf71-462d-d1b6-e73e-5fd145f41bfe" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -109,7 +129,7 @@
     <summary type="html">Java学习笔记补充知识点</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=db429777-c123-c197-d19f-874327827039" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=d66ecff6-02b2-2018-4512-d6cffa412e49" type="image"/>
     
     
     <category term="Java学习笔记" scheme="https://blog.itrf.cn/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -129,7 +149,7 @@
     <summary type="html">Java学习笔记常用类</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=8d1206c9-777e-4813-a17d-083366cc4c4f" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=342a6b29-c401-6bec-e68d-f82e97a14e02" type="image"/>
     
     
     <category term="Java学习笔记" scheme="https://blog.itrf.cn/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -149,7 +169,7 @@
     <summary type="html">Java面向对象编程相关知识点</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=e6948bcb-31aa-3562-b32a-bc34ee3fea7e" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=8e02a21f-527c-fef2-d7ef-8096e003ea95" type="image"/>
     
     
     <category term="Java学习笔记" scheme="https://blog.itrf.cn/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -169,7 +189,7 @@
     <summary type="html">Java基础知识点</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=ff10a9e9-f602-d21d-dc9d-649cca34d815" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=c829ac92-8e3a-7319-fa85-086986f77f86" type="image"/>
     
     
     <category term="Java学习笔记" scheme="https://blog.itrf.cn/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -189,7 +209,7 @@
     <summary type="html">本文针对 openclaw plugins install @tencent-connect/openclaw-qqbot 执行时出现的 npm install failed 报错，提供更清晰、更健壮、更易操作的解决方案，覆盖问题定位、环境修复、手动安装、权限配置全流程。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=906c966c-5e41-1397-0a11-c983fa04992a" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=8a58417c-6b41-c677-a17d-89c4eb5e9121" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -209,7 +229,7 @@
     <summary type="html">Bitcoin is a decentralized digital currency that can be used without a centralized authority or bank. It uses peer-to-peer technology to allow users to send and receive money without the need for a financial institution.</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=3535ee4d-cb55-9926-898e-6d2339447388" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=9633b7d5-b5d2-280d-5e13-000cffc03d35" type="image"/>
     
     
     <category term="虚拟货币" scheme="https://blog.itrf.cn/tags/%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81/"/>
@@ -231,7 +251,7 @@
     <summary type="html">前端开发中，有一个高频踩坑场景：前端绑定域名后，HTTP 协议下请求后端 IP 接口一切正常，可一旦开启 SSL 切换为 HTTPS，接口就直接请求失败，控制台报出红色错误 —— 这不是代码 Bug，而是浏览器的安全限制，核心原因就是「Mixed Content（混合内容）」。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=b4e1dc74-ec35-a2c2-1bc5-8b87de071643" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=e33df7ce-19a8-069e-1d19-dacc8fa8e853" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -251,7 +271,7 @@
     <summary type="html">阿里云大模型工程师ACA认证学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=2916aa48-dd79-db9b-0401-c42e333157c5" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=528ab971-6565-3cad-0695-05f2490458d3" type="image"/>
     
     
     <category term="学习笔记" scheme="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -273,7 +293,7 @@
     <summary type="html">本文介绍了各NAT类型打洞可行性，以及实际操作步骤。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=d79947b5-166c-d7e1-ad0e-926bce8d8e2e" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=05f4866d-1038-e3ed-ca6b-c15ec74acb7c" type="image"/>
     
     
     <category term="学习笔记" scheme="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -293,7 +313,7 @@
     <summary type="html">用过 Vercel 的开发者大概都对它的便捷性印象深刻 —— 将 Node 项目推送到 GitHub 后，几分钟内就能自动构建部署并提供访问服务，免费计划也足够日常折腾。但随着 Vercel 域名 DNS 污染越来越频繁，不挂梯子几乎无法访问，好好的免费资源就这么闲置了实在可惜。于是我尝试用腾讯云 EO（EdgeOne）对其进行加速，过程中踩了个典型的坑，最终摸索出解决方案，特此记录分享给有同样需求的朋友。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=6e9752eb-cad8-9480-88a5-b05a7980069a" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=a44e6ca8-3a3e-cb8b-e039-da9d1286b10d" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -313,7 +333,7 @@
     <summary type="html">在数据查询场景中，“如何高效呈现大量数据” 是开发者绕不开的问题。分页作为解决 “数据量过大导致的内存溢出、响应缓慢” 的核心手段，主要分为数据库分页（数据库端过滤 + 限制返回条数）和程序分页（全量查询后内存中分片）两种实现方式。很多开发者在选型时会陷入纠结：到底该让数据库 “多干活”，还是让应用程序 “扛压力”？其实两者没有绝对优劣，核心取决于数据量、业务复杂度、实时性要求等关键因素。本文将从原理、场景、优缺点、实操建议四个维度，帮你彻底理清选型逻辑，避免踩坑。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=40f46b46-f626-3719-c584-f3ef6c45c001" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=85edd7f9-787b-24bb-d031-c13a36838db2" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -333,7 +353,7 @@
     <summary type="html">Flask项目无法获取favicon.ico原因以及解决方案</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=253ff0a4-64b8-13e8-d278-07ea8f77cd87" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=7b983887-de4b-66e0-7643-9dbfd1e1ceab" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -353,7 +373,7 @@
     <summary type="html">在使用腾讯云 EdgeOne 海外节点加速海外业务时，很多开发者会遇到一个核心问题：Nginx 日志中记录的是 EdgeOne 节点 IP 而非用户真实 IP，导致无法进行用户行为分析、地域统计和异常访问拦截。本文将从「问题原理」「手动配置」「自动化更新」「故障排查」四个维度，提供一套适配 Nginx + 宝塔面板的完整解决方案，新手也能快速上手。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=5926c4a7-8b53-00ae-d4e5-c993b817ceda" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=464e1509-22bc-e22f-5fed-728d7ebfc143" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -373,7 +393,7 @@
     <summary type="html">这是一个基于Flask框架开发的个人音乐播放器项目，旨在模拟网易云音乐的核心功能并提供简洁的用户体验。该项目集成了网易云音乐API，支持音乐搜索、歌单管理、用户认证等功能，为音乐爱好者提供一个轻量级的音乐播放和管理平台。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=0d9dc46d-37e8-e550-2324-1bc7088868f4" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=b2906b6e-868a-e3e0-f50c-be6fbc3377a8" type="image"/>
     
     
     <category term="原创项目" scheme="https://blog.itrf.cn/tags/%E5%8E%9F%E5%88%9B%E9%A1%B9%E7%9B%AE/"/>
@@ -393,7 +413,7 @@
     <summary type="html">href属性中/的不同作用</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=e2aa9905-c2d5-f33f-ded2-e45461ebcaa6" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=6a1f226e-2d87-79eb-8d48-6c187fe706bd" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -413,7 +433,7 @@
     <summary type="html">Linux 常用命令大全</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=1c024eb2-94a1-8886-e734-7894a9c34a49" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=f38833d5-ed01-cad2-14e6-201d53430487" type="image"/>
     
     
     <category term="学习笔记" scheme="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -435,7 +455,7 @@
     <summary type="html">SQL Server学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=bf219cb1-e141-e3da-01c7-3fb0e5f1bcdb" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=dc324d54-e356-211c-7cad-1c347f17c6ad" type="image"/>
     
     
     <category term="学习笔记" scheme="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -455,7 +475,7 @@
     <summary type="html">Git 推送失败问题解决指南</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=35b2907f-d66a-a200-9de8-20d148323be7" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=4cf42387-07f6-3150-4aba-b4ba75976a6a" type="image"/>
     
     
     <category term="学习笔记" scheme="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -475,7 +495,7 @@
     <summary type="html">正则表达式学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=20210800-1a10-8c7e-d97b-4461bbb0bb6d" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=1e50a506-c08c-07c9-3691-c79fbe77668d" type="image"/>
     
     
     <category term="学习笔记" scheme="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -495,7 +515,7 @@
     <summary type="html">这是一个秘密花园</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=0f9fc52a-a9b4-c429-d792-ab322299c19b" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=96d357b1-700f-e686-f4bb-c79f48e55bc6" type="image"/>
     
     
     <category term="加密" scheme="https://blog.itrf.cn/tags/%E5%8A%A0%E5%AF%86/"/>
