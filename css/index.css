@@ -14744,10 +14744,10 @@ h1.page-title + .tag-cloud-list {
     -webkit-justify-content: center;
     justify-content: center;
     color: var(--anzhiyu-white);
-    background: rgba(255,255,255,0.68);
+    background: var(--anzhiyu-main);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
-    border: 1px solid rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.35);
     -webkit-box-shadow: var(--anzhiyu-shadow-nav);
     box-shadow: var(--anzhiyu-shadow-nav);
     border-radius: 50px;
@@ -14772,8 +14772,8 @@ h1.page-title + .tag-cloud-list {
     transition: 0.5s;
   }
   [data-theme="dark"] #travellings_tip {
-    background: rgba(29,30,34,0.55);
-    border-color: rgba(255,255,255,0.12);
+    background: var(--anzhiyu-main);
+    border-color: rgba(255,255,255,0.35);
   }
   #body-wrap:has(#travellings_button:hover) #travellings_tip {
     opacity: 1;
