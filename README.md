@@ -3,7 +3,7 @@
   
 
   <div>
-    <a href="https://blog.itrf.cn/" target="_blank"><img src="https://img.shields.io/badge/Website-博客-8c36db" alt="博客链接" /></a>&emsp;
+    <a href="https://blog.itrf.cn/" target="_blank"><img src="https://img.shields.io/badge/Website-博客-8c36db" /></a>&emsp;
     <img src="https://komarev.com/ghpvc/?username=itrfcn&label=Views&color=orange&style=flat" alt="访问量统计" />&emsp;
   </div>
 <!-- Snake Code Contribution Map 贪吃蛇代码贡献图 -->
@@ -13,15 +13,13 @@
   <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/itrfcn/itrfcn/output/github-contribution-grid-snake.svg" loading="lazy">
 </picture>
 </div>
-
-# 🙋 Hello
-
+#  🙋 Hello
 ### 🤺 About Me
-<a href="https://blog.itrf.cn">
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&duration=3000&pause=500&color=8c36db&vCenter=true&multiline=true&repeat=false&width=850&height=120&lines=你好陌生人，我叫LynxFrost。热爱编程、健身、旅行;常在代码里打磨逻辑，在运动积蓄能量，在旅途拓宽眼界;个人博客：blog.itrf.cn" alt="RF极客日志" loading="lazy">
+<a href="https://www.itrf.cn">
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&duration=3000&pause=500&color=000000&vCenter=true&multiline=true&repeat=false&width=850&height=120&lines=%E4%BD%A0%E5%A5%BD%E9%99%8C%E7%94%9F%E4%BA%BA%EF%BC%8C%E6%88%91%E5%8F%ABLynxFrost%E3%80%82%E7%83%AD%E7%88%B1%E7%BC%96%E7%A8%8B%E3%80%81%E5%81%A5%E8%BA%AB%E3%80%81%E6%97%85%E8%A1%8C%E3%80%82;%E6%97%A5%E5%B8%B8%E6%B2%89%E8%BF%B7%E6%95%B2%E4%BB%A3%E7%A0%81%EF%BC%8C%E9%97%B2%E6%9A%87%E6%97%B6%E6%B3%A1%E5%9C%A8%E5%81%A5%E8%BA%AB%E6%88%BF%E6%B5%81%E6%B1%97%EF%BC%8C%E6%88%96%E8%80%85%E8%83%8C%E4%B8%8A%E8%A1%8C%E5%9B%8A%E5%8E%BB%E7%9C%8B%E5%B1%B1%E5%B7%9D%E6%B9%96%E6%B5%B7%E3%80%82;%E5%9C%A8%E4%BB%A3%E7%A0%81%E9%87%8C%E6%89%93%E7%A3%A8%E9%80%BB%E8%BE%91%EF%BC%8C%E5%9C%A8%E8%BF%90%E5%8A%A8%E4%B8%AD%E7%A7%AF%E8%93%84%E8%83%BD%E9%87%8F%EF%BC%8C%E5%9C%A8%E6%97%85%E9%80%94%E4%B8%8A%E6%8B%93%E5%AE%BD%E7%9C%BC%E7%95%8C%E3%80%82;%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%9Ablog.itrf.cn" alt="RF极客日志" loading="lazy">
 </a>
 
-### 📕 **Latest Blog Posts**
+### 📕 &nbsp;**Latest Blog Posts**
 <!-- BLOG-POST-LIST:START -->
 - [使用EdgeOne加速CloudFlareWorkers](https://blog.itrf.cn/posts/6a9f/)
 - [安知鱼主题顶部美化教程](https://blog.itrf.cn/posts/cb83/)
@@ -33,11 +31,17 @@
 <div>&nbsp;</div>
 
 ## 📊 GitHub 数据统计
-<div style="margin: 40px auto; max-width:800px; display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
-  <div style="border-radius:12px; overflow:hidden; box-shadow:0 2px 12px rgba(140, 54, 219, 0.06);">
-    <img src="https://github-readme-stats.vercel.app/api?username=itrfcn&show_icons=true&theme=default&hide_border=true&count_private=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db&title_color=8c36db" style="width:100%;" alt="github stats" loading="lazy">
-  </div>
-  <div style="border-radius:12px; overflow:hidden; box-shadow:0 2px 12px rgba(140, 54, 219, 0.06);">
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=itrfcn&layout=compact&theme=default&hide_border=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db&title_color=8c36db" style="width:100%;" alt="top langs" loading="lazy">
+<!-- 外层容器：增加呼吸感间距 -->
+<div style="margin: 40px auto; max-width: 800px;">
+  <!-- 改用Grid替换嵌套table，修复移动端横向滚动BUG -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap:16px;">
+    <!-- 左侧：核心统计卡片 -->
+    <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(140, 54, 219, 0.06); transition: all 0.3s ease;">
+      <img src="https://github-stats-extended.vercel.app/api?username=itrfcn&show_icons=true&theme=default&hide_border=true&count_private=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db&title_color=8c36db" style="width:100%; height: auto; display:block;" loading="lazy">
+    </div>
+    <!-- 右侧：语言统计卡片 -->
+    <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(140, 54, 219, 0.06); transition: all 0.3s ease;">
+      <img src="https://github-stats-extended.vercel.app/api/top-langs/?username=itrfcn&layout=compact&theme=default&hide_border=true&bg_color=ffffff&text_color=24292e&icon_color=8c36db&title_color=8c36db" style="width:100%; height: auto; display:block;" loading="lazy">
+    </div>
   </div>
 </div>
