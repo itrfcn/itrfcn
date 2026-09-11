@@ -501,13 +501,6 @@
   </url>
   
   <url>
-    <loc>https://blog.itrf.cn/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/</loc>
-    <lastmod>2026-09-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.itrf.cn/tags/%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81/</loc>
     <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -516,6 +509,13 @@
   
   <url>
     <loc>https://blog.itrf.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.itrf.cn/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/</loc>
     <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
