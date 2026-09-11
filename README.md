@@ -44,6 +44,7 @@
   <!-- 整体表格容器：渐变背景+精致阴影 -->
   <table style="width: 100%; margin: 0 auto; border-collapse: separate; border-spacing: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(140, 54, 219, 0.08); background: linear-gradient(180deg, #ffffff 0%, #fefcff 100%);">
     <!-- 第一行：活动图（跨两列+标题栏） -->
+    
     <!-- <tr>
       <td colspan="2" style="width: 100%; padding: 0; border: none;">
         <!-- 活动图标题栏 -->
@@ -51,6 +52,7 @@
         <img src="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night&hide_border=true&bg_color=ffffff&color=8c36db" style="width: 100%; height: auto; display: block;">
       </td>
     </tr> -->
+    
     <!-- 分隔线：视觉过渡 -->
     <tr>
       <td colspan="2" style="padding: 0; border: none; height: 1px; background-color: #f0e6f5;"></td>
