@@ -44,10 +44,6 @@
   <!-- 整体表格容器：渐变背景+精致阴影 -->
   <table style="width: 100%; margin: 0 auto; border-collapse: separate; border-spacing: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(140, 54, 219, 0.08); background: linear-gradient(180deg, #ffffff 0%, #fefcff 100%);">
     
-    <!-- 分隔线：视觉过渡 -->
-    <tr>
-      <td colspan="2" style="padding: 0; border: none; height: 1px; background-color: #f0e6f5;"></td>
-    </tr>
     <!-- 第二行：双列统计卡片 -->
     <tr>
       <!-- 左侧：核心统计卡片 -->
