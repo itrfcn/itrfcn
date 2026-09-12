@@ -1,6 +1,6 @@
 /* 侧边栏头像卡片 */
 #aside-content>.card-widget.card-info::before {
-  background: url('/images/mybackground.png') no-repeat center center;
+  background: url('https://i.itrf.cn/blog/images/20260912_e59abdfa.png') no-repeat center center;
   border: 0;
   position: absolute;
   background-size: 100% 100%;
