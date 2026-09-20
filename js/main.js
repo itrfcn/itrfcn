@@ -925,10 +925,11 @@ document.addEventListener("DOMContentLoaded", function () {
   updateRightsideTime();
   setInterval(updateRightsideTime, 1000);
 
-  //监听蒙版关闭
+  //监听蒙版关闭（点击弹窗内部时不关闭，避免点二维码时弹窗被关掉）
   document.addEventListener(
     "touchstart",
     e => {
+      if (e.target.closest(".reward-main")) return;
       anzhiyu.removeRewardMask();
     },
     { passive: true }

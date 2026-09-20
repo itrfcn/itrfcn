@@ -16346,12 +16346,12 @@ blockquote {
   box-shadow: none;
 }
 .post-reward:hover .reward-main {
-  display: -webkit-box !important;
-  display: -moz-box !important;
-  display: -webkit-flex !important;
-  display: -ms-flexbox !important;
-  display: box !important;
-  display: flex !important;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
   -webkit-box-pack: left;
   -moz-box-pack: left;
   -o-box-pack: left;
@@ -16389,6 +16389,14 @@ blockquote {
   display: none;
   padding: 0px 0px 15px;
   width: 100%;
+}
+.post-reward .reward-main.reward-show {
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: box !important;
+  display: flex !important;
 }
 .post-reward .reward-main .reward-all {
   border-radius: 12px;
@@ -23441,7 +23449,8 @@ details .content > *:nth-child(1) {
   align-items: center;
   pointer-events: none;
   margin: 0 !important;
-  z-index: 2;
+  /* 需高于文章标题 #post-info(z:3) 与文内定位元素(z:21)，低于导航栏 #nav(z:90) */
+  z-index: 50;
 }
 #console-music-bg {
   display: none;

@@ -1206,15 +1206,17 @@ totraveling: function () {
   },
   //添加赞赏蒙版
   addRewardMask: function () {
-    if (!document.querySelector(".reward-main")) return;
-    document.querySelector(".reward-main").style.display = "flex";
-    document.querySelector(".reward-main").style.zIndex = "102";
+    const rewardMain = document.querySelector(".reward-main");
+    if (!rewardMain) return;
+    rewardMain.classList.add("reward-show");
+    rewardMain.style.zIndex = "102";
     document.getElementById("quit-box").style.display = "flex";
   },
   // 移除赞赏蒙版
   removeRewardMask: function () {
-    if (!document.querySelector(".reward-main")) return;
-    document.querySelector(".reward-main").style.display = "none";
+    const rewardMain = document.querySelector(".reward-main");
+    if (!rewardMain) return;
+    rewardMain.classList.remove("reward-show");
     document.getElementById("quit-box").style.display = "none";
   },
 
