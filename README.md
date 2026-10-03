@@ -48,7 +48,7 @@
       <td colspan="2" style="width: 100%; padding: 0; border: none;">
         <!-- 活动图标题栏 -->
         <!-- 活动图主体 -->
-        <img src="https://github-readme-activity-graph.vercel.app/graph?username=itrfcn&theme=tokyo-night&hide_border=true&bg_color=ffffff&color=8c36db" style="width: 100%; height: auto; display: block;">
+        <img src="https://github-activity-graph.luckylinux.dev/graph?username=itrfcn&theme=tokyo-night&hide_border=true&bg_color=ffffff&color=8c36db" style="width: 100%; height: auto; display: block;">
       </td>
     </tr>
     <!-- 分隔线：视觉过渡 -->
