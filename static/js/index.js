@@ -111,7 +111,7 @@ $(window).on('load',function handlePreloader(){
     xf_star_el.innerHTML='★'.repeat(xf_star_num)+'☆'.repeat(5-xf_star_num)
     }
     })()
-    var url="https://api.i-meto.com/meting/api?server=netease&type=playlist&id=17514566321";
+    var url="https://api.injahow.cn/meting/api?server=netease&type=playlist&id=17514566321";
     var musicInfo=[]
     var nowmusic=''
     var audio=$("<audio />")
