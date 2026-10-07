@@ -288,6 +288,7 @@ function initMedia() {
     lastOrientation = null;
     return;
   }
+
   initResponsiveBackground();
   initScrollFadeEffect();
 }
@@ -347,16 +348,3 @@ window.addEventListener('popstate', () => {
     }, 300);
   }
 });
-
-function checkMediaStatus() {
-  if (location.pathname !== '/') return;
-  const container = document.getElementById('home-media-container');
-  if (!container) return;
-  if (!container.querySelector('.home-media')) {
-    lastOrientation = null;
-    initResponsiveBackground();
-  }
-  initScrollFadeEffect();
-}
-
-setInterval(checkMediaStatus, 500);
