@@ -493,13 +493,6 @@
   </url>
   
   <url>
-    <loc>https://blog.itrf.cn/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2026-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.itrf.cn/tags/JAVA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -507,7 +500,7 @@
   </url>
   
   <url>
-    <loc>https://blog.itrf.cn/tags/%E5%8A%A0%E5%AF%86/</loc>
+    <loc>https://blog.itrf.cn/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -521,6 +514,13 @@
   </url>
   
   <url>
+    <loc>https://blog.itrf.cn/tags/%E5%8A%A0%E5%AF%86/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.itrf.cn/tags/Linux/</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -528,14 +528,14 @@
   </url>
   
   <url>
-    <loc>https://blog.itrf.cn/tags/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/</loc>
+    <loc>https://blog.itrf.cn/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.itrf.cn/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/</loc>
+    <loc>https://blog.itrf.cn/tags/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
