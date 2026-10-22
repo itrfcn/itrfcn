@@ -4,7 +4,7 @@
   <url>
     <loc>https://blog.itrf.cn/posts/e103/</loc>
     
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-22</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -13,7 +13,52 @@
   <url>
     <loc>https://blog.itrf.cn/posts/5cdf/</loc>
     
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.itrf.cn/posts/34af/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.itrf.cn/posts/be0b/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.itrf.cn/posts/162/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.itrf.cn/posts/a2bb/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.itrf.cn/posts/1823/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -39,15 +84,6 @@
   
   <url>
     <loc>https://blog.itrf.cn/posts/5ac2/</loc>
-    
-    <lastmod>2026-10-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.itrf.cn/posts/1823/</loc>
     
     <lastmod>2026-10-01</lastmod>
     
@@ -129,15 +165,6 @@
   
   <url>
     <loc>https://blog.itrf.cn/posts/8ab6/</loc>
-    
-    <lastmod>2026-09-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.itrf.cn/posts/34af/</loc>
     
     <lastmod>2026-09-07</lastmod>
     
@@ -308,42 +335,6 @@
   </url>
   
   <url>
-    <loc>https://blog.itrf.cn/posts/83ea/</loc>
-    
-    <lastmod>2026-09-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.itrf.cn/posts/41ab/</loc>
-    
-    <lastmod>2026-09-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.itrf.cn/posts/9f32/</loc>
-    
-    <lastmod>2026-09-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.itrf.cn/posts/9e72/</loc>
-    
-    <lastmod>2026-09-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.itrf.cn/posts/516b/</loc>
     
     <lastmod>2026-09-03</lastmod>
@@ -372,15 +363,6 @@
   
   <url>
     <loc>https://blog.itrf.cn/posts/3a56/</loc>
-    
-    <lastmod>2026-09-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.itrf.cn/posts/3a52/</loc>
     
     <lastmod>2026-09-03</lastmod>
     
@@ -490,7 +472,7 @@
 
   <url>
     <loc>https://blog.itrf.cn/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -498,91 +480,98 @@
   
   <url>
     <loc>https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.itrf.cn/tags/%E5%8A%A0%E5%AF%86/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.itrf.cn/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.itrf.cn/tags/%E5%8E%9F%E5%88%9B%E9%A1%B9%E7%9B%AE/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <loc>https://blog.itrf.cn/tags/JAVA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.itrf.cn/tags/%E5%8A%A0%E5%AF%86/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/</loc>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.itrf.cn/tags/Linux/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.itrf.cn/tags/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/</loc>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.itrf.cn/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.itrf.cn/tags/%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.itrf.cn/tags/%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.itrf.cn/tags/%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.itrf.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.itrf.cn/tags/%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.itrf.cn/tags/%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -591,28 +580,21 @@
   
   <url>
     <loc>https://blog.itrf.cn/categories/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.itrf.cn/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.itrf.cn/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.itrf.cn/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
