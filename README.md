@@ -26,10 +26,10 @@
 ### 📕 &nbsp;**Latest Blog Posts**
 <!-- BLOG-POST-LIST:START -->
 - [利用DoH+ECH+中继代理打造抗审查网络](https://blog.itrf.cn/posts/162/)
-- [Spring学习笔记](https://blog.itrf.cn/posts/a2bb/)
-- [自定义域名邮箱DNS安全配置完整手册（防钓鱼/防伪造/提送达率）](https://blog.itrf.cn/posts/61ca/)
-- [通过 CC Switch 为 Claude Code 接入 OpenAI 格式中转接口](https://blog.itrf.cn/posts/5ac2/)
 - [使用EdgeOne加速CloudFlareWorkers](https://blog.itrf.cn/posts/6a9f/)
+- [零成本搭建高速图床](https://blog.itrf.cn/posts/17a1/)
+- [Hexo 使用 patch‑package 保存 node_modules 修改](https://blog.itrf.cn/posts/8836/)
+- [EdgeOne加速Vercel获取真实用户IP](https://blog.itrf.cn/posts/2fd6/)
 <!-- BLOG-POST-LIST:END -->
 
   <!-- for beauty 留个空行好看点 -->
