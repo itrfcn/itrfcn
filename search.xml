@@ -13,7 +13,7 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 学习心得 </category>
           
       </categories>
       
@@ -63,7 +63,7 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 资源分享 </category>
           
       </categories>
       
@@ -138,7 +138,7 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 资源分享 </category>
           
       </categories>
       
@@ -170,7 +170,7 @@
       
         <tags>
             
-            <tag> 零碎知识 </tag>
+            <tag> Git </tag>
             
         </tags>
       
@@ -188,7 +188,7 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 资源分享 </category>
           
       </categories>
       
@@ -213,14 +213,14 @@
       
       <categories>
           
-          <category> 学习心得 </category>
+          <category> 资源分享 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 零碎知识 </tag>
+            <tag> 解决方案 </tag>
             
         </tags>
       
@@ -322,7 +322,7 @@
       
         <tags>
             
-            <tag> 学习笔记 </tag>
+            <tag> 网络知识 </tag>
             
         </tags>
       
@@ -465,14 +465,14 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 学习心得 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 学习心得 </tag>
+            <tag> 数据库 </tag>
             
         </tags>
       
@@ -490,7 +490,7 @@
       
       <categories>
           
-          <category> 学习心得 </category>
+          <category> 资源分享 </category>
           
       </categories>
       
@@ -547,7 +547,7 @@
       
         <tags>
             
-            <tag> 学习笔记 </tag>
+            <tag> 数据库 </tag>
             
         </tags>
       
@@ -572,7 +572,7 @@
       
         <tags>
             
-            <tag> 学习笔记 </tag>
+            <tag> Git </tag>
             
         </tags>
       
@@ -590,7 +590,7 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 学习心得 </category>
           
       </categories>
       
@@ -615,7 +615,7 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 学习心得 </category>
           
       </categories>
       
@@ -640,7 +640,7 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 学习心得 </category>
           
       </categories>
       
@@ -665,7 +665,7 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 学习心得 </category>
           
       </categories>
       
@@ -697,6 +697,8 @@
       
         <tags>
             
+            <tag> 学习笔记 </tag>
+            
             <tag> 虚拟货币 </tag>
             
             <tag> 区块链 </tag>
@@ -717,7 +719,7 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 学习心得 </category>
           
       </categories>
       
@@ -749,8 +751,6 @@
       
         <tags>
             
-            <tag> 学习笔记 </tag>
-            
             <tag> Linux </tag>
             
         </tags>
@@ -769,7 +769,7 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 学习心得 </category>
           
       </categories>
       
@@ -819,7 +819,7 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 学习心得 </category>
           
       </categories>
       
@@ -844,7 +844,7 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 学习心得 </category>
           
       </categories>
       
@@ -860,7 +860,7 @@
     
     
     <entry>
-      <title>JAVA学习笔记</title>
+      <title>Java学习笔记</title>
       <link href="/posts/be0b/"/>
       <url>/posts/be0b/</url>
       
@@ -869,14 +869,14 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 学习心得 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JAVA学习笔记 </tag>
+            <tag> Java学习笔记 </tag>
             
         </tags>
       
