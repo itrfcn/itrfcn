@@ -29,7 +29,7 @@
     <summary type="html">利用DoH+ECH+中继代理打造抗审查网络</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=5399ac6f-252d-d341-ef77-ec0ef81d77ef" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=f07f440b-f317-9e09-aa62-b0823c53c033" type="image"/>
     
     
     <category term="网络知识" scheme="https://blog.itrf.cn/tags/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/"/>
@@ -41,15 +41,15 @@
     <link href="https://blog.itrf.cn/posts/6a9f/"/>
     <id>https://blog.itrf.cn/posts/6a9f/</id>
     <published>2026-09-08T13:41:56.000Z</published>
-    <updated>2026-10-22T09:00:53.952Z</updated>
+    <updated>2026-10-28T10:39:03.226Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h2><p>使用CloudFlareWorkers部署图床系统的时候，想使用EdgeOne加速Workers，但是直接使用EdgeOne加速Workers给的域名会出现522的问题，我一开始以为和Vercle一样是回源HOST的问题，但实际上不是。</p><p>Workers是会检测域名的，如果域名没有托管到CF就是直接522</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>我发现可以使用一个托管在CF的域名作为中转，实现使用EO加速</p><ol><li>给在CF托管的域名添加一个解析记录，值随便填写，但是一定要开启小云盾</li><li>添加Workers路由绑定要加速的Workers，注意是添加路由，不是在Workers里面直接绑定域名，一定要使用路由！！！</li><li>使用EdgeOne加速中转域名，注意回源方式HTTPS，回源地址和回源HOST要填写中转域名</li></ol><p>其他解决方案，我在网上查的好像可以使用自定义主机名功能实现，但是我试了半天页面成功，感兴趣的可以研究一下，这个方案就是在试的过程中发现的。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>CFWorkers会检测域名，但我们可以使用中转域名的方式绕过</p><p>必须要有一个托管在CF的域名，我用的eu.org 免费域名</p><p>至于会不会出现双层cdn的问题，我感觉不会，因为达到CF的节点就返回Workers的内容了，应该不会优选吧。</p><p>在EO配置好缓存可以减少CF的请求次数</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h2><p>使用CloudFlareWorkers部署的图床系统，想使用EdgeOne加速Workers，但直接使用EdgeOne加速Workers提供的默认域名会出现522报错。我一开始以为和Vercle一样是回源HOST的问题，但研究发现实际上不是。</p><p>CFWorkers是会检测域名的，如果域名没有托管到CF就会直接522报错。</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>我发现可以使用一个托管在CF的域名作为中转域名，绕开CFWorkers的域名检测，实现使用EO加速。</p><ol><li>给托管在CF上的域名添加一个解析记录作为中转域名，值随便填写，但是一定要开启小云盾。</li><li>添加 Workers 路由用中转域名绑定要加速的 Workers，注意是添加路由，不是在Workers里面直接绑定域名，一定要使用路由！！！</li><li>使用EdgeOne加速中转域名，注意回源方式HTTPS，回源地址和回源HOST要填写中转域名。</li></ol><p>其他解决方案，我在网上查的好像可以使用自定义主机名功能实现，但是我试了半天也没成功，感兴趣的可以研究一下，现在的方案就是在尝试的过程中发现的。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>CFWorkers会检测域名，但我们可以使用中转域名的方式绕过。</p><p>必须要有一个托管在CF的域名，我用的eu.org 免费域名。</p><p>至于会不会出现双层cdn的问题，我感觉不会，因为请求打到CF的节点就返回Workers的内容了。</p><p>在EO配置好缓存可以减少CF的请求次数。</p>]]></content>
     
     
     <summary type="html">使用EdgeOne加速CloudFlareWorkers，减少CF请求次数</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=50495d82-b821-a7fa-fdd2-8bcdf8de19e9" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=6e9ad8f6-10c8-ebe3-0274-0d5ea98a967a" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -69,7 +69,7 @@
     <summary type="html">用 Cloudflare R2 对象存储 +CloudflareWorkers + EdgeOne搭建免费高速图床</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=93b0c5c2-e8ec-4276-e4a0-c521b1f49bff" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=a6362408-7fd3-a3ec-df6f-c3f2504adf55" type="image"/>
     
     
     <category term="搭建教程" scheme="https://blog.itrf.cn/tags/%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/"/>
@@ -89,7 +89,7 @@
     <summary type="html">Hexo 使用 patch‑package 保存 node_modules 修改</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=fb9e83b9-9339-83f9-f0f1-12eb04d1eb6e" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=7c4a0c1b-7748-ecfe-290f-6370833b179f" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -109,7 +109,7 @@
     <summary type="html">EdgeOne加速Vercel获取真实用户IP</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=3532251c-7c27-bc8a-c66b-e438c00a12b9" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=ce1bedfe-e307-fd22-8950-629efa1507d9" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -129,7 +129,7 @@
     <summary type="html">通过 CC Switch 为 Claude Code 接入 OpenAI 格式中转接口</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=5a385cb6-133f-4715-4880-1c577d808ee3" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=74c14102-db74-bd0c-e159-23eae84f3e2a" type="image"/>
     
     
     <category term="配置教程" scheme="https://blog.itrf.cn/tags/%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/"/>
@@ -149,7 +149,7 @@
     <summary type="html">解决git仓库嵌套的问题</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=3c20e63a-7595-e6ec-94b0-2a755c8d9ba1" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=c624c5ef-819a-deae-a716-c84ffbb91501" type="image"/>
     
     
     <category term="Git" scheme="https://blog.itrf.cn/tags/Git/"/>
@@ -169,7 +169,7 @@
     <summary type="html">搭建企业域名邮箱，防止域名被伪造发送钓鱼邮件，同时提升邮件送达率，降低被反垃圾系统误判为垃圾邮件的概率。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=06301056-2f19-e921-acb9-604203fc29ac" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=177209f2-2cb6-5497-5c2d-fc095658aa72" type="image"/>
     
     
     <category term="配置教程" scheme="https://blog.itrf.cn/tags/%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/"/>
@@ -189,7 +189,7 @@
     <summary type="html">本文针对 openclaw plugins install @tencent-connect/openclaw-qqbot 执行时出现的 npm install failed 报错，提供更清晰、更健壮、更易操作的解决方案，覆盖问题定位、环境修复、手动安装、权限配置全流程。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=99f5b220-473e-5df1-2fa9-63bfedb68e6b" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=4c03cb5b-938e-6607-cd27-64a19a9c4b72" type="image"/>
     
     
     <category term="解决方案" scheme="https://blog.itrf.cn/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
@@ -209,7 +209,7 @@
     <summary type="html">JSONP一种解决跨域的古老方法</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=b941e61a-2f0c-cfe3-8842-5a9fc7bf1015" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=655743c2-6861-7064-eb15-197281ec8c02" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -229,7 +229,7 @@
     <summary type="html">前端开发中，有一个高频踩坑场景：前端绑定域名后，HTTP 协议下请求后端 IP 接口一切正常，可一旦开启 SSL 切换为 HTTPS，接口就直接请求失败，控制台报出红色错误 —— 这不是代码 Bug，而是浏览器的安全限制，核心原因就是「Mixed Content（混合内容）」。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=c83be75c-3841-5f09-af38-def186ded848" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=fcc22d9c-c35d-1d67-ce6c-a0bf053b11d2" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -249,7 +249,7 @@
     <summary type="html">阿里云大模型工程师ACA认证学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=debc1ebf-c937-f60b-ffd6-864adc6e5e7f" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=61d59f94-70bd-de26-8c9d-75073243caf3" type="image"/>
     
     
     <category term="大模型" scheme="https://blog.itrf.cn/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
@@ -271,7 +271,7 @@
     <summary type="html">本文介绍了各NAT类型打洞可行性，以及实际操作步骤。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=4ed60810-0035-1eb0-7b4d-6ed0e6dd41df" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=2442656e-77c6-443d-7b20-20cfdb3802a1" type="image"/>
     
     
     <category term="网络知识" scheme="https://blog.itrf.cn/tags/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/"/>
@@ -291,7 +291,7 @@
     <summary type="html">在数据查询场景中，“如何高效呈现大量数据” 是开发者绕不开的问题。分页作为解决 “数据量过大导致的内存溢出、响应缓慢” 的核心手段，主要分为数据库分页（数据库端过滤 + 限制返回条数）和程序分页（全量查询后内存中分片）两种实现方式。很多开发者在选型时会陷入纠结：到底该让数据库 “多干活”，还是让应用程序 “扛压力”？其实两者没有绝对优劣，核心取决于数据量、业务复杂度、实时性要求等关键因素。本文将从原理、场景、优缺点、实操建议四个维度，帮你彻底理清选型逻辑，避免踩坑。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=734d4e51-b1ba-8718-72da-60c29916d690" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=5890535f-12cc-fd38-a0cd-9003b6c49496" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -311,7 +311,7 @@
     <summary type="html">用过 Vercel 的开发者大概都对它的便捷性印象深刻 —— 将 Node 项目推送到 GitHub 后，几分钟内就能自动构建部署并提供访问服务，免费计划也足够日常折腾。但随着 Vercel 域名 DNS 污染越来越频繁，不挂梯子几乎无法访问，好好的免费资源就这么闲置了实在可惜。于是我尝试用腾讯云 EO（EdgeOne）对其进行加速，过程中踩了个典型的坑，最终摸索出解决方案，特此记录分享给有同样需求的朋友。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=01a685b2-a443-a957-6c69-5e8c097c9518" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=5a18c447-a641-0776-731f-9aacb05facaf" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -331,7 +331,7 @@
     <summary type="html">Flask项目无法获取favicon.ico原因以及解决方案</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=163eb397-71ee-6b5f-9c36-13db19b38cb2" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=01779122-1d94-b3b6-5c82-e8d651264f45" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -351,7 +351,7 @@
     <summary type="html">在使用腾讯云 EdgeOne 海外节点加速海外业务时，很多开发者会遇到一个核心问题：Nginx 日志中记录的是 EdgeOne 节点 IP 而非用户真实 IP，导致无法进行用户行为分析、地域统计和异常访问拦截。本文将从「问题原理」「手动配置」「自动化更新」「故障排查」四个维度，提供一套适配 Nginx + 宝塔面板的完整解决方案，新手也能快速上手。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=6ee6c991-2cd5-e9ff-8fb3-6951455c196a" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=3c076e92-727d-8c42-16e7-56c60ef9a248" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -371,7 +371,7 @@
     <summary type="html">href属性中/的不同作用</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=0ee1d9e3-314a-2711-cd4a-e8761445cabf" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=b4c70b87-2f26-25ee-2193-c8c41aaa1b5b" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -391,7 +391,7 @@
     <summary type="html">MySQL学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=9d1543f7-4e53-2154-447d-700bf470823c" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=b1e7e109-bb7f-839e-892b-90fc623c1251" type="image"/>
     
     
     <category term="数据库" scheme="https://blog.itrf.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
@@ -411,7 +411,7 @@
     <summary type="html">对安知鱼主题顶部导航栏美化，添加毛玻璃效果</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=836db243-fcc0-81dc-d093-b87c158a87d1" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=de578cba-002d-f5d4-172e-181cedb15859" type="image"/>
     
     
     <category term="主题美化" scheme="https://blog.itrf.cn/tags/%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/"/>
@@ -431,7 +431,7 @@
     <summary type="html">EdgeOne 不会自动触发部署，更新仓库内容，EdgeOne不会自动部署。</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=bdaeab96-cfa4-21bd-127f-99b513759b3f" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=fd8408ee-4e68-2750-8879-e7976af86f7d" type="image"/>
     
     
     <category term="零碎知识" scheme="https://blog.itrf.cn/tags/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/"/>
@@ -451,7 +451,7 @@
     <summary type="html">SQL Server学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=c221719e-31e3-e98b-5f81-88ece3f85f5c" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=61848659-f673-8193-96c9-79543a45965b" type="image"/>
     
     
     <category term="数据库" scheme="https://blog.itrf.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
@@ -471,7 +471,7 @@
     <summary type="html">Git 推送失败问题解决指南</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=287f80d1-20b1-ea03-9ccb-b6a0aba2c32e" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=d0905809-c094-d487-dcd1-0f8dac7637b3" type="image"/>
     
     
     <category term="Git" scheme="https://blog.itrf.cn/tags/Git/"/>
@@ -491,7 +491,7 @@
     <summary type="html">SpringBoot3学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=1d3e065e-9d20-1de0-08e4-ef06a6164f6d" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=1ea23c7f-8b47-7ea6-1679-707ba607762d" type="image"/>
     
     
     <category term="Java学习笔记" scheme="https://blog.itrf.cn/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -511,7 +511,7 @@
     <summary type="html">SSM学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=0f15ead6-181e-cba4-610a-cdc8a3bf6e6c" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=81840399-7d1a-31a4-98fd-985ee70f6f9c" type="image"/>
     
     
     <category term="Java学习笔记" scheme="https://blog.itrf.cn/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -531,7 +531,7 @@
     <summary type="html">MyBatis-Plus学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=590f3647-1d02-530f-a249-5873c68cf182" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=b645c2c6-1ac1-16d2-6e43-102c21e7a00d" type="image"/>
     
     
     <category term="Java学习笔记" scheme="https://blog.itrf.cn/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -551,7 +551,7 @@
     <summary type="html">MyBatis学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=b8efd4e1-865a-3745-fa4f-f6e7e00ffd0f" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=24709413-20aa-186e-5bd4-60af2fcd4839" type="image"/>
     
     
     <category term="Java学习笔记" scheme="https://blog.itrf.cn/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -571,7 +571,7 @@
     <summary type="html">Bitcoin is a decentralized digital currency that can be used without a centralized authority or bank. It uses peer-to-peer technology to allow users to send and receive money without the need for a financial institution.</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=732b1c46-d651-8982-aeb6-32d8e561374a" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=53ffbcd8-dc50-091e-f3fa-5fe6b2791df7" type="image"/>
     
     
     <category term="学习笔记" scheme="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -595,7 +595,7 @@
     <summary type="html">SpringMVC学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=63eb76c6-6c9b-74cc-df40-dc21f420d9e7" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=fc44c07b-6503-a99e-e4ff-ea07a4a079ac" type="image"/>
     
     
     <category term="Java学习笔记" scheme="https://blog.itrf.cn/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -615,7 +615,7 @@
     <summary type="html">Linux 常用命令大全</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=a07877ca-fa52-efef-3389-29661927718e" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=ed3dffc6-e338-ac42-1d20-4f34a94a42e2" type="image"/>
     
     
     <category term="Linux" scheme="https://blog.itrf.cn/tags/Linux/"/>
@@ -635,7 +635,7 @@
     <summary type="html">Spring学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=01fdff4a-24b1-ed90-674d-e3c730e79c95" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=8ecdf1da-9cbe-2a25-98c4-bee4ded46626" type="image"/>
     
     
     <category term="Java学习笔记" scheme="https://blog.itrf.cn/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -655,7 +655,7 @@
     <summary type="html">正则表达式学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=a4fda6d5-14a0-f25c-622d-e1eb9462d365" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=ebd0df2b-26d0-078a-6924-2ec20ac9ae3d" type="image"/>
     
     
     <category term="学习笔记" scheme="https://blog.itrf.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -675,7 +675,7 @@
     <summary type="html">JavaWeb的一些基础概念</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=b6b5566b-63f1-5bfd-a375-b3f0f13f30bd" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=7b2d8bd0-bd09-4d0b-14fc-310639fad7b2" type="image"/>
     
     
     <category term="Java学习笔记" scheme="https://blog.itrf.cn/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -695,7 +695,7 @@
     <summary type="html">Maven 是一个 项目管理与构建自动化工具</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=dc4a490d-9ab5-cb92-7107-934bb5995f6a" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=c11bcbfa-3e6b-8c7b-b34c-2e0efc11d551" type="image"/>
     
     
     <category term="Java学习笔记" scheme="https://blog.itrf.cn/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -715,7 +715,7 @@
     <summary type="html">Java基础知识学习笔记</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=e1432726-9528-4612-0fbf-42b4d685cfdd" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=b100f7de-a138-e0b6-8bb3-e1413c8c9836" type="image"/>
     
     
     <category term="Java学习笔记" scheme="https://blog.itrf.cn/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -735,7 +735,7 @@
     <summary type="html">这是一个秘密花园</summary>
     
     
-    <content src="https://t.alcy.cc/ycy?_r_=116a1e85-bc6c-89a0-840e-c9b3cc6ccf85" type="image"/>
+    <content src="https://t.alcy.cc/ycy?_r_=975060aa-c5d3-3b13-f7e1-e3b8164471dc" type="image"/>
     
     
     <category term="加密" scheme="https://blog.itrf.cn/tags/%E5%8A%A0%E5%AF%86/"/>
